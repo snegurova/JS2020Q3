@@ -9,6 +9,8 @@ body {
   height: 1000px;
   font-size: 14px;
   font-weight: normal;
+  line-height: 140%;
+  color: #4E4E4E;
 }
 
 .wrapper {
@@ -18,15 +20,19 @@ body {
 
 .container {
   width: 1280px;
+  margin: 0 auto;
   display: flex;
+  justify-content: space-around;
 }
 
 .left-col {
-  flex-grow: 0.5;
+  width: 50%;
+  display: flex;
 }
 
 .right-col {
-  flex-grow: 0.5;
+  width: 50%;
+  display: flex;
 }
 
 .btn {
@@ -35,6 +41,15 @@ body {
   text-transform: uppercase;
   color: #fff;
   background-color: #00AFDB;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #373737;
 }
 
 /*===============
@@ -188,10 +203,40 @@ nav .logo a:hover {
 =============*/
 
 .rappresent {
+  padding-top: 120px;
+  padding-bottom: 140px;
+}
+
+.rappresent .left-col {
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 116px;
+  padding-right: 110px;
+}
+
+.rappresent  .right-col {
+  align-items: center;
+  justify-content: center;
+  padding-right: 55px;
+}
+
+.rappresent h2 {
+  margin-top: 3px;
+  margin-bottom: 21px;
+}
+
+.rappresent p {
+  line-height: 20px;
+  align-self: flex-start;
+  width: 407px;
+  margin-top: 0;
+  margin-bottom: 27px;
 
 }
 
-
+.rappresent .btn {
+  align-self: flex-start;
+}
 
 /*===========
 5. COMMUNITY
