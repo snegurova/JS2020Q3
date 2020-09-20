@@ -55,6 +55,7 @@ nav a {
   text-decoration: none;
   padding: 10px 20px;
   opacity: 0.8;
+  transition: 1s;
 }
 
 nav a:hover {
@@ -70,26 +71,28 @@ nav a::after {
   height: 3px;
   width: 70%;
   border-top: 1px solid #fff;
-  /* z-index: -1; */
   display: none;
 
 }
 
 nav a:hover::after {
-  /* z-index: 0; */
   display: block;
 }
 
 nav .logo {
   padding-left: 30px;
   padding-right: 30px;
-
 }
 
 nav .logo a {
   opacity: 1;
+  transition: 0.5s;
 }
 
 nav .logo a:hover::after {
-  z-index: -1;
+  display: none;
+}
+
+nav .logo a:hover {
+  opacity: 0.8;
 }
