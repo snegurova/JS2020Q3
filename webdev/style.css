@@ -5,8 +5,10 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  margin-left: -37px;
+  /* margin-left: -37px; */
   height: 1000px;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .wrapper {
@@ -14,10 +16,30 @@ body {
   margin: 0 auto;
 }
 
-/*
-2. HEADER styles
-*/
+.container {
+  width: 1280px;
+  display: flex;
+}
 
+.left-col {
+  flex-grow: 0.5;
+}
+
+.right-col {
+  flex-grow: 0.5;
+}
+
+.btn {
+  padding: 15px 47px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #00AFDB;
+}
+
+/*===============
+2. HEADER styles
+=================*/
 
 h1.visually-hidden {
   position: absolute !important;
@@ -40,6 +62,8 @@ nav ul {
   justify-content: center;
   align-items: center;
   margin: 0;
+  padding-left: 0;
+  margin-left: -12px;
 }
 
 nav li {
@@ -53,7 +77,7 @@ nav a {
   display: block;
   color: #fff;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 10px 23px;
   opacity: 0.8;
   transition: 1s;
 }
@@ -63,7 +87,7 @@ nav a:hover {
 }
 
 nav a::after {
-  content:"";
+  content: "";
   position: absolute;
   bottom: 0;
   left: 15%;
@@ -72,7 +96,6 @@ nav a::after {
   width: 70%;
   border-top: 1px solid #fff;
   display: none;
-
 }
 
 nav a:hover::after {
@@ -96,3 +119,122 @@ nav .logo a:hover::after {
 nav .logo a:hover {
   opacity: 0.8;
 }
+
+/*===========
+3. BANNER
+=============*/
+
+.banner {
+  background-color: #000;
+}
+
+.banner .wrapper {
+  height: 100vh;
+  background-image: url(assets/bg-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position-y: -8px;
+  margin-top: -95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo {
+  color: #fff;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 41px;
+  align-items: center;
+}
+
+.motto {
+  font-weight: 700;
+  font-size: 64px;
+  text-transform: uppercase;
+  letter-spacing: 4.5px;
+}
+
+.promo p {
+  font-size: 18px;
+  width: 504px;
+  line-height: 1.4;
+  margin-top: 23px;
+  text-align: center;
+}
+
+.promo .btn {
+  margin-top: 12px;
+}
+
+.social-icons {
+  display: flex;
+  width: 170px;
+  justify-content: space-between;
+  padding-left: 0;
+  margin: 0;
+  margin-bottom: 97px;
+}
+
+.social-icons li {
+  list-style: none;
+}
+
+/*===========
+4. RAPPRESENT
+=============*/
+
+.rappresent {
+
+}
+
+
+
+/*===========
+5. COMMUNITY
+=============*/
+
+.community {}
+
+.description {}
+
+.slider {}
+
+.controls {}
+
+.prev {}
+
+.active-slide {}
+
+.slides-count {}
+
+.next {}
+
+/*===========
+6. IMPLEMENT
+=============*/
+
+.implement {}
+
+/*===========
+7. SUBSCRIBE
+=============*/
+
+.subscribe {}
+
+/*===========
+8. DOWNLOAD
+=============*/
+
+.download {}
+
+/*===========
+9. FOOTER
+=============*/
+
+.footer-menu {}
+
+.author {}
