@@ -561,6 +561,10 @@ footer {
   background-color: #000;
 }
 
+footer .wrapper {
+  background-color: #000;
+}
+
 footer .container {
   height: 185px;
   box-sizing: border-box;
