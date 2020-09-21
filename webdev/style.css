@@ -1,0 +1,443 @@
+/*
+1. GENERAL styles
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  /* margin-left: -37px; */
+  height: 1000px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 140%;
+  color: #4E4E4E;
+}
+
+.wrapper {
+  width: 1600px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-col {
+  width: 50%;
+  display: flex;
+}
+
+.right-col {
+  width: 50%;
+  display: flex;
+}
+
+.btn {
+  padding: 15px 47px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #00AFDB;
+  font-weight: 700;
+  line-height: 16px;
+  transition: .5s;
+}
+
+.btn:hover {
+  background-color: #009CC2;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #373737;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/*===============
+2. HEADER styles
+=================*/
+
+h1.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+header {
+  min-height: 95px;
+  background-color: #000;
+}
+
+nav ul {
+  min-height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-left: 0;
+  margin-left: -14px;
+  padding-top: 2px;
+}
+
+nav li {
+  list-style: none;
+  padding-left: 21px;
+  padding-right: 21px;
+}
+
+nav a {
+  position: relative;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 23px;
+  opacity: 0.8;
+  transition: 1s;
+}
+
+nav a.active {
+  opacity: 1;
+  font-weight: 500;
+}
+
+nav a:hover {
+  opacity: 1;
+  text-shadow: 0 0 .9px #fff, 0 0 .9px #fff, 0 0 .9px #fff;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  left: 30%;
+  right: 0;
+  height: 2px;
+  width: 45%;
+  border-top: 1px solid #fff;
+  display: none;
+}
+
+nav a:hover::after, nav a.active::after {
+  display: block;
+}
+
+nav .logo {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 2px;
+}
+
+nav .logo a {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+nav .logo a:hover::after {
+  display: none;
+}
+
+nav .logo a:hover {
+  opacity: 0.8;
+}
+
+/*===========
+3. BANNER
+=============*/
+
+.banner {
+  background-color: #000;
+}
+
+.banner .wrapper {
+  /* height: 100vh; */
+  height: 744px;
+  /*pp*/
+  background-image: url(assets/bg-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position-y: -2px;
+  margin-top: -95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo {
+  color: #fff;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 51px;
+  align-items: center;
+}
+
+.motto {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 4.5px;
+  margin-bottom: 27px;
+}
+
+.promo p {
+  font-size: 18px;
+  width: 504px;
+  line-height: 1.4;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.promo .btn {
+  /* margin-top: 12px; */
+}
+
+.social-icons {
+  display: flex;
+  width: 170px;
+  justify-content: space-between;
+  padding-left: 0;
+  margin: 0;
+  margin-bottom: 87px;
+}
+
+.social-icons li {
+  list-style: none;
+}
+
+.social-icons a {
+  transition: 1s;
+}
+
+.social-icons a:hover img {
+  opacity: .9;
+  transform: scale(1.1);
+}
+
+/*===========
+4. RAPPRESENT
+=============*/
+
+.rappresent {
+  padding-top: 119px;
+  padding-bottom: 140px;
+}
+
+.rappresent .left-col {
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 116px;
+  padding-right: 110px;
+}
+
+.rappresent .right-col {
+  align-items: center;
+  justify-content: center;
+  padding-right: 55px;
+}
+
+.rappresent h2 {
+  margin-top: 0;
+  margin-bottom: 21px;
+}
+
+.rappresent p {
+  line-height: 20px;
+  align-self: flex-start;
+  width: 407px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.rappresent .btn {
+  align-self: flex-start;
+}
+
+/*===========
+5. COMMUNITY
+=============*/
+
+.community {
+  padding-top: 120px;
+  padding-bottom: 140px;
+}
+
+.community .wrapper {
+  display: flex;
+}
+
+.description {
+  width: 298px;
+  margin-left: 269px;
+  margin-right: 139px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description .user-img {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.description h2 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2.4px;
+  margin-bottom: 10px;
+}
+
+.description * {
+  align-self: center;
+}
+
+.description p {
+  text-align: center;
+  line-height: 145%;
+}
+
+.slider {
+  position: relative;
+}
+
+.slider ul {
+  display: flex;
+  width: 894px;
+  overflow: hidden;
+}
+
+.slider ul li {
+  list-style: none;
+  margin-right: 30px;
+  ;
+}
+
+.controls {
+  position: absolute;
+  top: -40px;
+  left: 541px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.controls input[type=submit] {
+  border-style: none;
+  cursor: pointer;
+  background-color: #fff;
+  color: #fff;
+  border: none;
+  padding-left: 10px;
+}
+
+.controls input[type=submit]:hover {
+  opacity: .8;
+}
+
+.active-slide {
+  padding-right: 5px;
+}
+
+.slides-count {
+  padding-right: 9px;
+}
+
+.prev {
+  background-image: url(assets/arrow-prev.svg);
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.next {
+  background-image: url(assets/arrow-next.svg);
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  width: 20px;
+  height: 20px;
+}
+
+/*===========
+6. IMPLEMENT
+=============*/
+
+.implement {
+  padding-top: 115px;
+  padding-bottom: 140px;
+}
+
+.implement h2 {
+  margin-bottom: 21px;
+}
+
+.implement p {
+  margin-bottom: 31px;
+}
+
+.implement .wrapper {
+  display: flex;
+}
+
+.implement .left-col {
+
+  align-items: center;
+  justify-content: center;
+  padding-left: 130px;
+}
+
+.right-col .btn {
+  align-self: flex-start;
+}
+
+.implement .right-col {
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 0px;
+    padding-right: 100px;
+}
+
+.right-col p {
+  width: 410px;
+}
+
+
+/*===========
+7. SUBSCRIBE
+=============*/
+
+.subscribe {}
+
+/*===========
+8. DOWNLOAD
+=============*/
+
+.download {}
+
+/*===========
+9. FOOTER
+=============*/
+
+.footer-menu {}
+
+.author {}
