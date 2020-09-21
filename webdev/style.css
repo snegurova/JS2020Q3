@@ -491,7 +491,57 @@ nav .logo a:hover {
 8. DOWNLOAD
 =============*/
 
-.download {}
+.download .wrapper {
+  /* height: 464px; */
+  padding-top: 120px;
+  text-align: center;
+}
+
+.download h2 {
+  margin-bottom: 20px;
+}
+
+.download p {
+  width: 480px;
+  margin: 0 auto;
+  margin-bottom: 45px;
+}
+
+.download-btns {
+  margin-left: 1px;
+  margin-bottom: 180px;
+}
+
+.download-btns a {
+  width: 186px;
+  position: relative;
+  padding-left: 18px;
+  padding-right: 77px;
+}
+
+.download-btns a:first-child {
+  margin-right: 30px;
+}
+
+.download-btns a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 59px;
+  height: 46px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #009CC2;
+}
+
+.download-btns a:first-child::after {
+  background-image: url(assets/apple-icon.svg);
+}
+
+.download-btns a:last-child::after {
+  background-image: url(assets/android-icon.svg);
+}
 
 /*===========
 9. FOOTER
