@@ -215,7 +215,7 @@ nav .logo a:hover {
 =============*/
 
 .rappresent {
-  padding-top: 120px;
+  padding-top: 119px;
   padding-bottom: 140px;
 }
 
@@ -233,7 +233,7 @@ nav .logo a:hover {
 }
 
 .rappresent h2 {
-  margin-top: 3px;
+  margin-top: 0;
   margin-bottom: 21px;
 }
 
@@ -242,7 +242,7 @@ nav .logo a:hover {
   align-self: flex-start;
   width: 407px;
   margin-top: 0;
-  margin-bottom: 27px;
+  margin-bottom: 30px;
 
 }
 
