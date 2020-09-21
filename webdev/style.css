@@ -41,6 +41,8 @@ body {
   text-transform: uppercase;
   color: #fff;
   background-color: #00AFDB;
+  font-weight: 700;
+  line-height: 16px;
 }
 
 h2 {
@@ -78,13 +80,14 @@ nav ul {
   align-items: center;
   margin: 0;
   padding-left: 0;
-  margin-left: -12px;
+  margin-left: -14px;
+  padding-top: 2px;
 }
 
 nav li {
   list-style: none;
-  padding-left: 22px;
-  padding-right: 22px;
+  padding-left: 21px;
+  padding-right: 21px;
 }
 
 nav a {
@@ -97,29 +100,33 @@ nav a {
   transition: 1s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   opacity: 1;
+  font-weight: 500;
 }
 
 nav a::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 15%;
+  bottom: 7px;
+  left: 30%;
   right: 0;
-  height: 3px;
-  width: 70%;
+  height: 2px;
+  width: 45%;
   border-top: 1px solid #fff;
   display: none;
 }
 
-nav a:hover::after {
+nav a:hover::after,
+nav a.active::after {
   display: block;
 }
 
 nav .logo {
   padding-left: 30px;
   padding-right: 30px;
+  margin-left: 2px;
 }
 
 nav .logo a {
@@ -144,11 +151,12 @@ nav .logo a:hover {
 }
 
 .banner .wrapper {
-  height: 100vh;
+  /* height: 100vh; */
+  height: 744px;  /*pp*/
   background-image: url(assets/bg-image.jpg);
   background-size: cover;
   background-position: center;
-  background-position-y: -8px;
+  background-position-y: -2px;
   margin-top: -95px;
   display: flex;
   flex-direction: column;
@@ -162,27 +170,31 @@ nav .logo a:hover {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 41px;
+  margin-top: 51px;
   align-items: center;
 }
 
 .motto {
   font-weight: 700;
   font-size: 64px;
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 4.5px;
+  margin-bottom: 27px;
+
 }
 
 .promo p {
   font-size: 18px;
   width: 504px;
   line-height: 1.4;
-  margin-top: 23px;
+  margin-top: 0;
   text-align: center;
+  margin-bottom: 28px;
 }
 
 .promo .btn {
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 
 .social-icons {
@@ -191,7 +203,7 @@ nav .logo a:hover {
   justify-content: space-between;
   padding-left: 0;
   margin: 0;
-  margin-bottom: 97px;
+  margin-bottom: 87px;
 }
 
 .social-icons li {
