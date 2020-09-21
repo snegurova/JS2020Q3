@@ -533,14 +533,23 @@ nav .logo a:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-color: #009CC2;
+  transition: 2s;
 }
 
 .download-btns a:first-child::after {
   background-image: url(assets/apple-icon.svg);
 }
 
+.download-btns a:first-child:hover::after {
+  background-size: 35%;
+}
+
 .download-btns a:last-child::after {
   background-image: url(assets/android-icon.svg);
+}
+
+.download-btns a:last-child:hover::after {
+  background-size: 40%;
 }
 
 /*===========
