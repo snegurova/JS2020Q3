@@ -43,6 +43,11 @@ body {
   background-color: #00AFDB;
   font-weight: 700;
   line-height: 16px;
+  transition: .5s;
+}
+
+.btn:hover {
+  background-color: #009CC2;
 }
 
 h2 {
@@ -100,10 +105,14 @@ nav a {
   transition: 1s;
 }
 
-nav a:hover,
 nav a.active {
   opacity: 1;
   font-weight: 500;
+}
+
+nav a:hover {
+  opacity: 1;
+  text-shadow: 0 0 .9px #fff, 0 0 .9px #fff, 0 0 .9px #fff;
 }
 
 nav a::after {
@@ -117,6 +126,7 @@ nav a::after {
   border-top: 1px solid #fff;
   display: none;
 }
+
 
 nav a:hover::after,
 nav a.active::after {
@@ -210,6 +220,14 @@ nav .logo a:hover {
   list-style: none;
 }
 
+.social-icons a {
+  transition: .3s;
+}
+
+.social-icons a:hover {
+  opacity: .8;
+}
+
 /*===========
 4. RAPPRESENT
 =============*/
@@ -254,13 +272,51 @@ nav .logo a:hover {
 5. COMMUNITY
 =============*/
 
-.community {}
+.community {
+  padding-top: 120px;
+  padding-bottom: 140px;
+}
 
-.description {}
+.community .wrapper {
+  display: flex;
+}
 
-.slider {}
+.description {
+  width: 298px;
+  margin-left: 269px;
+  margin-right: 139px;
+  display: flex;
+  flex-direction: column;
+}
 
-.controls {}
+.description * {
+  align-self: center;
+}
+
+.description p {
+  text-align: center;
+}
+
+.slider {
+  position: relative;
+}
+
+.slider ul {
+  display: flex;
+  width: 894px;
+  overflow: hidden;
+}
+
+.slider ul li {
+  list-style: none;
+  margin-right: 30px;;
+}
+
+.controls {
+  position: absolute;
+  top: 82px;
+  left: 540px;
+}
 
 
 
