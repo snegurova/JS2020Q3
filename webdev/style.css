@@ -1,6 +1,7 @@
 /*
 1. GENERAL styles
 */
+
 * {
   margin: 0;
   padding: 0;
@@ -388,11 +389,12 @@ nav .logo a:hover {
 }
 
 .implement h2 {
-  margin-bottom: 21px;
+  margin-bottom: 22px;
 }
 
 .implement p {
-  margin-bottom: 31px;
+  margin-bottom: 30px;
+  line-height: 20px;
 }
 
 .implement .wrapper {
@@ -400,7 +402,6 @@ nav .logo a:hover {
 }
 
 .implement .left-col {
-
   align-items: center;
   justify-content: center;
   padding-left: 130px;
@@ -414,13 +415,12 @@ nav .logo a:hover {
   flex-direction: column;
   justify-content: center;
   padding-left: 0px;
-    padding-right: 100px;
+  padding-right: 100px;
 }
 
 .right-col p {
   width: 410px;
 }
-
 
 /*===========
 7. SUBSCRIBE
