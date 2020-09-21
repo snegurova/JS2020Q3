@@ -509,7 +509,7 @@ nav .logo a:hover {
 
 .download-btns {
   margin-left: 1px;
-  margin-bottom: 180px;
+  margin-bottom: 192px;
 }
 
 .download-btns a {
@@ -547,6 +547,61 @@ nav .logo a:hover {
 9. FOOTER
 =============*/
 
-.footer-menu {}
+footer {
+  height: 185px;
+  background-color: #000;
+}
 
-.author {}
+footer .container {
+  height: 185px;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-menu ul {
+  width: 236px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-menu ul li {
+  list-style: none;
+}
+
+.footer-menu a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+
+.footer-menu a:hover {
+  text-decoration: underline;
+}
+
+footer .logo {
+  margin-right: 66px;
+}
+
+footer .logo a {
+  transition: 0.5s;
+}
+
+footer .logo a:hover{
+  opacity: .8;
+}
+
+.footer-menu li:not(:first-child) a::before {
+  position: absolute;
+  content: '';
+  height: 8px;
+  top: 3px;
+  left: -21px;
+  border: 1px solid #4E4E4E;
+}
+
+.author {
+  color: #818181;
+}
