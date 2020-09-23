@@ -600,7 +600,7 @@ footer .logo {
 }
 
 footer .logo a {
-  transition: 0.5s;
+  transition: 0.6s;
 }
 
 footer .logo a:hover{
@@ -619,3 +619,5 @@ footer .logo a:hover{
 .author {
   color: #818181;
 }
+
+/* for new PR */
