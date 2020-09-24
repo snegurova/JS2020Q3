@@ -1,8 +1,9 @@
 class Calculator {
-  constructor(previousOperandTextElement, currentOperandTextElement) {
+  constructor(previousOperandTextElement, currentOperandTextElement, dotButton) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
     this.dotButton = dotButton;
+    this.readyToReset = false;
     this.clear();
   }
 
@@ -30,6 +31,9 @@ class Calculator {
 
   chooseOperation(operation) {
     if (this.currentOperand === '') return;
+    if (operation === 'x y') {
+      operation = '^';
+    }
     if (this.previousOperand != '') {
       this.compute();
     }
@@ -57,42 +61,58 @@ class Calculator {
       case '÷':
         computation = previous / current;
         break;
+      case '^':
+        computation = Math.pow(previous, current);
+        break;
       default:
         return;
     }
+    this.readyToReset = true;
     this.currentOperand = computation;
     this.operation = undefined;
     this.previousOperand = '';
     this.dotButton.disabled = false;
   }
 
-  getDisplayNumber(number) {
-    const stringNumber = number.toString();
-    const integerDigits = parseFloat(stringNumber.split('.')[0]);
-    const decimalDigits = stringNumber.split('.')[1];
-    let integerDisplay;
-    if (isNaN(integerDigits)) {
-      integerDisplay = '';
-    } else {
-      integerDisplay = integerDigits.toLocaleString('en', {
-        maximumFractionDigits:0 });
-    }
-    if (decimalDigits != null) {
-      return `${integerDisplay}.${decimalDigits}`
-    } else {
-      return integerDisplay;
-    }
+  sqrt() {
+    let computation;
+    const current = parseFloat(this.currentOperand);
+    computation = Math.sqrt(current);
+    this.readyToReset = true;
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = '';
+    this.dotButton.disabled = false;
   }
 
-  updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-    if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)}${this.operation}`;
-    } else {
-      this.previousOperandTextElement.innerText = '';
-    }
-
+getDisplayNumber(number) {
+  const stringNumber = number.toString();
+  const integerDigits = parseFloat(stringNumber.split('.')[0]);
+  const decimalDigits = stringNumber.split('.')[1];
+  let integerDisplay;
+  if (isNaN(integerDigits)) {
+    integerDisplay = '';
+  } else {
+    integerDisplay = integerDigits.toLocaleString('en', {
+      maximumFractionDigits: 0
+    });
   }
+  if (decimalDigits != null) {
+    return `${integerDisplay}.${decimalDigits}`
+  } else {
+    return integerDisplay;
+  }
+}
+
+updateDisplay() {
+  this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+  if (this.operation != null) {
+    this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)}${this.operation}`;
+  } else {
+    this.previousOperandTextElement.innerText = '';
+  }
+
+}
 }
 
 
@@ -102,6 +122,7 @@ const operationButtons = document.querySelectorAll('[data-operation]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const equalsButton = document.querySelector('[data-equals]');
+const sqrtButton = document.querySelector('[data-sqrt]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
@@ -109,6 +130,12 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
+    if (calculator.previousOperand === '' &&
+      calculator.currentOperand != '' &&
+      calculator.readyToReset) {
+        calculator.currentOperand = ''
+        calculator.readyToReset = false;
+    }
     calculator.appendNumber(button.innerText, button);
     calculator.updateDisplay();
   })
@@ -131,5 +158,9 @@ deleteButton.addEventListener('click', () => {
 });
 equalsButton.addEventListener('click', () => {
   calculator.compute();
+  calculator.updateDisplay();
+});
+sqrtButton.addEventListener('click', () => {
+  calculator.sqrt();
   calculator.updateDisplay();
 });
