@@ -30,6 +30,9 @@ class Calculator {
 
   chooseOperation(operation) {
     if (this.currentOperand === '') return;
+    if (operation === 'x y') {
+      operation = '^';
+    }
     if (this.previousOperand != '') {
       this.compute();
     }
@@ -56,6 +59,9 @@ class Calculator {
         break;
       case '÷':
         computation = previous / current;
+        break;
+      case '^':
+        computation = Math.pow(previous, current);
         break;
       default:
         return;
