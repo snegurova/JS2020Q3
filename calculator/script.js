@@ -125,6 +125,7 @@ updateDisplay() {
   if (this.hasError) {
     this.currentOperandTextElement.innerText = this.currentOperand;
     this.hasError = false;
+    this.currentOperandTextElement.classList.toggle('error');
     return;
   }
   this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
@@ -158,6 +159,7 @@ numberButtons.forEach(button => {
       calculator.readyToReset) {
         calculator.currentOperand = ''
         calculator.readyToReset = false;
+        calculator.currentOperandTextElement.classList.toggle('error');
     }
     calculator.appendNumber(button.innerText, button);
     calculator.updateDisplay();
