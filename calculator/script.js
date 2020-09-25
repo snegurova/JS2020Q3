@@ -5,6 +5,7 @@ class Calculator {
     this.dotButton = dotButton;
     this.readyToReset = false;
     this.hasError = false;
+    this.equalsButtonClicked = false;
     this.clear();
   }
 
@@ -105,7 +106,7 @@ class Calculator {
   getDisplayNumber(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
-    const decimalDigits = stringNumber.split('.')[1];
+    let decimalDigits = stringNumber.split('.')[1];
     let integerDisplay;
     if (isNaN(integerDigits)) {
       integerDisplay = '';
@@ -115,7 +116,11 @@ class Calculator {
       });
     }
     if (decimalDigits != null) {
-      return `${integerDisplay}.${decimalDigits}`
+      if (this.equalsButtonClicked && decimalDigits.length > 14) {
+        decimalDigits = decimalDigits.substring(0, decimalDigits.length - 1).replace(/0*$/,"");
+        this.equalsButtonClicked = false;
+      }
+      return `${integerDisplay}.${decimalDigits}`;
     } else {
       return integerDisplay;
     }
@@ -184,6 +189,7 @@ deleteButton.addEventListener('click', () => {
   calculator.updateDisplay();
 });
 equalsButton.addEventListener('click', () => {
+  calculator.equalsButtonClicked = true;
   calculator.compute();
   calculator.updateDisplay();
 });

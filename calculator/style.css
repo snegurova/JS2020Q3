@@ -37,10 +37,6 @@ body {
   background-color: rgba(255, 255, 255, .5);
 }
 
-/* .calculator-grid > .number {
-  background-color:#dde2e3;
-} */
-
 .span-two {
   grid-column: span 2;
 }
