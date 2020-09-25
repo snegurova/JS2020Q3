@@ -80,7 +80,7 @@ class Calculator {
     const current = parseFloat(this.currentOperand);
     if (current >= 0) {
       computation = Math.sqrt(current);
-    this.currentOperand = computation;
+      this.currentOperand = computation;
     } else {
       this.currentOperand = "Please enter the number > 0";
       this.hasError = true;
@@ -102,40 +102,39 @@ class Calculator {
     this.currentOperand = current;
   }
 
-getDisplayNumber(number) {
-  const stringNumber = number.toString();
-  const integerDigits = parseFloat(stringNumber.split('.')[0]);
-  const decimalDigits = stringNumber.split('.')[1];
-  let integerDisplay;
-  if (isNaN(integerDigits)) {
-    integerDisplay = '';
-  } else {
-    integerDisplay = integerDigits.toLocaleString('en', {
-      maximumFractionDigits: 0
-    });
-  }
-  if (decimalDigits != null) {
-    return `${integerDisplay}.${decimalDigits}`
-  } else {
-    return integerDisplay;
-  }
-}
-
-updateDisplay() {
-  if (this.hasError) {
-    this.currentOperandTextElement.innerText = this.currentOperand;
-    this.hasError = false;
-    this.currentOperandTextElement.classList.toggle('error');
-    return;
-  }
-  this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-  if (this.operation != null) {
-    this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)}${this.operation}`;
-  } else {
-    this.previousOperandTextElement.innerText = '';
+  getDisplayNumber(number) {
+    const stringNumber = number.toString();
+    const integerDigits = parseFloat(stringNumber.split('.')[0]);
+    const decimalDigits = stringNumber.split('.')[1];
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = '';
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', {
+        maximumFractionDigits: 0
+      });
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay;
+    }
   }
 
-}
+  updateDisplay() {
+    if (this.hasError) {
+      this.currentOperandTextElement.innerText = this.currentOperand;
+      this.currentOperandTextElement.classList.toggle('error');
+      return;
+    }
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+    if (this.operation != null) {
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)}${this.operation}`;
+    } else {
+      this.previousOperandTextElement.innerText = '';
+    }
+
+  }
 }
 
 
@@ -157,9 +156,12 @@ numberButtons.forEach(button => {
     if (calculator.previousOperand === '' &&
       calculator.currentOperand != '' &&
       calculator.readyToReset) {
-        calculator.currentOperand = ''
-        calculator.readyToReset = false;
-        calculator.currentOperandTextElement.classList.toggle('error');
+      calculator.currentOperand = ''
+      calculator.readyToReset = false;
+    }
+    if (calculator.hasError) {
+      calculator.hasError = false;
+      calculator.currentOperandTextElement.classList.toggle('error');
     }
     calculator.appendNumber(button.innerText, button);
     calculator.updateDisplay();
