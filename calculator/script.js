@@ -4,6 +4,7 @@ class Calculator {
     this.currentOperandTextElement = currentOperandTextElement;
     this.dotButton = dotButton;
     this.readyToReset = false;
+    this.hasError = false;
     this.clear();
   }
 
@@ -77,12 +78,28 @@ class Calculator {
   sqrt() {
     let computation;
     const current = parseFloat(this.currentOperand);
-    computation = Math.sqrt(current);
-    this.readyToReset = true;
+    if (current >= 0) {
+      computation = Math.sqrt(current);
     this.currentOperand = computation;
+    } else {
+      this.currentOperand = "Please enter the number > 0";
+      this.hasError = true;
+    }
+    this.readyToReset = true;
     this.operation = undefined;
     this.previousOperand = '';
     this.dotButton.disabled = false;
+  }
+
+  negateOperand() {
+    if (this.currentOperand === '') {
+      this.currentOperand = "Please enter the number first";
+      this.hasError = true;
+      this.readyToReset = true;
+      return;
+    }
+    const current = - parseFloat(this.currentOperand);
+    this.currentOperand = current;
   }
 
 getDisplayNumber(number) {
@@ -105,6 +122,11 @@ getDisplayNumber(number) {
 }
 
 updateDisplay() {
+  if (this.hasError) {
+    this.currentOperandTextElement.innerText = this.currentOperand;
+    this.hasError = false;
+    return;
+  }
   this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
   if (this.operation != null) {
     this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)}${this.operation}`;
@@ -123,6 +145,7 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const equalsButton = document.querySelector('[data-equals]');
 const sqrtButton = document.querySelector('[data-sqrt]');
+const negateButton = document.querySelector('[data-negate]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
@@ -162,5 +185,9 @@ equalsButton.addEventListener('click', () => {
 });
 sqrtButton.addEventListener('click', () => {
   calculator.sqrt();
+  calculator.updateDisplay();
+});
+negateButton.addEventListener('click', () => {
+  calculator.negateOperand();
   calculator.updateDisplay();
 });

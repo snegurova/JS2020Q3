@@ -45,6 +45,11 @@ body {
   grid-column: span 2;
 }
 
+.span-two-rows {
+  grid-row: 6/span 2;
+  grid-column: 4;
+}
+
 .output {
   grid-column: 1 / -1;
   background-color: rgba(0, 0, 0, .75);
@@ -69,4 +74,8 @@ body {
 
 sup {
   font-size: 1.1rem;
+}
+
+.negate span{
+  font-size: 1.5rem;
 }
