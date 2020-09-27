@@ -12,7 +12,44 @@ body {
   background: linear-gradient(to right, #00aaff, #00ff6c);
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.directions {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  width: 25%;
+  align-self: center;
+  font-size: .8rem;
+  line-height: 1.1rem;
+  margin-right: 50px;
+  margin-top: 20px;
+  padding: 25px;
+  align-self: flex-start;
+}
+
+.directions h3 span {
+  color: #2db1f3;
+  display: block;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.directions h3:hover span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hidden-directions {
+  display: none;
+  transition: 2s;
+}
+
 .calculator-grid {
+  flex-grow: 1;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -74,7 +111,7 @@ body {
   text-align: center;
 }
 
-sup {
+.calculator-grid sup {
   font-size: 1.1rem;
 }
 
