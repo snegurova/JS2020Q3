@@ -16,6 +16,10 @@ class Calculator {
     this.currentOperand = '';
     this.dotButton.disabled = false;
     this.operation = undefined;
+    if (this.hasError) {
+      this.hasError = false;
+      this.currentOperandTextElement.classList.toggle('error');
+    }
   }
 
   delete() {
