@@ -12,7 +12,44 @@ body {
   background: linear-gradient(to right, #00aaff, #00ff6c);
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.directions {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  width: 25%;
+  align-self: center;
+  font-size: .8rem;
+  line-height: 1.1rem;
+  margin-right: 50px;
+  margin-top: 20px;
+  padding: 25px;
+  align-self: flex-start;
+}
+
+.directions h3 span {
+  color: #2db1f3;
+  display: block;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.directions h3:hover span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hidden-directions {
+  display: none;
+  transition: 2s;
+}
+
 .calculator-grid {
+  flex-grow: 1;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -37,12 +74,13 @@ body {
   background-color: rgba(255, 255, 255, .5);
 }
 
-/* .calculator-grid > .number {
-  background-color:#dde2e3;
-} */
-
 .span-two {
   grid-column: span 2;
+}
+
+.span-two-rows {
+  grid-row: 6/span 2;
+  grid-column: 4;
 }
 
 .output {
@@ -66,7 +104,17 @@ body {
   color: #fff;
   font-size: 2.5rem;
 }
+.output .error {
+  color:  #ff0000;
+  opacity: .8;
+  font-size: 1.8rem;
+  text-align: center;
+}
 
-sup {
+.calculator-grid sup {
   font-size: 1.1rem;
+}
+
+.negate span{
+  font-size: 1.5rem;
 }

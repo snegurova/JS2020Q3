@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,62 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
-<div class="calculator-grid">
-  <div class="output">
-    <div class="previous-operand" data-previous-operand></div>
-    <div class="current-operand" data-current-operand></div>
+  <div class="wrapper">
+    <div class="directions">
+        <h3 data-toggler>Инструкция по работе с калькулятором
+          <span>Читать далее</span>
+        </h3>
+      <div class="hidden-directions" data-hidden>
+        <p>
+          <strong>Ввод отрицательных значений</strong><br>
+          осуществляется с помощью кнопки "+/-". Т.е. сначала вводим число, потом нажимаем
+          "+/-" для смены знака, аналогично работает если мы хотим поменять знак для второго
+          операнда. Например, чтобы посчитать "2 + -2" кликаем последовательно "2" "+" "2" "+/-" "="
+        </p>
+        <p>
+          <strong>Возведение в степень</strong><br>
+          осуществляется с помощью кнопки "x<sup> n</sup>", сначала вводится число x, затем
+          нажимается кнопка "x<sup> n</sup>", затем вводдится число степени n, равно.
+          Например для вычисления "15<sup> 3</sup>" необходимо ввести 15, затем нажать
+          кнопку "x<sup> n</sup>", затем ввести 3, нажать равно.
+        </p>
+        <p>
+          <strong>Вычисление квадратного корня</strong><br>
+          осуществляется введением числа и нажатием кнопки "√". Например для вычисления квадратного
+          корня из 9 необходимо ввести 9 и нажать кнопку "√".
+        </p>
+      </div>
+    </div>
+    <div class="calculator-grid">
+      <div class="output">
+        <div class="previous-operand" data-previous-operand></div>
+        <div class="current-operand" data-current-operand></div>
+      </div>
+      <button class="span-two" data-all-clear>AC</button>
+      <button class="span-two" data-delete>DEL</button>
+      <button data-operation>x<sup> n</sup></button>
+      <button data-sqrt>&#8730;</button>
+      <button data-operation>÷</button>
+      <button data-operation>*</button>
+      <button data-number>1</button>
+      <button data-number>2</button>
+      <button data-number>3</button>
+      <button data-operation>+</button>
+      <button data-number>4</button>
+      <button data-number>5</button>
+      <button data-number>6</button>
+      <button data-operation>-</button>
+      <button data-number>7</button>
+      <button data-number>8</button>
+      <button data-number>9</button>
+      <button data-equals class="span-two-rows">=</button>
+      <button class="negate" data-negate><sup>+</sup>/<span>-</span></button>
+      <button data-number>0</button>
+      <button data-number data-dot>.</button>
+    </div>
   </div>
-  <button class="span-two" data-all-clear>AC</button>
-  <button class="span-two" data-delete>DEL</button>
-  <button class="span-two" data-operation>x<sup> y</sup></button>
-  <button data-sqrt>&#8730;</button>
-  <button data-operation>÷</button>
-  <button data-number>1</button>
-  <button data-number>2</button>
-  <button data-number>3</button>
-  <button data-operation>*</button>
-  <button data-number>4</button>
-  <button data-number>5</button>
-  <button data-number>6</button>
-  <button data-operation>+</button>
-  <button data-number>7</button>
-  <button data-number>8</button>
-  <button data-number>9</button>
-  <button data-operation>-</button>
-  <button data-number data-dot>.</button>
-  <button data-number>0</button>
-  <button data-equals class="span-two">=</button>
-</div>
 </body>
+
 </html>
