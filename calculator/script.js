@@ -15,6 +15,7 @@ class Calculator {
     this.previousOperand = '';
     this.currentOperand = '';
     this.dotButton.disabled = false;
+    this.readyToReset = false;
     this.operation = undefined;
     if (this.hasError) {
       this.hasError = false;
