@@ -16,14 +16,15 @@ body {
   font-family: Arial;
   font-size: 15px;
   line-height: 1.6;
-  color: #4C4C4C;
+  color: $color-dark-xl;
 }
 
-* {
-  margin: 0;
-}
+// p.small {
+//   font-style: italic;
+//   font-size: 12px;
+//   line-height: 1.5;
+//   color: #C4C4C4;
+// }
 
-body {
-  background-color: #F1CDB3;
+h2 {
 }
-/*# sourceMappingURL=style.css.map */

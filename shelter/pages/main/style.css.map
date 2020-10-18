@@ -1,9 +1,10 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;CACV;;AAED,AAAA,IAAI,CAAC;EACH,gBAAgB,ECEF,OAAO;CDDtB",
+    "mappings": "AEAA,UAAU;EACR,WAAW,EAAE,SAAS;EACtB,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,MAAM;EACnB,GAAG,EAAE,sCAAsC,CAAC,cAAc;;;AAG5D,UAAU;EACR,WAAW,EAAE,OAAO;EACpB,GAAG,EAAE,2CAA2C,CAAC,cAAc;EAC/D,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,MAAM;;;AAGrB,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,KAAK;EAClB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,KAAK,EDZS,OAAO;CCatB;;AFhBD,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;CACV;;AAED,AAAA,IAAI,CAAC;EACH,gBAAgB,ECCF,OAAO;CDAtB",
     "sources": [
         "style.scss",
-        "../../sass/_variables.scss"
+        "../../sass/abstracts/_variables.scss",
+        "../../sass/abstracts/_typography.scss"
     ],
     "names": [],
     "file": "style.css"
