@@ -1,3 +1,10 @@
+// Initial data
+
+const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница',
+    'Суббота'],
+  months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
+    'Сентября', 'Октября', 'Ноября', 'Декабря'];
+
 // DOM Elements
 
 const time = document.getElementById('time'),
@@ -7,21 +14,20 @@ const time = document.getElementById('time'),
 
 // Show Time
 function showTime() {
+  // let today = new Date(2020, 06, 10, 0, 33, 30),
   let today = new Date(),
+    day = today.getDay(),
+    date = today.getDate(),
+    month = today.getMonth(),
     hour = today.getHours(),
     min = today.getMinutes(),
     sec = today.getSeconds();
 
     setBgGreet(hour);
 
-    // Set AM or PM
-    const amPm = hour >= 12 ? 'PM' : 'AM';
-
-    // 12ht Format
-    hour = hour % 12 || 12;
-
     // Output Time
-    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)} ${amPm}`;
+    time.innerHTML = `<span class="date">${days[day]}, ${date} ${months[month]}</span>
+    ${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
     setTimeout(showTime, 1000);
 }
@@ -35,19 +41,17 @@ function addZero(n) {
 function setBgGreet(hour) {
   if (hour < 6) {
     document.body.style.backgroundImage = "url('assets/img/night/01.jpg')";
-    greeting.textContent = 'Good Night';
+    greeting.textContent = 'Доброй Ночи,';
   } else if (hour < 12) {
     document.body.style.backgroundImage = "url('assets/img/morning/01.jpg')";
-    greeting.textContent = 'Good Morning';
+    greeting.textContent = 'Доброе Утро,';
   } else if (hour < 18) {
     document.body.style.backgroundImage = "url('assets/img/day/01.jpg')";
-    greeting.textContent = 'Good Afternoon';
-    document.body.style.color = '#fff';
+    greeting.textContent = 'Добрый День,';
 
   } else {
     document.body.style.backgroundImage = "url('assets/img/evening/01.jpg')";
-    greeting.textContent = 'Good Evening';
-    document.body.style.color = '#fff';
+    greeting.textContent = 'Добрый Вечер,';
   }
 }
 
@@ -72,8 +76,22 @@ function getLocalData(id, el) {
   }
 }
 
+// Clear and restore data
+function clearRestoreData(e) {
+  let value = e.target.innerText;
+  e.target.innerText = '';
+  setTimeout(() => {
+    if (e.target.innerText === '') {
+      e.target.innerText = value;
+      e.target.blur();
+    }
+  }, 5000);
+}
+
+name.addEventListener('focus', clearRestoreData);
 name.addEventListener('keypress', setLocalData);
 name.addEventListener('blur', setLocalData);
+focus.addEventListener('focus', clearRestoreData);
 focus.addEventListener('keypress', setLocalData);
 focus.addEventListener('blur', setLocalData);
 
