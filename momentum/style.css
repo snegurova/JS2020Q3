@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  color: #fff;
+  text-shadow: 1px 1px 7px #000;
+}
+
+time {
+  font-size: 8rem;
+}
+
+.date {
+  display: block;
+  font-size: 4rem;
+}
+
+h1 {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+#name, #focus {
+  display: inline-block;
+  min-width: 20px;
+}
+
+@media (max-width: 700px) {
+  time {
+    font-size: 6rem;
+  }
+}
