@@ -1,9 +1,9 @@
 // Initial data
 
-const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница',
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
     'Суббота'],
-  months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа',
-    'Сентября', 'Октября', 'Ноября', 'Декабря'];
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'];
 
 // DOM Elements
 
@@ -26,7 +26,7 @@ function showTime() {
     setBgGreet(hour);
 
     // Output Time
-    time.innerHTML = `<span class="date">${days[day]}, ${date} ${months[month]}</span>
+    time.innerHTML = `<span class="date">${days[day]}, ${months[month]} ${date}</span>
     ${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
     setTimeout(showTime, 1000);
@@ -41,17 +41,17 @@ function addZero(n) {
 function setBgGreet(hour) {
   if (hour < 6) {
     document.body.style.backgroundImage = "url('assets/img/night/01.jpg')";
-    greeting.textContent = 'Доброй Ночи,';
+    greeting.textContent = 'Good Night,';
   } else if (hour < 12) {
     document.body.style.backgroundImage = "url('assets/img/morning/01.jpg')";
-    greeting.textContent = 'Доброе Утро,';
+    greeting.textContent = 'Good Morning,';
   } else if (hour < 18) {
     document.body.style.backgroundImage = "url('assets/img/day/01.jpg')";
-    greeting.textContent = 'Добрый День,';
+    greeting.textContent = 'Good Afternoon,';
 
   } else {
     document.body.style.backgroundImage = "url('assets/img/evening/01.jpg')";
-    greeting.textContent = 'Добрый Вечер,';
+    greeting.textContent = 'Good Evening,';
   }
 }
 
