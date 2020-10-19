@@ -80,6 +80,12 @@ function getLocalData(id, el) {
 function clearRestoreData(e) {
   let value = e.target.innerText;
   e.target.innerText = '';
+  e.target.addEventListener('blur', (e) => {
+    if (e.target.innerText === '') {
+      e.target.innerText = value;
+    }
+  }
+  );
   setTimeout(() => {
     if (e.target.innerText === '') {
       e.target.innerText = value;
