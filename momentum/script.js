@@ -1,7 +1,7 @@
 // Initial data
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
-    'Суббота'],
+  'Суббота'],
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'];
 
@@ -23,13 +23,13 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds();
 
-    setBgGreet(hour);
+  setBgGreet(hour);
 
-    // Output Time
-    time.innerHTML = `<span class="date">${days[day]}, ${months[month]} ${date}</span>
+  // Output Time
+  time.innerHTML = `<span class="date">${days[day]}, ${months[month]} ${date}</span>
     ${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
-    setTimeout(showTime, 1000);
+  setTimeout(showTime, 1000);
 }
 
 // Add Zero
@@ -57,6 +57,13 @@ function setBgGreet(hour) {
 
 // Set Name
 function setLocalData(e) {
+  if (e.target.innerText === '') {
+    if (e.type === 'blur' || e.which == 13 || e.keyCode == 13) {
+      e.target.innerText = localStorage.getItem(e.target.id);
+    } else {
+      return;
+    }
+  }
   if (e.type === 'keypress') {
     if (e.which == 13 || e.keyCode == 13) {
       localStorage.setItem(e.target.id, e.target.innerText);
@@ -77,27 +84,17 @@ function getLocalData(id, el) {
 }
 
 // Clear and restore data
-function clearRestoreData(e) {
-  let value = e.target.innerText;
-  e.target.innerText = '';
-  e.target.addEventListener('blur', (e) => {
-    if (e.target.innerText === '') {
-      e.target.innerText = value;
-    }
+function clearData(e) {
+  if (localStorage.getItem(e.target.id) === null) {
+    localStorage.setItem(e.target.id, e.target.innerText);
   }
-  );
-  setTimeout(() => {
-    if (e.target.innerText === '') {
-      e.target.innerText = value;
-      e.target.blur();
-    }
-  }, 5000);
+  e.target.innerText = '';
 }
 
-name.addEventListener('focus', clearRestoreData);
+name.addEventListener('focus', clearData);
 name.addEventListener('keypress', setLocalData);
 name.addEventListener('blur', setLocalData);
-focus.addEventListener('focus', clearRestoreData);
+focus.addEventListener('focus', clearData);
 focus.addEventListener('keypress', setLocalData);
 focus.addEventListener('blur', setLocalData);
 
