@@ -4,13 +4,24 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
   'Суббота'],
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'];
+let images = new Array(24).fill('');
+let base = 'assets/img/',
+  prevHour = -1,
+  i = 0,
+  partOfDay = ['night', 'morning', 'day', 'evening'];
+
+// Create image collection
+images = images.map( (it, ind) => {
+    return it = `${partOfDay[Math.trunc(ind / 6)]}/${addZero(Math.floor(Math.random() * (20 + 1)))}.jpg`;
+  });
 
 // DOM Elements
 
 const time = document.getElementById('time'),
   greeting = document.getElementById('greeting'),
   name = document.getElementById('name'),
-  focus = document.getElementById('focus');
+  focus = document.getElementById('focus'),
+  changeImg = document.querySelector('.change-img');
 
 // Show Time
 function showTime() {
@@ -23,7 +34,11 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds();
 
-  setBgGreet(hour);
+  if (prevHour != hour) {
+    setBgGreet(hour);
+    prevHour = hour;
+  }
+
 
   // Output Time
   time.innerHTML = `<span class="date">${days[day]}, ${months[month]} ${date}</span>
@@ -40,17 +55,16 @@ function addZero(n) {
 // Set Background and Greeting
 function setBgGreet(hour) {
   if (hour < 6) {
-    document.body.style.backgroundImage = "url('assets/img/night/01.jpg')";
+    getImage(hour);
     greeting.textContent = 'Good Night,';
   } else if (hour < 12) {
-    document.body.style.backgroundImage = "url('assets/img/morning/01.jpg')";
+    getImage(hour);
     greeting.textContent = 'Good Morning,';
   } else if (hour < 18) {
-    document.body.style.backgroundImage = "url('assets/img/day/01.jpg')";
+    getImage(hour);
     greeting.textContent = 'Good Afternoon,';
-
   } else {
-    document.body.style.backgroundImage = "url('assets/img/evening/01.jpg')";
+    getImage(hour);
     greeting.textContent = 'Good Evening,';
   }
 }
@@ -91,12 +105,38 @@ function clearData(e) {
   e.target.innerText = '';
 }
 
+// Change images
+function viewBgImage(src) {
+  const body = document.querySelector('body');
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    body.style.backgroundImage = `url(${src})`;
+  };
+}
+
+function getImage(hour) {
+  let index;
+  if (hour.type === 'click') {
+    index = i % images.length;
+  } else {
+    index = hour;
+    i = index;
+  }
+
+  const imageSrc = base + images[index];
+  viewBgImage(imageSrc);
+  i++;
+}
+
+// EventListeners
 name.addEventListener('focus', clearData);
 name.addEventListener('keypress', setLocalData);
 name.addEventListener('blur', setLocalData);
 focus.addEventListener('focus', clearData);
 focus.addEventListener('keypress', setLocalData);
 focus.addEventListener('blur', setLocalData);
+changeImg.addEventListener('click', getImage);
 
 // Run
 showTime();
