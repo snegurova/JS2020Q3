@@ -17,7 +17,6 @@ body {
   text-shadow: 1px 1px 2px rgb(31, 23, 17),
                1px 1px 7px #5f462d;
   transition: background-image 1s ease-in-out;
-
 }
 
 time {
@@ -126,4 +125,44 @@ figcaption {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  time {
+   font-size: 4.5rem;
+ }
+ .city {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.weather-description {
+  font-weight: 300;
+}
+
+.temperature {
+  font-size: 1.3rem;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+}
+
+.weather-signs {
+  justify-content: space-around;
+}
+.date {
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.3rem;
+}
+.quote-wrapper {
+  max-width: 90%;
+  font-size: .8rem;
+}
 }
