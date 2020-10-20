@@ -24,7 +24,11 @@ const time = document.getElementById('time'),
   changeImg = document.querySelector('.change-img'),
   blockquote = document.querySelector('blockquote'),
   figcaption = document.querySelector('figcaption'),
-  changeQuote = document.querySelector('.change-quote');
+  changeQuote = document.querySelector('.change-quote'),
+  weatherIcon = document.querySelector('.weather-icon'),
+  temperature = document.querySelector('.temperature'),
+  weatherDescription = document.querySelector('.weather-description'),
+  city = document.querySelector('.city');
 
 // Show Time
 function showTime() {
@@ -133,7 +137,6 @@ function getImage(hour) {
 }
 
 // Change blockquote
-
 async function getQuote() {
   const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
   const res = await fetch(url);
@@ -141,6 +144,26 @@ async function getQuote() {
   blockquote.textContent = data.quoteText;
   figcaption.textContent = data.quoteAuthor;
 }
+
+//Weather Widget
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=08f2a575dda978b9c539199e54df03b0&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  weatherIcon.className = 'weather-icon owf'
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp}`;
+  weatherDescription.textContent = `${data.weather[0].description}`
+}
+
+function setCity(e) {
+  if (e.code === 'Enter') {
+    getWeather();
+    city.blur();
+  }
+}
+
 
 // EventListeners
 name.addEventListener('focus', clearData);
@@ -152,6 +175,8 @@ focus.addEventListener('blur', setLocalData);
 changeImg.addEventListener('click', getImage);
 changeQuote.addEventListener('click', getQuote);
 document.addEventListener('DOMContentLoaded', getQuote);
+// document.addEventListener('DOMContentLoaded', getWeather);
+// city.addEventListener('keypress', setCity);
 
 
 

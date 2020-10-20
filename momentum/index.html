@@ -3,19 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/owfont-regular.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
   <title>Momentum</title>
 </head>
 <body>
-  <button class="change-img" title="Change image"></button>
-  <time id="time"></time>
-  <h1>
-    <span id="greeting"></span>
-    <span id="name" contenteditable="true"></span>
-  </h1>
-  <h2>What is Your Main Focus for Today?</h2>
-  <h2 id="focus" contenteditable="true"></h2>
+  <div class="top-widgets">
+    <div class="change-mage-wrapper">
+      <button class="change-img" title="Change image"></button>
+    </div>
+    <div class="weather-widget">
+      <div class="city" contenteditable="true">Minsk</div>
+      <div class="weather-signs">
+        <i class="weather-icon owf owf-803"></i>
+        <div class="temperature">8°C</div>
+      </div>
+      <div class="weather-description">broken clouds</div>
+    </div>
+  </div>
+  <div class="main-content">
+    <time id="time"></time>
+    <h1>
+      <span id="greeting"></span>
+      <span id="name" contenteditable="true"></span>
+    </h1>
+    <h2>What is Your Main Focus for Today?</h2>
+    <h2 id="focus" contenteditable="true"></h2>
+  </div>
   <div class="quote-wrapper">
     <button class="change-quote" title="Change blockquote"></button>
     <figure class="quote">
