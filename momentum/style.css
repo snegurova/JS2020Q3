@@ -13,7 +13,7 @@ body {
   text-align: center;
   height: 100vh;
   color: #fff;
-  text-shadow: 1px 1px 7px #000;
+  text-shadow: 1px 1px 5px #654321;
   transition: background-image 1s ease-in-out;
 }
 
@@ -39,7 +39,10 @@ h1 {
 
 h2 {
   margin-bottom: 0.5rem;
-  opacity: 0.8;
+  /* opacity: 0.8; */
+  font-weight: 300;
+  font-size: 2rem;
+  text-shadow: 1px 1px 15px 654321;
 }
 
 #name, #focus {
