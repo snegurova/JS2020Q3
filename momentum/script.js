@@ -21,7 +21,10 @@ const time = document.getElementById('time'),
   greeting = document.getElementById('greeting'),
   name = document.getElementById('name'),
   focus = document.getElementById('focus'),
-  changeImg = document.querySelector('.change-img');
+  changeImg = document.querySelector('.change-img'),
+  blockquote = document.querySelector('blockquote'),
+  figcaption = document.querySelector('figcaption'),
+  changeQuote = document.querySelector('.change-quote');
 
 // Show Time
 function showTime() {
@@ -129,6 +132,16 @@ function getImage(hour) {
   i++;
 }
 
+// Change blockquote
+
+async function getQuote() {
+  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+  const res = await fetch(url);
+  const data = await res.json();
+  blockquote.textContent = data.quoteText;
+  figcaption.textContent = data.quoteAuthor;
+}
+
 // EventListeners
 name.addEventListener('focus', clearData);
 name.addEventListener('keypress', setLocalData);
@@ -137,6 +150,10 @@ focus.addEventListener('focus', clearData);
 focus.addEventListener('keypress', setLocalData);
 focus.addEventListener('blur', setLocalData);
 changeImg.addEventListener('click', getImage);
+changeQuote.addEventListener('click', getQuote);
+document.addEventListener('DOMContentLoaded', getQuote);
+
+
 
 // Run
 showTime();

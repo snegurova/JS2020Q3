@@ -56,6 +56,14 @@ h2 {
   left: 20px;
   width: 40px;
   height: 40px;
+}
+
+.change-quote {
+  width: 25px;
+  height: 25px;
+}
+
+.change-img, .change-quote {
   border: 0;
   background: url("assets/icons/change-icon-png-8-white.png");
   background-size: contain;
@@ -64,8 +72,27 @@ h2 {
   transition: 250ms linear;
 }
 
-.change-img:hover {
+.change-img:hover, .change-quote:hover {
   cursor: pointer;
   opacity: 1;
   transform: scale(1.1);
+}
+
+.quote-wrapper {
+  width: 60%;
+  margin: auto;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  text-shadow: 1px 1px 10px #654321;
+}
+
+/* blockquote {
+  font-weight: 300;
+} */
+
+figcaption {
+  font-weight: 300;
 }
