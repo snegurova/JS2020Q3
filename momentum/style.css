@@ -6,15 +6,18 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background: center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   height: 100vh;
   color: #fff;
-  text-shadow: 1px 1px 5px #654321;
+  text-shadow: 1px 1px 2px rgb(31, 23, 17),
+               1px 1px 7px #5f462d;
   transition: background-image 1s ease-in-out;
+
 }
 
 time {
@@ -42,7 +45,6 @@ h2 {
   /* opacity: 0.8; */
   font-weight: 300;
   font-size: 2rem;
-  text-shadow: 1px 1px 15px 654321;
 }
 
 #name, #focus {
@@ -51,9 +53,6 @@ h2 {
 }
 
 .change-img {
-  position: absolute;
-  top: 20px;
-  left: 20px;
   width: 40px;
   height: 40px;
 }
@@ -70,6 +69,7 @@ h2 {
   background-repeat: no-repeat;
   opacity: .7;
   transition: 250ms linear;
+  flex-shrink: 0;
 }
 
 .change-img:hover, .change-quote:hover {
@@ -78,21 +78,52 @@ h2 {
   transform: scale(1.1);
 }
 
+.main-content,
 .quote-wrapper {
-  width: 60%;
-  margin: auto;
-  position: absolute;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  text-shadow: 1px 1px 10px #654321;
+  margin-top: auto;
 }
 
-/* blockquote {
-  font-weight: 300;
-} */
+.quote-wrapper {
+  max-width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
 
 figcaption {
   font-weight: 300;
+}
+
+.top-widgets {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px;
+  text-shadow: 1px 1px 2px rgb(31, 23, 17),
+               1px 1px 7px #405a67;
+}
+
+.city {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.weather-description {
+  font-weight: 100;
+}
+
+.temperature {
+  font-size: 1.5rem;
+}
+
+.weather-icon {
+  font-size: 2.5rem;
+}
+
+.weather-signs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
