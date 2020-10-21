@@ -134,6 +134,8 @@ function getImage(hour) {
   const imageSrc = base + images[index];
   viewBgImage(imageSrc);
   i++;
+  changeImg.disabled = true;
+  setTimeout( () => {changeImg.disabled = false}, 1000)
 }
 
 // Change blockquote
@@ -147,13 +149,13 @@ async function getQuote() {
 
 //Weather Widget
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=08f2a575dda978b9c539199e54df03b0&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=cdd8b62da969b8c8da25de335d4aae4e&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
 
   weatherIcon.className = 'weather-icon owf'
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${data.main.temp}`;
+  temperature.textContent = `${Math.round(data.main.temp)}°C`;
   weatherDescription.textContent = `${data.weather[0].description}`
 }
 
@@ -175,8 +177,8 @@ focus.addEventListener('blur', setLocalData);
 changeImg.addEventListener('click', getImage);
 changeQuote.addEventListener('click', getQuote);
 document.addEventListener('DOMContentLoaded', getQuote);
-// document.addEventListener('DOMContentLoaded', getWeather);
-// city.addEventListener('keypress', setCity);
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
 
 
 
