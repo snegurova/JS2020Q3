@@ -1,10 +1,10 @@
 @import "../../sass/abstracts/variables";
 @import "../../sass/abstracts/typography";
+@import "../../sass/layout/content";
+@import "../../sass/layout/header";
 
-* {
-  margin: 0;
-}
 
-body {
-  background-color:  $color-primary;
+
+.banner {
+  display: flex;
 }
