@@ -54,6 +54,11 @@ h3 {
           box-sizing: border-box;
 }
 
+section {
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
 .wrapper {
   max-width: 1200px;
   margin: auto;
@@ -137,6 +142,8 @@ h3 {
 .banner {
   background: url(../../assets/img/noise_transparent.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
   margin-top: -120px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .banner .wrapper {
@@ -189,8 +196,6 @@ h3 {
 
 .about {
   background-color: #FFFFFF;
-  padding-top: 80px;
-  padding-bottom: 100px;
 }
 
 .about .wrapper {
@@ -249,5 +254,72 @@ h3 {
 
 .about .wrapper .img-wrapper img {
   margin-left: 175px;
+}
+
+.our-friends {
+  background-color: #FFFFFF;
+}
+
+.our-friends h3 {
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.our-friends .slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.our-friends .slider .slider-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.our-friends .slider .slider-content .pets-card:not(:last-child) {
+  margin-right: 90px;
+}
+
+.our-friends .slider .control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.our-friends .slider .control button {
+  font-size: 0px;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  border-radius: 50%;
+  background-image: url("../../assets/icons/arrow-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.our-friends .slider .control .next {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
+.our-friends .slider .control-prev {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
 }
 /*# sourceMappingURL=style.css.map */
