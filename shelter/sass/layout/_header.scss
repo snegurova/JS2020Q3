@@ -1,0 +1,40 @@
+.header {
+  margin-top: 60px;
+  background-color: $color-dark-3xl;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo-wrapper {
+    p {
+      font-size: 13px;
+      line-height: 15px;
+      color: $color-light-xl;
+      letter-spacing: 1.3px;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+  nav {
+    align-self: center;
+    line-height: 1.65;
+    ul {
+      display: flex;
+      li {
+        list-style: none;
+        color: $color-dark-s;
+        margin-left: 36px;
+        margin-top: -3px;
+        // transition: border .3s ease-in;
+        &:hover {
+          color: $color-light-s;
+          border-bottom: 3px solid $color-primary;
+        }
+      }
+      .active {
+        color: $color-light-s;
+        border-bottom: 3px solid $color-primary;
+      }
+    }
+  }
+}

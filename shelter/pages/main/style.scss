@@ -1,0 +1,39 @@
+/* ---------------
+1. IMPORT  COMPONENTS
+-----------------*/
+
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/typography";
+@import "../../sass/layout/content";
+@import "../../sass/layout/header";
+
+/* ---------------
+2. BANNER SECTION
+-----------------*/
+
+.banner {
+  background: url(../../assets/img/noise_transparent.png),
+  radial-gradient(100% 215.42% at 0% 0%, #5b483A 0%, #262425 100%),
+   #211f20;
+  margin-top: -120px;
+  .wrapper {
+    display: flex;
+    padding-top: 180px;
+    justify-content: space-between;
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  h2 {
+    margin-bottom: 42px;
+    color: $color-light-xl;
+    span {
+      display: block;
+    }
+  }
+  p {
+    margin-bottom: 42px;
+  }
+}
