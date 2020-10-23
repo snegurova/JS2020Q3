@@ -1,6 +1,8 @@
 .pets-card {
   text-align: center;
   padding-bottom: 30px;
+  transition: box-shadow 0.5s;
+  border-radius: 9px;
   img {
     margin-bottom: 23px;
   }
@@ -9,5 +11,13 @@
   }
   .btn {
     padding: 13px 43px;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 35px 10px rgba(13, 13, 13, 0.1);
+  }
+  &:hover .btn-secondary {
+    background-color: $color-primary-light;
+    border-color: $color-primary-light;
   }
 }
