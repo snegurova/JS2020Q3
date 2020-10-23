@@ -167,3 +167,53 @@
     }
   }
 }
+
+/* ---------------
+6. DONATION SECTION
+-----------------*/
+
+.donation {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .img-wrapper {
+    font-size: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: -1;
+  }
+  .text-content {
+    margin-left: 30px;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    h3 {
+      margin-bottom: 20px;
+      span {
+        display: block;
+      }
+    }
+    h5 {
+      margin-bottom: 20px;
+    }
+    .card {
+      padding: 10px 15px;
+      border-radius: 10px;
+      display: flex;
+      color: $color-dark-l;
+      margin-bottom: 20px;
+    }
+    img {
+      margin-right: 15px;
+    }
+  }
+  p {
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1.5;
+    color: $color-dark-m;
+  }
+}

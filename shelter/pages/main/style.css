@@ -56,6 +56,15 @@ h4 {
   letter-spacing: 1.3px;
 }
 
+h5 {
+  font-family: Georgia, sans-serif;
+  font-size: 15px;
+  line-height: 1.1;
+  font-weight: 300;
+  color: #545454;
+  letter-spacing: 1.3px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -450,5 +459,81 @@ button:hover {
 
 .help .help-items .help-item img {
   margin-bottom: 24px;
+}
+
+/* ---------------
+6. DONATION SECTION
+-----------------*/
+.donation .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.donation .img-wrapper {
+  font-size: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+}
+
+.donation .text-content {
+  margin-left: 30px;
+  max-width: 380px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.donation .text-content h3 {
+  margin-bottom: 20px;
+}
+
+.donation .text-content h3 span {
+  display: block;
+}
+
+.donation .text-content h5 {
+  margin-bottom: 20px;
+}
+
+.donation .text-content .card {
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #545454;
+  margin-bottom: 20px;
+}
+
+.donation .text-content img {
+  margin-right: 15px;
+}
+
+.donation p {
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #B2B2B2;
 }
 /*# sourceMappingURL=style.css.map */
