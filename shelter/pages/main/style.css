@@ -266,6 +266,9 @@ button:hover {
       align-self: flex-start;
 }
 
+/* ---------------
+3. ABOUT SECTION
+-----------------*/
 .about {
   background-color: #FFFFFF;
 }
@@ -328,6 +331,9 @@ button:hover {
   margin-left: 175px;
 }
 
+/* ---------------
+4. OUR FRIENDS SECTION
+-----------------*/
 .our-friends {
   background-color: #FFFFFF;
 }
@@ -404,5 +410,45 @@ button:hover {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+}
+
+/* ---------------
+5. HELP SECTION
+-----------------*/
+.help {
+  background-color: #FFFFFF;
+}
+
+.help h3 {
+  max-width: 310px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.help .help-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-content: center;
+  -webkit-column-gap: 120px;
+          column-gap: 120px;
+  row-gap: 55px;
+}
+
+.help .help-items .help-item {
+  text-align: center;
+}
+
+.help .help-items .help-item img {
+  margin-bottom: 24px;
 }
 /*# sourceMappingURL=style.css.map */

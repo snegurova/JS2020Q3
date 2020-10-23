@@ -50,6 +50,10 @@
   }
 }
 
+/* ---------------
+3. ABOUT SECTION
+-----------------*/
+
 .about {
   background-color: $color-light-xl;
   .wrapper {
@@ -86,6 +90,10 @@
     }
   }
 }
+
+/* ---------------
+4. OUR FRIENDS SECTION
+-----------------*/
 
 .our-friends {
   background-color: $color-light-xl;
@@ -128,5 +136,34 @@
   }
   .btn {
     align-self: center;
+  }
+}
+
+/* ---------------
+5. HELP SECTION
+-----------------*/
+
+.help {
+  background-color: $color-light-xl;
+  h3 {
+    max-width: 310px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .help-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 120px;
+    row-gap: 55px;
+    .help-item {
+      text-align: center;
+      img {
+        margin-bottom: 24px;
+      }
+    }
   }
 }
