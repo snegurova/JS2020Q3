@@ -1,6 +1,9 @@
 .header {
   margin-top: 60px;
   background-color: $color-dark-3xl;
+  @media screen and (max-width: 1200px) {
+    margin-top: 30px;
+  }
   .wrapper {
     display: flex;
     justify-content: space-between;

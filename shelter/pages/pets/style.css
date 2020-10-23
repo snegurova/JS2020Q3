@@ -82,6 +82,13 @@ section {
   margin: auto;
 }
 
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
 a {
   cursor: pointer;
 }
@@ -89,6 +96,12 @@ a {
 .header {
   margin-top: 60px;
   background-color: #292929;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    margin-top: 30px;
+  }
 }
 
 .header .wrapper {
@@ -208,6 +221,15 @@ footer .wrapper {
           justify-content: space-between;
 }
 
+@media screen and (max-width: 1200px) {
+  footer .wrapper {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 footer .wrapper .contacts {
   max-width: 280px;
   display: -webkit-box;
@@ -222,6 +244,12 @@ footer .wrapper .contacts {
           justify-content: space-between;
   padding-top: 16px;
   padding-bottom: 60px;
+}
+
+@media screen and (max-width: 1200px) {
+  footer .wrapper .contacts {
+    min-height: 294px;
+  }
 }
 
 footer .wrapper .contacts:nth-child(2) {

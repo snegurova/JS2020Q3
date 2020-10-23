@@ -12,6 +12,10 @@ section {
 .wrapper {
   max-width: 1200px;
   margin: auto;
+  @media screen and (max-width: 1200px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 a {

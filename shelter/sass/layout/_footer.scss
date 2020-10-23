@@ -5,6 +5,10 @@ footer {
   .wrapper {
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 1200px) {
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
     .contacts {
       max-width: 280px;
       display: flex;
@@ -12,6 +16,9 @@ footer {
       justify-content: space-between;
       padding-top: 16px;
       padding-bottom: 60px;
+      @media screen and (max-width: 1200px) {
+        min-height: 294px;
+      }
       &:nth-child(2) {
         max-width: 302px;
       }
