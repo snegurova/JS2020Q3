@@ -120,14 +120,18 @@ section {
 
 .header nav ul li {
   list-style: none;
-  color: #CDCDCD;
   margin-left: 36px;
   margin-top: -3px;
   -webkit-transition: color 0.2s ease-in;
   transition: color 0.2s ease-in;
 }
 
-.header nav ul li:hover {
+.header nav ul li a {
+  color: #CDCDCD;
+  text-decoration: none;
+}
+
+.header nav ul li a:hover {
   color: #FAFAFA;
   cursor: pointer;
 }
@@ -135,6 +139,11 @@ section {
 .header nav ul .active {
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
+}
+
+.header nav ul .disabled:hover {
+  cursor: not-allowed;
+  color: #CDCDCD;
 }
 
 footer {
@@ -257,6 +266,7 @@ button:hover {
   transition: box-shadow 0.5s;
   transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
   border-radius: 9px;
+  background-color: #FAFAFA;
 }
 
 .pets-card img {
@@ -275,6 +285,7 @@ button:hover {
   cursor: pointer;
   -webkit-box-shadow: 0px 2px 35px 10px rgba(13, 13, 13, 0.1);
           box-shadow: 0px 2px 35px 10px rgba(13, 13, 13, 0.1);
+  background-color: #FFFFFF;
 }
 
 .pets-card:hover .btn-secondary {
