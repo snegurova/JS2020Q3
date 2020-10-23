@@ -1,0 +1,63 @@
+/* ---------------
+1. IMPORT  COMPONENTS
+-----------------*/
+
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/typography";
+@import "../../sass/layout/content";
+@import "../../sass/layout/header";
+@import "../../sass/layout/footer";
+@import "../../sass/components/buttons";
+@import "../../sass/components/pets-card";
+
+/* ---------------
+2. OUR FRIENDS SECTION
+-----------------*/
+.our-friends {
+  margin-top: 120px;
+  h3 {
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 45px;
+  }
+  .pets-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+    column-gap: 40px;
+    padding: 15px 0;
+    margin-bottom: 45px;
+  }
+  .pagination {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    button {
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1;
+      color: $color-dark-3xl;
+      letter-spacing: 1.6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 2px;
+      &.active {
+        cursor: auto;
+        background-color: $color-primary;
+      }
+      &:disabled {
+        border-color: $color-dark-s;
+        color: $color-dark-s;
+        &:hover {
+          background-color: transparent;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}

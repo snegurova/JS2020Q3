@@ -47,3 +47,45 @@
     }
   }
 }
+
+.header-white {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+  color: $color-dark-l;
+  background-color: $color-light-xl;
+  padding: 30px 0;
+  .logo-wrapper {
+    color: $color-dark-l;
+    text-decoration: none;
+    h1 {
+      color: $color-dark-l;
+    }
+    p {
+      color: $color-dark-3xl;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  nav {
+    ul {
+      li {
+        a {
+          color: $color-dark-l;
+        }
+        a:hover,
+        .active {
+          color: $color-dark-3xl;
+        }
+        .disabled {
+          color: $color-dark-l;
+          &:hover {
+            color: $color-dark-l;
+          }
+        }
+      }
+    }
+  }
+}

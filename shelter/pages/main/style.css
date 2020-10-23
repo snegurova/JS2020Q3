@@ -16,14 +16,14 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-size: 15px;
   line-height: 1.6;
   color: #4C4C4C;
 }
 
 h1 {
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, serif;
   font-size: 32px;
   line-height: 1.15;
   font-weight: 300;
@@ -32,14 +32,14 @@ h1 {
 }
 
 h2 {
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, serif;
   font-size: 44px;
   line-height: 1.3;
   font-weight: 300;
 }
 
 h3 {
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, serif;
   font-size: 35px;
   line-height: 1.3;
   font-weight: 300;
@@ -48,7 +48,7 @@ h3 {
 }
 
 h4 {
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, serif;
   font-size: 20px;
   line-height: 1.13;
   font-weight: 300;
@@ -57,7 +57,7 @@ h4 {
 }
 
 h5 {
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, serif;
   font-size: 15px;
   line-height: 1.1;
   font-weight: 300;
@@ -80,6 +80,10 @@ section {
 .wrapper {
   max-width: 1200px;
   margin: auto;
+}
+
+a {
+  cursor: pointer;
 }
 
 .header {
@@ -144,6 +148,50 @@ section {
 .header nav ul .disabled:hover {
   cursor: not-allowed;
   color: #CDCDCD;
+}
+
+.header-white {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+  color: #545454;
+  background-color: #FFFFFF;
+  padding: 30px 0;
+}
+
+.header-white .logo-wrapper {
+  color: #545454;
+  text-decoration: none;
+}
+
+.header-white .logo-wrapper h1 {
+  color: #545454;
+}
+
+.header-white .logo-wrapper p {
+  color: #292929;
+}
+
+.header-white .logo-wrapper:hover {
+  opacity: 0.8;
+}
+
+.header-white nav ul li a {
+  color: #545454;
+}
+
+.header-white nav ul li a:hover,
+.header-white nav ul li .active {
+  color: #292929;
+}
+
+.header-white nav ul li .disabled {
+  color: #545454;
+}
+
+.header-white nav ul li .disabled:hover {
+  color: #545454;
 }
 
 footer {
