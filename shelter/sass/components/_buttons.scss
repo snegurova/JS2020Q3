@@ -1,5 +1,6 @@
 .btn {
   padding: 15px 45px;
+  display: inline-block;
   background-color: $color-primary;
   border-radius: 100px;
   font-family: Georgia;
@@ -9,8 +10,32 @@
   letter-spacing: 1.1px;
   text-decoration: none;
   color: $color-dark-3xl;
-  transition: .5s;
+  transition: 0.5s;
   &:hover {
     background-color: $color-primary-light;
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid $color-primary;
+  &:hover {
+    background-color: $color-primary-light;
+    border-color: $color-primary-light;
+  }
+}
+
+button {
+  width: 52px;
+  height: 52px;
+  border: 2px solid $color-primary;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  transition: 0.5s;
+  &:hover {
+    background-color: $color-primary-light;
+    border-color: $color-primary-light;
   }
 }

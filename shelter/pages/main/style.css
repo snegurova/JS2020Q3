@@ -47,6 +47,15 @@ h3 {
   letter-spacing: 2.1px;
 }
 
+h4 {
+  font-family: Georgia, sans-serif;
+  font-size: 20px;
+  line-height: 1.13;
+  font-weight: 300;
+  color: #545454;
+  letter-spacing: 1.3px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -119,6 +128,7 @@ section {
 
 .btn {
   padding: 15px 45px;
+  display: inline-block;
   background-color: #F1CDB3;
   border-radius: 100px;
   font-family: Georgia;
@@ -128,12 +138,56 @@ section {
   letter-spacing: 1.1px;
   text-decoration: none;
   color: #292929;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .btn:hover {
   background-color: #FDDCC4;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #F1CDB3;
+}
+
+.btn-secondary:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+button {
+  width: 52px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+button:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.pets-card {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.pets-card img {
+  margin-bottom: 23px;
+}
+
+.pets-card h4 {
+  margin-bottom: 30px;
+}
+
+.pets-card .btn {
+  padding: 13px 43px;
 }
 
 /* ---------------
@@ -260,6 +314,16 @@ section {
   background-color: #FFFFFF;
 }
 
+.our-friends .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .our-friends h3 {
   max-width: 400px;
   margin: auto;
@@ -274,6 +338,7 @@ section {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 60px;
 }
 
 .our-friends .slider .slider-content {
@@ -303,13 +368,7 @@ section {
 
 .our-friends .slider .control button {
   font-size: 0px;
-  width: 52px;
-  height: 52px;
-  border: 2px solid #F1CDB3;
-  border-radius: 50%;
   background-image: url("../../assets/icons/arrow-icon.png");
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .our-friends .slider .control .next {
@@ -321,5 +380,11 @@ section {
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
           order: -1;
+}
+
+.our-friends .btn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 /*# sourceMappingURL=style.css.map */
