@@ -137,6 +137,71 @@ section {
   border-bottom: 3px solid #F1CDB3;
 }
 
+footer {
+  padding-top: 40px;
+  background: url(../../assets/img/noise_transparent.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%), #211f20;
+}
+
+footer .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer .wrapper .contacts {
+  max-width: 280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 60px;
+}
+
+footer .wrapper .contacts:nth-child(2) {
+  max-width: 302px;
+}
+
+footer .wrapper .contacts h3 {
+  color: #FFFFFF;
+}
+
+footer .wrapper .contacts .contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  color: #F1CDB3;
+  font-family: Georgia, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1.2px;
+}
+
+footer .wrapper .contacts .contact:nth-child(2) {
+  line-height: 1.15;
+}
+
+footer .wrapper .contacts .contact:hover {
+  text-decoration: underline;
+}
+
+footer .wrapper .contacts .contact img {
+  margin-right: 20px;
+}
+
+footer .wrapper .img-wrapper {
+  font-size: 0px;
+}
+
 .btn {
   padding: 15px 45px;
   display: inline-block;
@@ -231,7 +296,7 @@ button:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 180px;
+  padding-top: 179px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -471,6 +536,8 @@ button:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-top: 3px;
+  padding-bottom: 1px;
 }
 
 .donation .img-wrapper {

@@ -6,6 +6,7 @@
 @import "../../sass/abstracts/typography";
 @import "../../sass/layout/content";
 @import "../../sass/layout/header";
+@import "../../sass/layout/footer";
 @import "../../sass/components/buttons";
 @import "../../sass/components/pets-card";
 
@@ -21,7 +22,7 @@
   padding-bottom: 0;
   .wrapper {
     display: flex;
-    padding-top: 180px;
+    padding-top: 179px;
     justify-content: space-between;
     .text-content {
       display: flex;
@@ -176,6 +177,8 @@
   .wrapper {
     display: flex;
     justify-content: center;
+    padding-top: 3px;
+    padding-bottom: 1px;
   }
   .img-wrapper {
     font-size: 0px;
