@@ -1,11 +1,84 @@
+@keyframes slidein {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+@keyframes slideout {
+  from {
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}
+
 .header {
-  margin-top: 60px;
-  background-color: $color-dark-3xl;
   .wrapper {
+    @media screen and (max-width: 768px) {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .navbar {
+    padding-top: 60px;
     display: flex;
+    align-self: flex-end;
     justify-content: space-between;
+    @media screen and (max-width: 1200px) {
+      padding-top: 30px;
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-left: 10px;
+      padding-top: 0;
+    }
+    &.active {
+      nav {
+        @media screen and (max-width: 768px) {
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 320px;
+          background-color: $color-dark-3xl;
+          height: 100vh;
+          z-index: 2;
+          ul {
+            display: flex;
+          }
+          animation: slidein 0.5s ease-in-out;
+        }
+      }
+      .humburger-button {
+        transform: rotate(90deg);
+      }
+    }
+    &.closed {
+      nav {
+        @media screen and (max-width: 768px) {
+          right: -100%;
+          animation: slideout 1s ease-in-out;
+        }
+      }
+    }
   }
   .logo-wrapper {
+    z-index: 3;
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      top: 30px;
+      right: 126px;
+    }
     p {
       font-size: 13px;
       line-height: 15px;
@@ -18,22 +91,109 @@
   nav {
     align-self: center;
     line-height: 1.65;
+
     ul {
       display: flex;
+      @media screen and (max-width: 768px) {
+        display: none;
+        align-items: center;
+        flex-direction: column;
+      }
       li {
         list-style: none;
-        color: $color-dark-s;
         margin-left: 36px;
         margin-top: -3px;
-        // transition: border .3s ease-in;
-        &:hover {
+        transition: color 0.2s ease-in;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 40px;
+        }
+        a {
+          color: $color-dark-s;
+          text-decoration: none;
+          @media screen and (max-width: 768px) {
+            font-size: 32px;
+            line-height: 1.6;
+          }
+        }
+        a:hover {
           color: $color-light-s;
-          border-bottom: 3px solid $color-primary;
+          cursor: pointer;
         }
       }
       .active {
         color: $color-light-s;
         border-bottom: 3px solid $color-primary;
+        a {
+          color: $color-light-s;
+        }
+      }
+      .disabled {
+        &:hover {
+          cursor: not-allowed;
+          color: $color-dark-s;
+        }
+      }
+    }
+  }
+  .humburger-button {
+    position: absolute;
+    top: 49px;
+    right: 53px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    z-index: 3;
+    transition: transform 0.5s;
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+    .bar {
+      height: 2px;
+      width: 100%;
+      background-color: $color-primary;
+    }
+  }
+}
+
+.header-white {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+  color: $color-dark-l;
+  background-color: $color-light-xl;
+  padding: 30px 0;
+  .logo-wrapper {
+    color: $color-dark-l;
+    text-decoration: none;
+    h1 {
+      color: $color-dark-l;
+    }
+    p {
+      color: $color-dark-3xl;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  nav {
+    ul {
+      li {
+        a {
+          color: $color-dark-l;
+        }
+        a:hover,
+        .active {
+          color: $color-dark-3xl;
+        }
+        .disabled {
+          color: $color-dark-l;
+          &:hover {
+            color: $color-dark-l;
+          }
+        }
       }
     }
   }

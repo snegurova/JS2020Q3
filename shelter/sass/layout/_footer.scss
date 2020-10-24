@@ -1,0 +1,50 @@
+footer {
+  padding-top: 40px;
+  background: url(../../assets/img/noise_transparent.png),
+    radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%), #211f20;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 1200px) {
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .contacts {
+      max-width: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 16px;
+      padding-bottom: 60px;
+      @media screen and (max-width: 1200px) {
+        min-height: 294px;
+      }
+      &:nth-child(2) {
+        max-width: 302px;
+      }
+      h3 {
+        color: $color-light-xl;
+      }
+      .contact {
+        display: flex;
+        text-decoration: none;
+        color: $color-primary;
+        font-family: Georgia, sans-serif;
+        font-size: 20px;
+        letter-spacing: 1.2px;
+        &:nth-child(2) {
+          line-height: 1.15;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+        img {
+          margin-right: 20px;
+        }
+      }
+    }
+    .img-wrapper {
+      font-size: 0px;
+    }
+  }
+}
