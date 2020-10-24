@@ -14,6 +14,6 @@ overlay.addEventListener('click', () => {
   navbar.classList.toggle('active');
   navbar.classList.toggle('closed');
   overlay.classList.toggle('show');
-  body.classList.toggle('fixed');
+  body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
 });
 
