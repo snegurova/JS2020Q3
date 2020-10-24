@@ -148,7 +148,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .wrapper {
     position: relative;
     margin: 0;
@@ -180,7 +180,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .navbar {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -197,7 +197,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .navbar nav {
     position: absolute;
     top: 0;
@@ -231,8 +231,10 @@ img {
           transform: rotate(90deg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .navbar.closed nav {
+    -webkit-transform: scale(0);
+            transform: scale(0);
     right: -100%;
   }
 }
@@ -241,7 +243,7 @@ img {
   z-index: 3;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .logo-wrapper {
     position: absolute;
     top: 30px;
@@ -271,7 +273,7 @@ img {
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul {
     display: none;
     -webkit-box-align: center;
@@ -292,7 +294,7 @@ img {
   transition: color 0.2s ease-in;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul li {
     margin-bottom: 40px;
   }
@@ -303,7 +305,7 @@ img {
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul li a {
     font-size: 32px;
     line-height: 1.6;
@@ -350,7 +352,7 @@ img {
   transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .humburger-button {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -406,6 +408,10 @@ img {
 
 .header-white nav ul li .disabled:hover {
   color: #545454;
+}
+
+.fixed {
+  overflow: hidden;
 }
 
 footer {
