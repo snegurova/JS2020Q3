@@ -216,8 +216,8 @@ img {
     background-color: #292929;
     height: 100vh;
     z-index: 2;
-    -webkit-animation: slidein 0.5s ease-in-out;
-            animation: slidein 0.5s ease-in-out;
+    -webkit-transition: right 1s;
+    transition: right 1s;
   }
   .header .navbar nav ul {
     display: -webkit-box;
@@ -234,8 +234,6 @@ img {
 @media screen and (max-width: 768px) {
   .header .navbar.closed nav {
     right: -100%;
-    -webkit-animation: slideout 1s ease-in-out;
-            animation: slideout 1s ease-in-out;
   }
 }
 

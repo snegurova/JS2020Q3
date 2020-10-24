@@ -13,6 +13,3 @@ overlay.addEventListener('click', () => {
   overlay.classList.toggle('show');
 });
 
-// document.addEventListener('load', () => {
-//   document.querySelector('body').classList.toggle('preload');
-// });

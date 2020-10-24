@@ -52,10 +52,10 @@
         background-color: $color-dark-3xl;
         height: 100vh;
         z-index: 2;
+        transition: right 1s;
         ul {
           display: flex;
         }
-        animation: slidein 0.5s ease-in-out;
       }
     }
     &.active {
@@ -67,7 +67,7 @@
       nav {
         @media screen and (max-width: 768px) {
           right: -100%;
-          animation: slideout 1s ease-in-out;
+          // animation: slideout 1s ease-in-out;
         }
       }
     }
@@ -198,3 +198,6 @@
     }
   }
 }
+// .animated {
+//   animation: slidein 0.5s ease-in-out;
+// }
