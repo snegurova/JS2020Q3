@@ -12,3 +12,4 @@ overlay.addEventListener('click', () => {
   navbar.classList.toggle('closed');
   overlay.classList.toggle('show');
 });
+
