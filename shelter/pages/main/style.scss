@@ -13,20 +13,24 @@
 /* ---------------
 2. BANNER SECTION
 -----------------*/
-
-.banner {
+.bg-wrapper {
   background: url(../../assets/img/noise_transparent.png),
     radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
-  margin-top: -120px;
+}
+
+.banner {
   padding-top: 0;
   padding-bottom: 0;
   .wrapper {
     display: flex;
-    padding-top: 179px;
+    padding-top: 59px;
     justify-content: space-between;
     @media screen and (max-width: 825px) {
       flex-direction: column;
       align-items: center;
+    }
+    @media screen and (max-width: 768px) {
+      padding-top: 150px;
     }
     .text-content {
       display: flex;
@@ -151,6 +155,11 @@
       column-gap: 90px;
       .pets-card:nth-child(3) {
         @media screen and (max-width: 1200px) {
+          display: none;
+        }
+      }
+      .pets-card:nth-child(2) {
+        @media screen and (max-width: 768px) {
           display: none;
         }
       }

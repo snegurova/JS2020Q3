@@ -9,23 +9,30 @@
 </head>
 
 <body>
-  <header class="header">
-    <div class="wrapper">
-      <div class="logo-wrapper">
-        <h1>Cozy House</h1>
-        <p>Shelter for pets in Boston</p>
+  <div class="bg-wrapper">
+    <header class="header">
+      <div class="wrapper">
+        <div class="navbar closed">
+          <div class="logo-wrapper">
+            <h1>Cozy House</h1>
+            <p>Shelter for pets in Boston</p>
+          </div>
+          <a href="#" class="humburger-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </a>
+          <nav>
+            <ul>
+              <li class="active"><a href="#">About the shelter</a></li>
+              <li><a href="../pets/index.html">Our pets</a></li>
+              <li><a class="disabled">Help the shelter</a></li>
+              <li><a class="disabled">Contacts</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <nav>
-        <ul>
-          <li class="active"><a href="#">About the shelter</a></li>
-          <li><a href="../pets/index.html">Our pets</a></li>
-          <li><a class="disabled">Help the shelter</a></li>
-          <li><a class="disabled">Contacts</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
+    </header>
     <section class="banner">
       <div class="wrapper">
         <div class="text-content">
@@ -40,6 +47,9 @@
         </div>
       </div>
     </section>
+  </div>
+  <main>
+
     <section class="about">
       <div class="wrapper">
         <div class="text-content">
@@ -171,11 +181,11 @@
       </div>
       <div class="contacts">
         <h3>We are waiting for your visit</h3>
-        <a href="#" class="contact">
+        <a href="https://goo.gl/maps/BpQJYnpexnMbtgHA6" target="_blank" class="contact">
           <img src="../../assets/icons/pin.svg" alt="location">
           1 Central Street, Boston (entrance from the store)
         </a>
-        <a href="#" class="contact">
+        <a href="https://goo.gl/maps/E5ur4aoLsdHULEze9" target="_blank" class="contact">
           <img src="../../assets/icons/pin.svg" alt="location">
           18 South Park, London
         </a>
@@ -185,6 +195,8 @@
       </div>
     </div>
   </footer>
+  <div class="overlay"></div>
 </body>
+<script src="script.js"></script>
 
 </html>

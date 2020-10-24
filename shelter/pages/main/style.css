@@ -93,24 +93,162 @@ a {
   cursor: pointer;
 }
 
-.header {
-  margin-top: 60px;
-  background-color: #292929;
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.6);
+  overflow: hidden;
 }
 
-@media screen and (max-width: 1200px) {
-  .header {
-    margin-top: 30px;
+.overlay.show {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
   }
 }
 
-.header .wrapper {
+@keyframes slidein {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@-webkit-keyframes slideout {
+  from {
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}
+
+@keyframes slideout {
+  from {
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header .wrapper {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+.header .navbar {
+  padding-top: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .header .navbar {
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header .navbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    padding-left: 10px;
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header .navbar.active nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 320px;
+    background-color: #292929;
+    height: 100vh;
+    z-index: 2;
+    -webkit-animation: slidein 0.5s ease-in-out;
+            animation: slidein 0.5s ease-in-out;
+  }
+  .header .navbar.active nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.header .navbar.active .humburger-button {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+@media screen and (max-width: 768px) {
+  .header .navbar.closed nav {
+    right: -100%;
+    -webkit-animation: slideout 1s ease-in-out;
+            animation: slideout 1s ease-in-out;
+  }
+}
+
+.header .logo-wrapper {
+  z-index: 3;
+}
+
+@media screen and (max-width: 768px) {
+  .header .logo-wrapper {
+    position: absolute;
+    top: 30px;
+    right: 126px;
+  }
 }
 
 .header .logo-wrapper p {
@@ -135,6 +273,19 @@ a {
   display: flex;
 }
 
+@media screen and (max-width: 768px) {
+  .header nav ul {
+    display: none;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .header nav ul li {
   list-style: none;
   margin-left: 36px;
@@ -143,9 +294,22 @@ a {
   transition: color 0.2s ease-in;
 }
 
+@media screen and (max-width: 768px) {
+  .header nav ul li {
+    margin-bottom: 40px;
+  }
+}
+
 .header nav ul li a {
   color: #CDCDCD;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header nav ul li a {
+    font-size: 32px;
+    line-height: 1.6;
+  }
 }
 
 .header nav ul li a:hover {
@@ -158,9 +322,48 @@ a {
   border-bottom: 3px solid #F1CDB3;
 }
 
+.header nav ul .active a {
+  color: #FAFAFA;
+}
+
 .header nav ul .disabled:hover {
   cursor: not-allowed;
   color: #CDCDCD;
+}
+
+.header .humburger-button {
+  position: absolute;
+  top: 49px;
+  right: 53px;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  z-index: 3;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+  .header .humburger-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.header .humburger-button .bar {
+  height: 2px;
+  width: 100%;
+  background-color: #F1CDB3;
 }
 
 .header-white {
@@ -372,9 +575,11 @@ button:hover {
 /* ---------------
 2. BANNER SECTION
 -----------------*/
-.banner {
+.bg-wrapper {
   background: url(../../assets/img/noise_transparent.png), radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
-  margin-top: -120px;
+}
+
+.banner {
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -383,7 +588,7 @@ button:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 179px;
+  padding-top: 59px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -398,6 +603,12 @@ button:hover {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner .wrapper {
+    padding-top: 150px;
   }
 }
 
@@ -610,6 +821,12 @@ button:hover {
 
 @media screen and (max-width: 1200px) {
   .our-friends .slider .slider-content .pets-card:nth-child(3) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .our-friends .slider .slider-content .pets-card:nth-child(2) {
     display: none;
   }
 }
