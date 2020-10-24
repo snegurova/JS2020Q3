@@ -198,7 +198,7 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .header .navbar.active nav {
+  .header .navbar nav {
     position: absolute;
     top: 0;
     right: 0;
@@ -219,7 +219,7 @@ img {
     -webkit-animation: slidein 0.5s ease-in-out;
             animation: slidein 0.5s ease-in-out;
   }
-  .header .navbar.active nav ul {
+  .header .navbar nav ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
