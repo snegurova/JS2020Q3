@@ -179,7 +179,7 @@ async function getWeather() {
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp)}°C`;
     humidity.textContent = `${data.main.humidity} %`;
-    windSpeed.textContent = `${data.wind.speed} km/h`;
+    windSpeed.textContent = `${data.wind.speed} m/s`;
     weatherDescription.textContent = `${data.weather[0].description}`;
   } catch (e) {
     city.textContent = 'Invalid city';
