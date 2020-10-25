@@ -42,7 +42,7 @@
     }
     nav {
       @media screen and (max-width: 767px) {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         display: flex;
@@ -52,7 +52,8 @@
         background-color: $color-dark-3xl;
         height: 100vh;
         z-index: 2;
-        transition: right 1s;
+        transition: 1s;
+        transform: translateX(100%);
         ul {
           display: flex;
         }
@@ -62,13 +63,9 @@
       .humburger-button {
         transform: rotate(90deg);
       }
-    }
-    &.closed {
       nav {
         @media screen and (max-width: 767px) {
-          transform: scale(0);
-          right: -100%;
-          // animation: slideout 1s ease-in-out;
+          transform: translateX(0%);
         }
       }
     }

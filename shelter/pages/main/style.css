@@ -199,7 +199,7 @@ img {
 
 @media screen and (max-width: 767px) {
   .header .navbar nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     display: -webkit-box;
@@ -216,8 +216,10 @@ img {
     background-color: #292929;
     height: 100vh;
     z-index: 2;
-    -webkit-transition: right 1s;
-    transition: right 1s;
+    -webkit-transition: 1s;
+    transition: 1s;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   .header .navbar nav ul {
     display: -webkit-box;
@@ -232,10 +234,9 @@ img {
 }
 
 @media screen and (max-width: 767px) {
-  .header .navbar.closed nav {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    right: -100%;
+  .header .navbar.active nav {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 
