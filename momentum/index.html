@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
   <title>Momentum</title>
 </head>
+
 <body>
   <div class="top-widgets">
     <div class="change-mage-wrapper">
       <button class="change-img" title="Change image"></button>
     </div>
     <div class="weather-widget">
-      <div class="city" contenteditable="true">Kryvyi Rih</div>
-      <div class="weather-signs">
-        <i class="weather-icon owf owf-803"></i>
-        <div class="temperature"></div>
+      <div class="city" id="city" contenteditable="true">Kryvyi Rih</div>
+      <div class="weather-data-wrapper">
+        <div class="weather-signs">
+          <i class="weather-icon owf owf-803"></i>
+          <div class="temperature"></div>
+        </div>
+        <div class="humidity-wrapper">
+          <img src="assets/icons/humidity-icon.png" alt="humidity-icon">
+          <div class="humidity">
+          </div>
+        </div>
+        <div class="wind-speed-wrapper">
+          <img src="assets/icons/wind-icon.png" alt="wind-icon">
+          <div class="wind-speed">
+          </div>
+        </div>
+        <div class="weather-description"></div>
       </div>
-      <div class="weather-description"></div>
     </div>
   </div>
   <div class="main-content">
@@ -43,6 +57,7 @@
       </figcaption>
     </figure>
   </div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

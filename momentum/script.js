@@ -11,9 +11,9 @@ let base = 'assets/img/',
   partOfDay = ['night', 'morning', 'day', 'evening'];
 
 // Create image collection
-images = images.map( (it, ind) => {
-    return it = `${partOfDay[Math.trunc(ind / 6)]}/${addZero(Math.floor(Math.random() * (20 + 1)))}.jpg`;
-  });
+images = images.map((it, ind) => {
+  return it = `${partOfDay[Math.trunc(ind / 6)]}/${addZero(Math.floor(Math.random() * (20 + 1)))}.jpg`;
+});
 
 // DOM Elements
 
@@ -25,9 +25,12 @@ const time = document.getElementById('time'),
   blockquote = document.querySelector('blockquote'),
   figcaption = document.querySelector('figcaption'),
   changeQuote = document.querySelector('.change-quote'),
+  weatherDataWrapper = document.querySelector('.weather-data-wrapper'),
   weatherIcon = document.querySelector('.weather-icon'),
   temperature = document.querySelector('.temperature'),
   weatherDescription = document.querySelector('.weather-description'),
+  humidity = document.querySelector('.humidity'),
+  windSpeed = document.querySelector('.wind-speed'),
   city = document.querySelector('.city');
 
 // Show Time
@@ -123,6 +126,7 @@ function viewBgImage(src) {
 }
 
 function getImage(hour) {
+  changeImg.blur();
   let index;
   if (hour.type === 'click') {
     index = i % images.length;
@@ -134,8 +138,10 @@ function getImage(hour) {
   const imageSrc = base + images[index];
   viewBgImage(imageSrc);
   i++;
+
   changeImg.disabled = true;
-  setTimeout( () => {changeImg.disabled = false}, 1000)
+  setTimeout(() => { changeImg.disabled = false }, 1000)
+
 }
 
 // Change blockquote
@@ -145,29 +151,44 @@ async function getQuote() {
   const data = await res.json();
   blockquote.textContent = data.quoteText;
   figcaption.textContent = data.quoteAuthor;
+  changeQuote.blur();
 }
 
 //Weather Widget
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=cdd8b62da969b8c8da25de335d4aae4e&units=metric`;
-  const res = await fetch(url);
-  const data = await res.json();
+  try {
+    weatherDataWrapper.classList.remove('hidden');
+    city.textContent = localStorage.getItem(city.id) || city.textContent;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=cdd8b62da969b8c8da25de335d4aae4e&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
 
-  weatherIcon.className = 'weather-icon owf'
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${Math.round(data.main.temp)}°C`;
-  weatherDescription.textContent = `${data.weather[0].description}`
+    weatherIcon.className = 'weather-icon owf'
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp)}°C`;
+    humidity.textContent = `${data.main.humidity} %`;
+    windSpeed.textContent = `${data.wind.speed} km/h`;
+    weatherDescription.textContent = `${data.weather[0].description}`;
+  } catch (e) {
+    city.textContent = 'Invalid city';
+    weatherDataWrapper.classList.add('hidden');
+  }
+
 }
 
 function setCity(e) {
   if (e.code === 'Enter') {
     getWeather();
+    setLocalData();
     city.blur();
   }
 }
 
 
 // EventListeners
+city.addEventListener('focus', clearData);
+city.addEventListener('keypress', setLocalData);
+city.addEventListener('blur', setLocalData);
 name.addEventListener('focus', clearData);
 name.addEventListener('keypress', setLocalData);
 name.addEventListener('blur', setLocalData);
