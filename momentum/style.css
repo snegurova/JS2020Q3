@@ -63,10 +63,11 @@ h2 {
 
 .change-img, .change-quote {
   border: 0;
-  background: url("assets/icons/change-icon-png-8-white.png");
+  border-radius: 100%;
+  background: url("assets/icons/change-icon-png-8-white.png"), rgba(0, 0, 0, 0.2);
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: .7;
+  opacity: .9;
   transition: 250ms linear;
   flex-shrink: 0;
 }
@@ -74,7 +75,7 @@ h2 {
 .change-img:hover, .change-quote:hover {
   cursor: pointer;
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(-45deg);
 }
 
 .main-content,
@@ -110,7 +111,7 @@ figcaption {
 }
 
 .weather-description {
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .temperature {
@@ -134,10 +135,6 @@ figcaption {
  .city {
   font-size: 1rem;
   margin-bottom: 8px;
-}
-
-.weather-description {
-  font-weight: 300;
 }
 
 .temperature {
