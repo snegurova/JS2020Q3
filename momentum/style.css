@@ -14,8 +14,7 @@ body {
   text-align: center;
   height: 100vh;
   color: #fff;
-  text-shadow: 1px 1px 2px rgb(31, 23, 17),
-               1px 1px 7px #5f462d;
+  text-shadow: 1px 1px 2px rgb(31, 23, 17), 1px 1px 7px #5f462d;
   transition: background-image 1s ease-in-out;
 }
 
@@ -51,6 +50,16 @@ h2 {
   min-width: 40px;
 }
 
+.top-widgets {
+  flex: 1;
+}
+.main-content {
+  flex: 4;
+}
+.quote-wrapper {
+  flex: 1;
+}
+
 .change-img {
   width: 40px;
   height: 40px;
@@ -59,14 +68,18 @@ h2 {
 .change-quote {
   width: 25px;
   height: 25px;
+  position: absolute;
+  left: 15%;
+  bottom: 30px;
 }
 
 .change-img, .change-quote {
   border: 0;
-  background: url("assets/icons/change-icon-png-8-white.png");
+  border-radius: 100%;
+  background: url("assets/icons/change-icon-png-8-white.png"), rgba(0, 0, 0, 0.2);
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: .7;
+  opacity: .9;
   transition: 250ms linear;
   flex-shrink: 0;
 }
@@ -74,11 +87,10 @@ h2 {
 .change-img:hover, .change-quote:hover {
   cursor: pointer;
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(-45deg);
 }
 
-.main-content,
-.quote-wrapper {
+.main-content, .quote-wrapper {
   margin-top: auto;
 }
 
@@ -89,6 +101,7 @@ h2 {
   align-items: center;
   gap: 30px;
   margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgb(31, 23, 17), 1px 1px 7px #1f170f, 1px 1px 24px #1f170f;
 }
 
 figcaption {
@@ -100,17 +113,17 @@ figcaption {
   justify-content: space-between;
   width: 100%;
   padding: 25px;
-  text-shadow: 1px 1px 2px rgb(31, 23, 17),
-               1px 1px 7px #405a67;
+  text-shadow: 1px 1px 2px rgb(31, 23, 17), 1px 1px 7px #405a67;
 }
 
 .city {
   font-size: 1.5rem;
   margin-bottom: 12px;
+  min-width: 100px;
 }
 
 .weather-description {
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .temperature {
@@ -119,6 +132,7 @@ figcaption {
 
 .weather-icon {
   font-size: 2.5rem;
+  margin-bottom: 15px;
 }
 
 .weather-signs {
@@ -127,42 +141,66 @@ figcaption {
   align-items: center;
 }
 
-@media screen and (max-width: 576px) {
-  time {
-   font-size: 4.5rem;
- }
- .city {
-  font-size: 1rem;
+.wind-speed-wrapper, .humidity-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 8px;
 }
 
-.weather-description {
-  font-weight: 300;
+.wind-speed-wrapper img {
+  width: 30px;
+  margin-right: 10px;
+}
+.humidity-wrapper img {
+  width: 23px;
+  margin-right: 10px;
 }
 
-.temperature {
-  font-size: 1.3rem;
+@media screen and (max-width: 576px) {
+  time {
+    font-size: 4.5rem;
+  }
+  .city {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .temperature {
+    font-size: 1.3rem;
+  }
+  .weather-icon {
+    font-size: 1.5rem;
+  }
+  .weather-signs {
+    justify-content: space-around;
+  }
+  .date {
+    font-size: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .top-widgets {
+    flex: 1;
+  }
+  .main-content {
+    flex: 2;
+  }
+  .quote-wrapper {
+    max-width: 90%;
+    font-size: .9rem;
+    flex: 1;
+    margin-bottom: 30px;
+  }
+  .change-quote {
+    left: 20px;
+    bottom: 20px;
+  }
 }
 
-.weather-icon {
-  font-size: 1.5rem;
-}
-
-.weather-signs {
-  justify-content: space-around;
-}
-.date {
-  font-size: 2rem;
-}
-
-h1 {
-  font-size: 1.5rem;
-}
-h2 {
-  font-size: 1.3rem;
-}
-.quote-wrapper {
-  max-width: 90%;
-  font-size: .8rem;
-}
+.hidden {
+  display: none;
 }
