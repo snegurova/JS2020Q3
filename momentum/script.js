@@ -126,7 +126,6 @@ function viewBgImage(src) {
 }
 
 function getImage(hour) {
-  changeImg.blur();
   let index;
   if (hour.type === 'click') {
     index = i % images.length;
@@ -138,19 +137,32 @@ function getImage(hour) {
   const imageSrc = base + images[index];
   viewBgImage(imageSrc);
   i++;
+  changeImg.blur();
 
   changeImg.disabled = true;
   setTimeout(() => { changeImg.disabled = false }, 1000)
 
 }
 
+// // Change blockquote
+// async function getQuote() {
+//   const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+//   const res = await fetch(url);
+//   const data = await res.json();
+//   blockquote.textContent = data.quoteText;
+//   figcaption.textContent = data.quoteAuthor;
+//   changeQuote.blur();
+// }
+
+
 // Change blockquote
-async function getQuote() {
-  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+async function getQuote(e) {
+  const url = `https://type.fit/api/quotes?method=getQuote&format=json&lang=en`;
   const res = await fetch(url);
   const data = await res.json();
-  blockquote.textContent = data.quoteText;
-  figcaption.textContent = data.quoteAuthor;
+  let i = Math.floor(Math.random() * data.length)
+  blockquote.textContent = data[i].text;
+  figcaption.textContent = data[i].author;
   changeQuote.blur();
 }
 

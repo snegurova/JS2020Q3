@@ -50,6 +50,16 @@ h2 {
   min-width: 40px;
 }
 
+.top-widgets {
+  flex: 1;
+}
+.main-content {
+  flex: 4;
+}
+.quote-wrapper {
+  flex: 1;
+}
+
 .change-img {
   width: 40px;
   height: 40px;
