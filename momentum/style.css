@@ -59,6 +59,9 @@ h2 {
 .change-quote {
   width: 25px;
   height: 25px;
+  position: absolute;
+  left: 15%;
+  bottom: 30px;
 }
 
 .change-img, .change-quote {
@@ -158,8 +161,20 @@ h1 {
 h2 {
   font-size: 1.3rem;
 }
+.top-widgets {
+  flex: 1;
+}
+.main-content {
+  flex: 2;
+}
 .quote-wrapper {
   max-width: 90%;
-  font-size: .8rem;
+  font-size: .9rem;
+  flex: 1;
+  margin-bottom: 30px;
+}
+.change-quote {
+  left: 20px;
+  bottom: 20px;
 }
 }
