@@ -215,7 +215,7 @@ img {
     width: 320px;
     background-color: #292929;
     height: 100vh;
-    z-index: 2;
+    z-index: 3;
     -webkit-transition: 1s;
     transition: 1s;
     -webkit-transform: translateX(100%);
@@ -241,7 +241,7 @@ img {
 }
 
 .header .logo-wrapper {
-  z-index: 3;
+  z-index: 4;
 }
 
 @media screen and (max-width: 767px) {
@@ -250,6 +250,10 @@ img {
     top: 30px;
     right: 126px;
   }
+}
+
+.header .logo-wrapper a {
+  text-decoration: none;
 }
 
 .header .logo-wrapper p {
@@ -346,7 +350,7 @@ img {
           justify-content: space-between;
   width: 30px;
   height: 22px;
-  z-index: 3;
+  z-index: 4;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
@@ -373,8 +377,17 @@ img {
   width: 100%;
   margin-top: 0;
   color: #545454;
+}
+
+.header-white .navbar {
+  min-height: 120px;
+  width: 100%;
+  padding-top: 30px;
   background-color: #FFFFFF;
-  padding: 30px 0;
+}
+
+.header-white .navbar nav {
+  background-color: #FFFFFF;
 }
 
 .header-white .logo-wrapper {
@@ -394,12 +407,16 @@ img {
   opacity: 0.8;
 }
 
+.header-white nav ul li.active a {
+  color: #292929;
+  text-shadow: 0 0 black;
+}
+
 .header-white nav ul li a {
   color: #545454;
 }
 
-.header-white nav ul li a:hover,
-.header-white nav ul li .active {
+.header-white nav ul li a:hover {
   color: #292929;
 }
 
@@ -611,7 +628,7 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .banner .wrapper {
     padding-top: 150px;
   }
@@ -671,6 +688,14 @@ button:hover {
 .banner .btn {
   -ms-flex-item-align: start;
       align-self: flex-start;
+}
+
+@media screen and (max-width: 1200px) {
+  .banner .btn {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
 }
 
 /* ---------------
@@ -830,7 +855,7 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .our-friends .slider .slider-content .pets-card:nth-child(2) {
     display: none;
   }

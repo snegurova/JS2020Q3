@@ -51,7 +51,7 @@
         width: 320px;
         background-color: $color-dark-3xl;
         height: 100vh;
-        z-index: 2;
+        z-index: 3;
         transition: 1s;
         transform: translateX(100%);
         ul {
@@ -71,11 +71,14 @@
     }
   }
   .logo-wrapper {
-    z-index: 3;
+    z-index: 4;
     @media screen and (max-width: 767px) {
       position: absolute;
       top: 30px;
       right: 126px;
+    }
+    a {
+      text-decoration: none;
     }
     p {
       font-size: 13px;
@@ -142,7 +145,7 @@
     justify-content: space-between;
     width: 30px;
     height: 22px;
-    z-index: 3;
+    z-index: 4;
     transition: transform 0.5s;
     @media screen and (max-width: 767px) {
       display: flex;
@@ -156,13 +159,21 @@
 }
 
 .header-white {
+
   position: fixed;
   top: 0;
   width: 100%;
   margin-top: 0;
   color: $color-dark-l;
-  background-color: $color-light-xl;
-  padding: 30px 0;
+  .navbar {
+    min-height: 120px;
+    width: 100%;
+    padding-top: 30px;
+    background-color: $color-light-xl;
+    nav {
+      background-color: $color-light-xl;
+    }
+  }
   .logo-wrapper {
     color: $color-dark-l;
     text-decoration: none;
@@ -179,11 +190,16 @@
   nav {
     ul {
       li {
+        &.active {
+          a {
+            color: $color-dark-3xl;
+            text-shadow: 0 0 black;
+          }
+        }
         a {
           color: $color-dark-l;
         }
-        a:hover,
-        .active {
+        a:hover {
           color: $color-dark-3xl;
         }
         .disabled {

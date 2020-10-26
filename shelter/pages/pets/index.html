@@ -11,18 +11,27 @@
 <body>
   <header class="header header-white">
     <div class="wrapper">
-      <a href="../main/index.html" class="logo-wrapper">
-        <h1>Cozy House</h1>
-        <p>Shelter for pets in Boston</p>
-      </a>
-      <nav>
-        <ul>
-          <li><a href="../main/index.html">About the shelter</a></li>
-          <li class="active"><a href="../pets/index.html">Our pets</a></li>
-          <li><a class="disabled">Help the shelter</a></li>
-          <li><a class="disabled">Contacts</a></li>
-        </ul>
-      </nav>
+      <div class="navbar">
+        <div class="logo-wrapper">
+          <a href="../main/index.html">
+            <h1>Cozy House</h1>
+            <p>Shelter for pets in Boston</p>
+          </a>
+        </div>
+        <a href="#" class="humburger-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="../main/index.html">About the shelter</a></li>
+            <li class="active"><a href="../pets/index.html">Our pets</a></li>
+            <li><a class="disabled">Help the shelter</a></li>
+            <li><a class="disabled">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
   <main>
@@ -130,6 +139,8 @@
       </div>
     </div>
   </footer>
+  <div class="overlay"></div>
 </body>
+<script src="../main/script.js"></script>
 
 </html>
