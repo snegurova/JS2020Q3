@@ -4,6 +4,9 @@
   transition: box-shadow 0.5s;
   border-radius: 9px;
   background-color: $color-light-s;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
   img {
     margin-bottom: 23px;
   }
