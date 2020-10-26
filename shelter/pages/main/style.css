@@ -436,6 +436,7 @@ img {
 
 .header-white .navbar.active {
   background-color: transparent;
+  height: 100vh;
 }
 
 .header-white .navbar.active .logo-wrapper {
@@ -961,6 +962,13 @@ button:hover {
       justify-content: space-around;
   -webkit-column-gap: 90px;
           column-gap: 90px;
+}
+
+@media screen and (max-width: 767px) {
+  .our-friends .slider .slider-content {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
 }
 
 @media screen and (max-width: 1200px) {

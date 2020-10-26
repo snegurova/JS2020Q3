@@ -436,6 +436,7 @@ img {
 
 .header-white .navbar.active {
   background-color: transparent;
+  height: 100vh;
 }
 
 .header-white .navbar.active .logo-wrapper {

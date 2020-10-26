@@ -171,6 +171,7 @@
     background-color: $color-light-xl;
     &.active {
       background-color: transparent;
+      height: 100vh;
       .logo-wrapper {
         display: none;
         &.active-logo {

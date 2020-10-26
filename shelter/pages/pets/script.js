@@ -20,6 +20,7 @@ window.addEventListener("resize", () => {
 
 activeMenuItem.addEventListener('click', (e) => {
   e.preventDefault();
+  e.stopPropagation();
   if (window.innerWidth < 768 && body.style.overflow !== '') {
     window.scrollTo({
       top: 0,
@@ -42,6 +43,7 @@ activeMenuItem.addEventListener('click', (e) => {
 
 humburgerButton.addEventListener('click', (e) => {
   e.preventDefault();
+  e.stopPropagation();
   navbar.classList.toggle('active');
   overlay.classList.toggle('show');
   overlay.classList.toggle('z-1');
@@ -50,9 +52,11 @@ humburgerButton.addEventListener('click', (e) => {
 });
 
 
-overlay.addEventListener('click', () => {
+navbar.addEventListener('click', () => {
   navbar.classList.toggle('active');
   overlay.classList.toggle('show');
+  overlay.classList.toggle('z-1');
+  petsCard.forEach((it) => it.classList.toggle('z-1'));
   body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
 });
 
