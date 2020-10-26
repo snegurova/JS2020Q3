@@ -99,7 +99,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 1000%;
   background: rgba(41, 41, 41, 0.6);
   overflow: hidden;
 }
@@ -148,7 +148,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .wrapper {
     position: relative;
     margin: 0;
@@ -180,7 +180,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .navbar {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -197,9 +197,9 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .navbar nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     display: -webkit-box;
@@ -215,9 +215,11 @@ img {
     width: 320px;
     background-color: #292929;
     height: 100vh;
-    z-index: 2;
-    -webkit-transition: right 1s;
-    transition: right 1s;
+    z-index: 3;
+    -webkit-transition: 1s;
+    transition: 1s;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   .header .navbar nav ul {
     display: -webkit-box;
@@ -231,22 +233,27 @@ img {
           transform: rotate(90deg);
 }
 
-@media screen and (max-width: 768px) {
-  .header .navbar.closed nav {
-    right: -100%;
+@media screen and (max-width: 767px) {
+  .header .navbar.active nav {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 
 .header .logo-wrapper {
-  z-index: 3;
+  z-index: 4;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .logo-wrapper {
     position: absolute;
     top: 30px;
     right: 126px;
   }
+}
+
+.header .logo-wrapper a {
+  text-decoration: none;
 }
 
 .header .logo-wrapper p {
@@ -271,7 +278,7 @@ img {
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul {
     display: none;
     -webkit-box-align: center;
@@ -292,7 +299,7 @@ img {
   transition: color 0.2s ease-in;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul li {
     margin-bottom: 40px;
   }
@@ -303,7 +310,7 @@ img {
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header nav ul li a {
     font-size: 32px;
     line-height: 1.6;
@@ -343,14 +350,14 @@ img {
           justify-content: space-between;
   width: 30px;
   height: 22px;
-  z-index: 3;
+  z-index: 4;
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header .humburger-button {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -370,8 +377,17 @@ img {
   width: 100%;
   margin-top: 0;
   color: #545454;
+}
+
+.header-white .navbar {
+  min-height: 120px;
+  width: 100%;
+  padding-top: 30px;
   background-color: #FFFFFF;
-  padding: 30px 0;
+}
+
+.header-white .navbar nav {
+  background-color: #FFFFFF;
 }
 
 .header-white .logo-wrapper {
@@ -391,12 +407,16 @@ img {
   opacity: 0.8;
 }
 
+.header-white nav ul li.active a {
+  color: #292929;
+  text-shadow: 0 0 black;
+}
+
 .header-white nav ul li a {
   color: #545454;
 }
 
-.header-white nav ul li a:hover,
-.header-white nav ul li .active {
+.header-white nav ul li a:hover {
   color: #292929;
 }
 
@@ -406,6 +426,10 @@ img {
 
 .header-white nav ul li .disabled:hover {
   color: #545454;
+}
+
+.fixed {
+  overflow: hidden;
 }
 
 footer {
