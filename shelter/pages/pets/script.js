@@ -6,6 +6,16 @@ const activeMenuItem = document.querySelector('.active a');
 // const activeLogo = document.querySelector('.active-logo');
 const petsCard = document.querySelectorAll('.pets-card');
 
+// Stop animation on resize
+let resizeTimer;
+window.addEventListener("resize", () => {
+  document.body.classList.add("resize-animation-stopper");
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    document.body.classList.remove("resize-animation-stopper");
+  }, 1000);
+});
+
 
 
 activeMenuItem.addEventListener('click', (e) => {

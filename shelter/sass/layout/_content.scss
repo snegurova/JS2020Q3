@@ -7,6 +7,10 @@
 section {
   padding-top: 80px;
   padding-bottom: 100px;
+  @media screen and (max-width: 767px) {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
 }
 
 .wrapper {
@@ -15,6 +19,10 @@ section {
   @media screen and (max-width: 1200px) {
     padding-left: 30px;
     padding-right: 30px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -39,4 +47,9 @@ a {
 
 img {
   max-width: 100%;
+}
+
+.resize-animation-stopper * {
+  animation: none !important;
+  transition: none !important;
 }

@@ -29,11 +29,17 @@
     column-gap: 40px;
     padding: 15px 0;
     margin-bottom: 45px;
+    @media screen and (max-width: 767px) {
+      justify-content: center;
+    }
   }
   .pagination {
     display: flex;
     column-gap: 20px;
     justify-content: center;
+    @media screen and (max-width: 767px) {
+      column-gap: 10px;
+    }
     button {
       cursor: pointer;
       font-family: Georgia, serif;
