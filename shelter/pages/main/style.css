@@ -954,16 +954,6 @@ button:hover {
   }
 }
 
-.our-friends .slider .slider-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-column-gap: 90px;
-          column-gap: 90px;
-}
-
 @media screen and (max-width: 767px) {
   .our-friends .slider .slider-content {
     -ms-flex-preferred-size: 100%;
@@ -1243,6 +1233,95 @@ button:hover {
 @media screen and (max-width: 767px) {
   .donation p {
     text-align: justify;
+  }
+}
+
+/* ---------------
+7. SLIDER
+-----------------*/
+.slider-content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-content .slide {
+  display: none;
+  position: relative;
+  -webkit-animation: 0.5s ease-in-out;
+          animation: 0.5s ease-in-out;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.slider-content .active-slide,
+.slider-content .next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slider-content .next {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.slider-content .to-left {
+  -webkit-animation-name: left;
+          animation-name: left;
+}
+
+.slider-content .from-right {
+  -webkit-animation-name: right;
+          animation-name: right;
+}
+
+.slider-content .to-right {
+  -webkit-animation-name: right;
+          animation-name: right;
+  animation-direction: reverse;
+}
+
+.slider-content .from-left {
+  -webkit-animation-name: left;
+          animation-name: left;
+  animation-direction: reverse;
+}
+
+@-webkit-keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@-webkit-keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
   }
 }
 /*# sourceMappingURL=style.css.map */
