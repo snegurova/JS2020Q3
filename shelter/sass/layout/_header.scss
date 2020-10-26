@@ -159,7 +159,6 @@
 }
 
 .header-white {
-
   position: fixed;
   top: 0;
   width: 100%;
@@ -170,13 +169,27 @@
     width: 100%;
     padding-top: 30px;
     background-color: $color-light-xl;
+    &.active {
+      background-color: transparent;
+      .logo-wrapper {
+        display: none;
+        &.active-logo {
+          display: block;
+        }
+      }
+    }
+
     nav {
       background-color: $color-light-xl;
     }
   }
+
   .logo-wrapper {
     color: $color-dark-l;
     text-decoration: none;
+    &.active-logo {
+      display: none;
+    }
     h1 {
       color: $color-dark-l;
     }

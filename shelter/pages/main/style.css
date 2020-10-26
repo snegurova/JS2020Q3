@@ -386,6 +386,18 @@ img {
   background-color: #FFFFFF;
 }
 
+.header-white .navbar.active {
+  background-color: transparent;
+}
+
+.header-white .navbar.active .logo-wrapper {
+  display: none;
+}
+
+.header-white .navbar.active .logo-wrapper.active-logo {
+  display: block;
+}
+
 .header-white .navbar nav {
   background-color: #FFFFFF;
 }
@@ -393,6 +405,10 @@ img {
 .header-white .logo-wrapper {
   color: #545454;
   text-decoration: none;
+}
+
+.header-white .logo-wrapper.active-logo {
+  display: none;
 }
 
 .header-white .logo-wrapper h1 {
