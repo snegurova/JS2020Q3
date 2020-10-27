@@ -961,18 +961,6 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .our-friends .slider .slider-content .pets-card:nth-child(3) {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .our-friends .slider .slider-content .pets-card:nth-child(2) {
-    display: none;
-  }
-}
-
 .our-friends .slider .control {
   display: -webkit-box;
   display: -ms-flexbox;
