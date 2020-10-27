@@ -15,6 +15,7 @@
 -----------------*/
 .our-friends {
   margin-top: 120px;
+  background-color: $color-light-l;
   h3 {
     max-width: 400px;
     text-align: center;
@@ -65,6 +66,75 @@
         }
       }
     }
+  }
+}
+
+/* ---------------
+2. PAGINATION
+-----------------*/
+
+.slider-content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  .slide {
+    display: none;
+    position: relative;
+    animation: 0.5s ease-in-out;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .pets-card {
+      @media screen and (max-width: 1279px) {
+        flex-basis: 50%;
+      }
+      @media screen and (max-width: 767px) {
+        flex-basis: 100%;
+      }
+    }
+  }
+  .active-slide,
+  .next {
+    display: flex;
+  }
+  .next {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .to-left {
+    animation-name: left;
+  }
+
+  .from-right {
+    animation-name: right;
+  }
+
+  .to-right {
+    animation-name: right;
+    animation-direction: reverse;
+  }
+
+  .from-left {
+    animation-name: left;
+    animation-direction: reverse;
+  }
+}
+
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
   }
 }
 

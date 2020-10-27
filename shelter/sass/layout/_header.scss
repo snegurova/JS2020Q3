@@ -160,6 +160,7 @@
 
 .header-white {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100%;
   margin-top: 0;
@@ -170,7 +171,7 @@
     padding-top: 30px;
     background-color: $color-light-xl;
     &.active {
-      background-color: transparent;
+      background-color: rgba(41, 41, 41, 0.6);;
       height: 100vh;
       .logo-wrapper {
         display: none;
