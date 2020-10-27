@@ -696,6 +696,239 @@ button:hover {
   border-color: #FDDCC4;
 }
 
+/* ------------
+     POPUP
+--------------*/
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(41, 41, 41, 0.6);
+}
+
+.popup-wrapper.active {
+  visibility: visible;
+}
+
+.popup-wrapper .popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100%;
+}
+
+.popup-wrapper .popup .popup-inner {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 900px;
+  background-color: #fafafa;
+  border-radius: 9px;
+  -webkit-transition: all .7s ease 0s;
+  transition: all .7s ease 0s;
+  opacity: 0;
+  -webkit-transform: translate(0px, -100%);
+          transform: translate(0px, -100%);
+  height: 500px;
+}
+
+.popup-wrapper .popup .popup-inner.active {
+  opacity: 1;
+  -webkit-transform: translate(0px, 0);
+          transform: translate(0px, 0);
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .popup-inner {
+    width: 630px;
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .popup-inner {
+    width: 240px;
+    min-height: 350px;
+  }
+}
+
+.popup-wrapper .popup .popup-btn {
+  position: absolute;
+  top: -52px;
+  right: -42px;
+  width: 52px;
+  height: 52px;
+  background: none;
+  border: 2px solid #f1cdb3;
+  border-radius: 50%;
+  outline: none;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  font-size: 0px;
+  background-image: url(../../assets/icons/close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.popup-wrapper .popup .popup-btn:hover {
+  cursor: pointer;
+  background-color: #fddcc4;
+  border: 2px solid #fddcc4;
+}
+
+.popup-wrapper .popup .popup-btn.active {
+  cursor: pointer;
+  background-color: #fddcc4;
+  border: 2px solid #fddcc4;
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .popup-btn {
+    right: -30px;
+  }
+}
+
+.popup-wrapper .popup .img-wrapper {
+  min-width: 500px;
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .img-wrapper {
+    min-width: 350px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .img-wrapper {
+    display: none;
+  }
+}
+
+.popup-wrapper .popup .img-wrapper img {
+  width: 100%;
+  border-radius: 9px;
+}
+
+.popup-wrapper .popup .popup-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px 20px 88px 29px;
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .popup-content {
+    padding: 10px 9px 37px 11px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .popup-content {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding: 10px 10px 10px 10px;
+  }
+}
+
+.popup-wrapper .popup .popup-content .name {
+  font-family: Georgia, serif;
+  font-weight: 300;
+  margin-bottom: 10px;
+  font-size: 35px;
+  line-height: 130%;
+  color: #000;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .popup-content .name {
+    text-align: center;
+  }
+}
+
+.popup-wrapper .popup .popup-content .breed {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 40px;
+  font-size: 20px;
+  line-height: 115%;
+  color: #000;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .popup-content .breed {
+    margin-bottom: 20px;
+  }
+}
+
+.popup-wrapper .popup .popup-content .description {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 40px;
+  font-size: 15px;
+  line-height: 110%;
+  color: #000;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .popup-content .description {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popup-wrapper .popup .popup-content .description {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+}
+
+.popup-wrapper .popup .popup-content .features {
+  padding: 0 0 0 15px;
+  margin: 0;
+}
+
+.popup-wrapper .popup .popup-content .features li {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 110%;
+  color: #f1cdb3;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 1200px) {
+  .popup-wrapper .popup .popup-content .features li {
+    margin-bottom: 5px;
+  }
+}
+
+.popup-wrapper .popup .popup-content .features li span {
+  color: #000;
+}
+
 /* ---------------
 2. BANNER SECTION
 -----------------*/
