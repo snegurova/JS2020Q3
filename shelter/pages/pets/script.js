@@ -113,6 +113,8 @@ const request = async () => {
   createSliderContent(fullPetsList);
   items = document.querySelectorAll('.slider-content .slide');
   items.forEach((it) => it.classList.remove('active-slide'));
+  petCards = document.querySelectorAll('.slide .pets-card');
+  petCards.forEach((it) => it.addEventListener('click', closePopup));
   currentItem = 0;
   changeCurrentItem(currentItem);
   items[0].classList.add('active-slide');
@@ -297,5 +299,61 @@ next.addEventListener('click', function () {
 end.addEventListener('click', function () {
   if (isEnabled) {
     nextItem(items.length - 2);
+  }
+});
+
+
+// Popup
+
+let petCards = [];
+const popupWrapper = document.querySelector('.popup-wrapper');
+const popup = document.querySelector('.popup');
+const popupInner = document.querySelector('.popup-inner');
+const popupClose = document.querySelector('.popup-btn');
+const popupImg = document.querySelector('.popup .img-wrapper img');
+const popupName = document.querySelector('.popup-content .name');
+const popupBreed = document.querySelector('.popup-content .breed');
+const popupDescription = document.querySelector('.popup-content .description');
+const popupFeatures = document.querySelector('.popup-content .features');
+
+function closePopup(e) {
+  if (e && e.currentTarget.className === 'pets-card') {
+    fillPetData(e);
+  }
+  popupWrapper.classList.toggle('active');
+  popupInner.classList.toggle('active');
+  body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
+  body.style.paddingRight === '' ? body.style.paddingRight = '16px' : body.style.paddingRight = '';
+}
+
+function fillPetData(e) {
+  const currentPet = pets.filter((it) => it.name === e.currentTarget.dataset.name)[0];
+  popupImg.setAttribute('src', `${currentPet.img}`);
+  popupName.textContent = `${currentPet.name}`;
+  popupBreed.textContent = `${currentPet.type} - ${currentPet.breed}`;
+  popupDescription.textContent = `${currentPet.description}`;
+  popupFeatures.innerHTML = `<li>
+                                <span><b>Age: </b>${currentPet.age}</span>
+                              </li>
+                              <li>
+                                <span><b>Inoculations: </b>${currentPet.inoculations}</span>
+                              </li>
+                              <li>
+                                <span><b>Diseases: </b>${currentPet.diseases}</span>
+                              </li>
+                              <li>
+                                <span><b>Parasites:</b> ${currentPet.parasites}</span>
+                              </li>`;
+}
+
+popupClose.addEventListener('click', () => closePopup());
+popup.addEventListener('click', () => closePopup());
+popupInner.addEventListener('click', (e) => e.stopPropagation());
+
+popup.addEventListener('mouseover', (e) => {
+  if (e.target.className === 'popup') {
+    popupClose.classList.add('active');
+  } else {
+    popupClose.classList.remove('active');
   }
 });
