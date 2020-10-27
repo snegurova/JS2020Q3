@@ -426,6 +426,7 @@ img {
   width: 100%;
   margin-top: 0;
   color: #545454;
+  background-color: #FFFFFF;
 }
 
 .header-white .navbar {
@@ -652,41 +653,45 @@ button:hover {
 
 .pets-card {
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 30px;
+}
+
+.pets-card .pets-card-inner {
+  border-radius: 9px;
+  background-color: #FAFAFA;
   padding-bottom: 30px;
   -webkit-transition: -webkit-box-shadow 0.5s;
   transition: -webkit-box-shadow 0.5s;
   transition: box-shadow 0.5s;
   transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
-  border-radius: 9px;
-  background-color: #FAFAFA;
 }
 
-@media screen and (max-width: 767px) {
-  .pets-card {
-    margin-bottom: 20px;
-  }
-}
-
-.pets-card img {
-  margin-bottom: 23px;
-}
-
-.pets-card h4 {
-  margin-bottom: 30px;
-}
-
-.pets-card .btn {
-  padding: 13px 43px;
-}
-
-.pets-card:hover {
+.pets-card .pets-card-inner:hover {
   cursor: pointer;
-  -webkit-box-shadow: 0px 2px 35px 10px rgba(13, 13, 13, 0.1);
-          box-shadow: 0px 2px 35px 10px rgba(13, 13, 13, 0.1);
+  -webkit-box-shadow: 2px 8px 15px 5px rgba(13, 13, 13, 0.07);
+          box-shadow: 2px 8px 15px 5px rgba(13, 13, 13, 0.07);
   background-color: #FFFFFF;
 }
 
-.pets-card:hover .btn-secondary {
+.pets-card .pets-card-inner img {
+  margin-bottom: 23px;
+}
+
+.pets-card .pets-card-inner h4 {
+  margin-bottom: 30px;
+}
+
+.pets-card .pets-card-inner .btn {
+  padding: 13px 43px;
+}
+
+.pets-card .pets-card-inner .btn:hover .btn-secondary {
   background-color: #FDDCC4;
   border-color: #FDDCC4;
 }
@@ -703,7 +708,7 @@ button:hover {
   max-width: 400px;
   text-align: center;
   margin: auto;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
 }
 
 .our-friends .pets-cards {
@@ -793,6 +798,7 @@ button:hover {
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin-top: 30px;
 }
 
 .slider-content .slide {
