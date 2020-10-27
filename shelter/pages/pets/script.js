@@ -136,7 +136,7 @@ createSlides = (petsList) => {
     let slideHtml = '<div class="slide">';
     // for (let j = 0; j < sliderItemsCount; j++) {
     stepList.forEach((pet, ind) => {
-      slideHtml += `<div class="pets-card">
+      slideHtml += `<div class="pets-card" data-name="${pet.name}">
         <div class="pets-card-inner">
           <img src="${pet.img}" alt="${pet.name}">
           <h4>${pet.name}</h4>
