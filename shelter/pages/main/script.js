@@ -96,6 +96,8 @@ const request = async () => {
   createSliderContent(fullPetsList);
   items = document.querySelectorAll('.slider .slider-content .slide');
   items.forEach((it) => it.classList.remove('active-slide'));
+  petCards = document.querySelectorAll('.slide .pets-card');
+  petCards.forEach((it) => it.addEventListener('click', closePopup));
   currentItem = 0;
   items[0].classList.add('active-slide');
 }
@@ -238,3 +240,36 @@ document.querySelector('.control .next').addEventListener('click', function () {
     nextItem(currentItem);
   }
 });
+
+
+
+// Popup
+
+let petCards = [];
+const popupWrapper = document.querySelector('.popup-wrapper');
+const popup = document.querySelector('.popup');
+const popupInner = document.querySelector('.popup-inner');
+const popupClose = document.querySelector('.popup-btn');
+const popupName = document.querySelector('.popup-content .name');
+const popupBreed = document.querySelector('.popup-content .breed');
+const popupDescription = document.querySelector('.popup-content .description');
+const popupFeatures = document.querySelector('.popup-content .features');
+
+function closePopup() {
+  popupWrapper.classList.toggle('active');
+  popupInner.classList.toggle('active');
+  body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
+  body.style.paddingRight === '' ? body.style.paddingRight = '16px' : body.style.paddingRight = '';
+}
+
+popupClose.addEventListener('click', () => closePopup());
+popup.addEventListener('click', () => closePopup());
+popupInner.addEventListener('click', (e) => e.stopPropagation());
+
+popup.addEventListener('mouseover', (e) => {
+  if (e.target.className === 'popup') {
+      popupClose.classList.add('active');
+  } else {
+      popupClose.classList.remove('active');
+  }
+})
