@@ -168,16 +168,16 @@
       @media screen and (max-width: 767px) {
         flex-basis: 100%;
       }
-      .pets-card:nth-child(3) {
-        @media screen and (max-width: 1200px) {
-          display: none;
-        }
-      }
-      .pets-card:nth-child(2) {
-        @media screen and (max-width: 767px) {
-          display: none;
-        }
-      }
+      // .pets-card:nth-child(3) {
+      //   @media screen and (max-width: 1200px) {
+      //     display: none;
+      //   }
+      // }
+      // .pets-card:nth-child(2) {
+      //   @media screen and (max-width: 767px) {
+      //     display: none;
+      //   }
+      // }
     }
     .control {
       display: flex;
