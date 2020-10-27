@@ -43,6 +43,7 @@
   background-color: rgba(41, 41, 41, 0.6);
   &.active {
     visibility: visible;
+    z-index: 10;
     }
 
 

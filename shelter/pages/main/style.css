@@ -711,6 +711,7 @@ button:hover {
 
 .popup-wrapper.active {
   visibility: visible;
+  z-index: 10;
 }
 
 .popup-wrapper .popup {
