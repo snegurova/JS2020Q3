@@ -734,12 +734,12 @@ button:hover {
   width: 900px;
   background-color: #fafafa;
   border-radius: 9px;
-  -webkit-transition: all .7s ease 0s;
-  transition: all .7s ease 0s;
+  -webkit-transition: all .4s ease 0s;
+  transition: all .4s ease 0s;
   opacity: 0;
   -webkit-transform: translate(0px, -100%);
           transform: translate(0px, -100%);
-  height: 500px;
+  min-height: 350px;
 }
 
 .popup-wrapper .popup .popup-inner.active {
@@ -751,7 +751,7 @@ button:hover {
 @media screen and (max-width: 1200px) {
   .popup-wrapper .popup .popup-inner {
     width: 630px;
-    height: 350px;
+    min-height: 350px;
   }
 }
 
@@ -800,6 +800,7 @@ button:hover {
 
 .popup-wrapper .popup .img-wrapper {
   min-width: 500px;
+  font-size: 0px;
 }
 
 @media screen and (max-width: 1200px) {
