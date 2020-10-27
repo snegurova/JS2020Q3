@@ -53,11 +53,14 @@ humburgerButton.addEventListener('click', (e) => {
 
 
 navbar.addEventListener('click', () => {
-  navbar.classList.toggle('active');
-  overlay.classList.toggle('show');
-  // overlay.classList.toggle('z-1');
-  // petsCard.forEach((it) => it.classList.toggle('z-2'));
-  body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
+  if (window.innerWidth < 768) {
+    navbar.classList.toggle('active');
+    overlay.classList.toggle('show');
+    // overlay.classList.toggle('z-1');
+    // petsCard.forEach((it) => it.classList.toggle('z-2'));
+    body.style.overflow === '' ? body.style.overflow = 'hidden' : body.style.overflow = '';
+  }
+
 });
 
 
