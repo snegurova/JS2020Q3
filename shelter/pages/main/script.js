@@ -121,7 +121,7 @@ createSlides = (petsList) => {
         <div class="pets-card-inner">
           <img src="${pet.img}" alt="${pet.name}">
           <h4>${pet.name}</h4>
-          <a href="#" class="btn btn-secondary">Learn more</a>
+          <a href="" class="btn btn-secondary">Learn more</a>
         </div>
       </div>`;
     });
@@ -257,6 +257,10 @@ const popupDescription = document.querySelector('.popup-content .description');
 const popupFeatures = document.querySelector('.popup-content .features');
 
 function closePopup(e) {
+  // e.preventDefault();
+  if (e && e.target.className === 'btn btn-secondary') {
+    e.preventDefault();
+  }
   if (e && e.currentTarget.className === 'pets-card') {
     fillPetData(e);
   }
