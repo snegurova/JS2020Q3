@@ -317,6 +317,9 @@ const popupDescription = document.querySelector('.popup-content .description');
 const popupFeatures = document.querySelector('.popup-content .features');
 
 function closePopup(e) {
+  if (e && e.target.className === 'btn btn-secondary') {
+    e.preventDefault();
+  }
   if (e && e.currentTarget.className === 'pets-card') {
     fillPetData(e);
   }
