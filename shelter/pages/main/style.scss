@@ -153,13 +153,14 @@
   .slider {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 60px;
+    margin-bottom: 31px;
     @media screen and (max-width: 1200px) {
       justify-content: center;
       column-gap: 1.5%;
     }
     @media screen and (max-width: 767px) {
       flex-wrap: wrap;
+      margin-bottom: 42px;
     }
     .slider-content {
       // display: flex;
