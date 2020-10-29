@@ -1175,7 +1175,7 @@ button:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 31px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -1192,6 +1192,7 @@ button:hover {
   .our-friends .slider {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-bottom: 42px;
   }
 }
 
