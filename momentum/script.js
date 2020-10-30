@@ -198,7 +198,7 @@ function setCity(e) {
 
 
 // EventListeners
-city.addEventListener('focus', clearData);
+// city.addEventListener('focus', clearData);
 city.addEventListener('keypress', setLocalData);
 city.addEventListener('blur', setLocalData);
 name.addEventListener('focus', clearData);
