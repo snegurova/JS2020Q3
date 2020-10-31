@@ -65,13 +65,15 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             if (this.elements.input.selectionStart === this.elements.input.selectionEnd) {
-              this.elements.input.setRangeText('',
-              this.elements.input.selectionStart - 1, this.elements.input.selectionEnd, "end");
-            this.elements.input.focus();
+              this.insertValue('', -1);
+              // this.elements.input.setRangeText('',
+              //   this.elements.input.selectionStart - 1, this.elements.input.selectionEnd, "end");
+              // this.elements.input.focus();
             } else {
-              this.elements.input.setRangeText('',
-              this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            this.elements.input.focus();
+              this.insertValue('');
+              // this.elements.input.setRangeText('',
+              //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
+              // this.elements.input.focus();
             }
 
           });
@@ -95,9 +97,10 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('keyboard_return');
 
           keyElement.addEventListener('click', () => {
-            this.elements.input.setRangeText('\n',
-              this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            this.elements.input.focus();
+            this.insertValue('\n');
+            // this.elements.input.setRangeText('\n',
+            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
+            // this.elements.input.focus();
           });
 
           break;
@@ -107,9 +110,10 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('space_bar');
 
           keyElement.addEventListener('click', () => {
-            this.elements.input.setRangeText(' ',
-              this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            this.elements.input.focus();
+            this.insertValue(' ');
+            // this.elements.input.setRangeText(' ',
+            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
+            // this.elements.input.focus();
           });
 
           break;
@@ -128,10 +132,12 @@ const Keyboard = {
           keyElement.innerHTML = key.toLowerCase();
 
           keyElement.addEventListener('click', () => {
-            this.elements.input.setRangeText(`${this.properties.capsLock ?
-              key.toUpperCase() : key.toLowerCase()}`,
-              this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            this.elements.input.focus();
+            this.insertValue(`${this.properties.capsLock ? 
+              key.toUpperCase() : key.toLowerCase()}`);
+            // this.elements.input.setRangeText(`${this.properties.capsLock ?
+            //   key.toUpperCase() : key.toLowerCase()}`,
+            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
+            // this.elements.input.focus();
           });
 
           break;
@@ -147,10 +153,11 @@ const Keyboard = {
     return fragment;
   },
 
-  _triggerEvent(handlerName) {
-    if (typeof this.eventHandlers[handlerName] == 'function') {
-      this.eventHandlers[handlerName](this.properties.value);
-    }
+  insertValue(value, shiftStart = 0, shiftEnd = 0) {
+    this.elements.input.setRangeText(value,
+      this.elements.input.selectionStart + shiftStart,
+      this.elements.input.selectionEnd + shiftEnd, "end");
+    this.elements.input.focus();
   },
 
   _toggleCapsLock() {
