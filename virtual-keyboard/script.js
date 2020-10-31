@@ -6,13 +6,7 @@ const Keyboard = {
     input: null,
   },
 
-  // eventHandlers: {
-  //   oninput: null,
-  //   onclose: null,
-  // },
-
   properties: {
-    // value: '',
     capsLock: false,
   },
 
@@ -33,15 +27,7 @@ const Keyboard = {
     this.elements.main.appendChild(this.elements.keysContainer);
     document.body.appendChild(this.elements.main);
 
-    // Automatically use keyboard for elements with .use-keyboard-input
-    // document.querySelectorAll('.use-keyboard-input').forEach(element => {
-    //   element.addEventListener('focus', () => {
-    //     this.open(element.value, currentValue => {
-    //       element.value = currentValue;
-    //       element.focus();
-    //     });
-    //   });
-    // });
+    // Use keyboard for element with .use-keyboard-input
     this.elements.input.addEventListener('focus', () => {
       this.open();
     });
@@ -78,9 +64,6 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('backspace');
 
           keyElement.addEventListener('click', () => {
-            // this.properties.value = this.properties.value.substring(0,
-            //   this.properties.value.length - 1);
-            // this._triggerEvent('oninput');
             if (this.elements.input.selectionStart === this.elements.input.selectionEnd) {
               this.elements.input.setRangeText('',
               this.elements.input.selectionStart - 1, this.elements.input.selectionEnd, "end");
@@ -112,8 +95,6 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('keyboard_return');
 
           keyElement.addEventListener('click', () => {
-            // this.properties.value += '\n';
-            // this._triggerEvent('oninput');
             this.elements.input.setRangeText('\n',
               this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
             this.elements.input.focus();
@@ -126,8 +107,6 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('space_bar');
 
           keyElement.addEventListener('click', () => {
-            // this.properties.value += ' ';
-            // this._triggerEvent('oninput');
             this.elements.input.setRangeText(' ',
               this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
             this.elements.input.focus();
@@ -141,7 +120,6 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this.close();
-            // this._triggerEvent('onclose');
           });
 
           break;
@@ -150,8 +128,6 @@ const Keyboard = {
           keyElement.innerHTML = key.toLowerCase();
 
           keyElement.addEventListener('click', () => {
-            // this.properties.value += this.properties.capsLock ?
-            // key.toUpperCase() : key.toLowerCase();
             this.elements.input.setRangeText(`${this.properties.capsLock ?
               key.toUpperCase() : key.toLowerCase()}`,
               this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
@@ -187,17 +163,11 @@ const Keyboard = {
     }
   },
 
-  open(/*initialValue, oninput, onclose*/) {
-    // this.properties.value = initialValue || '';
-    // this.eventHandlers.oninput = oninput;
-    // this.eventHandlers.onclose = onclose;
+  open() {
     this.elements.main.classList.remove('keyboard--hidden');
   },
 
   close() {
-    // this.properties.value = '';
-    // this.eventHandlers.oninput = oninput;
-    // this.eventHandlers.onclose = onclose;
     this.elements.main.classList.add('keyboard--hidden');
   }
 };
