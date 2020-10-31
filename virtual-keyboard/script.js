@@ -33,6 +33,9 @@ const Keyboard = {
     this.elements.input.addEventListener('focus', () => {
       this.open();
     });
+    document.addEventListener('keypress', (e) => {
+      this.highlightButton(e);
+  });
   },
 
   _crateKeys(lang) {
@@ -214,6 +217,17 @@ const Keyboard = {
 
           });
 
+          keyElement.addEventListener('keypress', () => {
+            if (keyElement.querySelectorAll('.active')[0]) {
+              // this.insertValue(`${this.properties.capsLock ?
+              //   keyElement.querySelectorAll('.active')[0].innerText.toUpperCase() :
+              //   keyElement.querySelectorAll('.active')[0].innerText.toLowerCase()}`);
+            } else {
+              this.highlightButton(e);
+            }
+
+          });
+
           break;
       }
 
@@ -247,6 +261,18 @@ const Keyboard = {
       }
     });
     this.elements.input.focus();
+  },
+
+  highlightButton(e) {
+    console.log(e.key);
+    this.elements.keys.forEach(it => {
+      if (e.key === it.textContent) {
+        it.classList.add('highlighted');
+      }
+      setTimeout(() => { it.classList.remove('highlighted') }, 200);
+    });
+
+
   },
 
   _toggleCapsLock() {
@@ -284,3 +310,4 @@ const Keyboard = {
 window.addEventListener('DOMContentLoaded', function () {
   Keyboard.init();
 });
+

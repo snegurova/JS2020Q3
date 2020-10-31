@@ -48,6 +48,7 @@
   padding: 0;
   -webkit-tap-highlight-color: transparent;
   position: relative;
+  transition: all .2s;
 }
 
 .keyboard__key:active {
@@ -102,6 +103,10 @@
 .bottom.active {
   font-size: 1.05rem;
   opacity: 1;
+}
+
+.highlighted {
+  background: #08ff00;
 }
 
 @media screen and (max-width: 800px) {
