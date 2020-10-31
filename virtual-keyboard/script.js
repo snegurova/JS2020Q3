@@ -8,6 +8,7 @@ const Keyboard = {
 
   properties: {
     capsLock: false,
+    shift: false,
   },
 
   init() {
@@ -36,11 +37,12 @@ const Keyboard = {
   _crateKeys() {
     const fragment = document.createDocumentFragment();
     const keyLayout = [
-      '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace',
+      ['!', '1'], ['@', '2'], ['#', '3'], ['$', '4'], ['%', '5'],
+      ['^', '6'], ['&', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
       'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'enter',
-      'done', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
-      'space',
+      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
+      'done', 'space',
     ];
 
     // Creates HTML for an icon
@@ -48,9 +50,15 @@ const Keyboard = {
       return `<i class="material-icons">${iconName}</i>`;
     };
 
+    const createCharsHTML = (charsArr) => {
+      return `<div class="top">${charsArr[0]}</div>
+      <div class="bottom active">${charsArr[1]}</div>`;
+    };
+
     // Create keys
     keyLayout.forEach(key => {
       const keyElement = document.createElement('button');
+      keyElement.title = key;
       const insertLineBreak = ['backspace', 'p', 'enter', '?'].indexOf(key) !== -1;
 
       // Add attributes/classes
@@ -80,11 +88,23 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this._toggleCapsLock();
-            keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock);
+            keyElement.classList.toggle('keyboard__key--active');
             this.elements.input.focus();
           });
 
           break;
+
+          case 'shift':
+            keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+            keyElement.innerHTML = createIconHTML('upgrade');
+
+            keyElement.addEventListener('click', () => {
+              this._toggleShift();
+              keyElement.classList.toggle('keyboard__key--active');
+              this.elements.input.focus();
+            });
+
+            break;
 
         case 'enter':
           keyElement.classList.add('keyboard__key--wide');
@@ -117,11 +137,24 @@ const Keyboard = {
           break;
 
         default:
-          keyElement.innerHTML = key.toLowerCase();
+          if (Array.isArray(key)) {
+            keyElement.innerHTML = createCharsHTML(key);
+          } else {
+            keyElement.innerHTML = key.toLowerCase();
+          }
+
 
           keyElement.addEventListener('click', () => {
-            this.insertValue(`${this.properties.capsLock ?
-              key.toUpperCase() : key.toLowerCase()}`);
+            if (keyElement.querySelectorAll('.active')[0]) {
+              this.insertValue(`${this.properties.capsLock ?
+                keyElement.querySelectorAll('.active')[0].innerText.toUpperCase() :
+                keyElement.querySelectorAll('.active')[0].innerText.toLowerCase()}`);
+            } else {
+              this.insertValue(`${this.properties.capsLock ?
+                key.toUpperCase() :
+                key.toLowerCase()}`);
+            }
+
           });
 
           break;
@@ -150,6 +183,19 @@ const Keyboard = {
     for (const key of this.elements.keys) {
       if (key.childElementCount === 0) {
         key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+      }
+    }
+  },
+
+  _toggleShift() {
+    this.properties.shift = !this.properties.shift;
+    this._toggleCapsLock();
+
+    for (const key of this.elements.keys) {
+      if (key.childElementCount === 2) {
+        key.querySelectorAll('div').forEach(it => {
+          it.classList.toggle('active');
+        });
       }
     }
   },
