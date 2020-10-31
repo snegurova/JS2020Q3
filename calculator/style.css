@@ -1,0 +1,120 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Baloo Tammudu 2', cursive;
+  font-weight: 500;
+  line-height: 1;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.directions {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  width: 25%;
+  align-self: center;
+  font-size: .8rem;
+  line-height: 1.1rem;
+  margin-right: 50px;
+  margin-top: 20px;
+  padding: 25px;
+  align-self: flex-start;
+}
+
+.directions h3 span {
+  color: #2db1f3;
+  display: block;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.directions h3:hover span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hidden-directions {
+  display: none;
+  transition: 2s;
+}
+
+.calculator-grid {
+  flex-grow: 1;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+}
+
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid #fff;
+  outline: none;
+  background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.calculator-grid > button:active {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.span-two-rows {
+  grid-row: 6/span 2;
+  grid-column: 4;
+}
+
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: #fff;
+  font-size: 2.5rem;
+}
+.output .error {
+  color:  #ff0000;
+  opacity: .8;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.calculator-grid sup {
+  font-size: 1.1rem;
+}
+
+.negate span{
+  font-size: 1.5rem;
+}

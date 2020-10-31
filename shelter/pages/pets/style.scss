@@ -1,0 +1,149 @@
+/* ---------------
+1. IMPORT  COMPONENTS
+-----------------*/
+
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/typography";
+@import "../../sass/layout/content";
+@import "../../sass/layout/header";
+@import "../../sass/layout/footer";
+@import "../../sass/components/buttons";
+@import "../../sass/components/pets-card";
+
+/* ---------------
+2. OUR FRIENDS SECTION
+-----------------*/
+.our-friends {
+  margin-top: 120px;
+  background-color: $color-light-l;
+  h3 {
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+  .pets-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+    column-gap: 40px;
+    padding: 15px 0;
+    margin-bottom: 17px;
+    @media screen and (max-width: 767px) {
+      justify-content: center;
+      margin-bottom: 27px;
+    }
+  }
+  .pagination {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    @media screen and (max-width: 767px) {
+      column-gap: 10px;
+    }
+    button {
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1;
+      color: $color-dark-3xl;
+      letter-spacing: 1.6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 2px;
+      &.active {
+        cursor: auto;
+        background-color: $color-primary;
+      }
+      &:disabled {
+        border-color: $color-dark-s;
+        color: $color-dark-s;
+        &:hover {
+          background-color: transparent;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}
+
+/* ---------------
+2. PAGINATION
+-----------------*/
+
+.slider-content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 30px;
+  .slide {
+    display: none;
+    position: relative;
+    animation: 0.5s ease-in-out;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .pets-card {
+      @media screen and (max-width: 1279px) {
+        flex-basis: 50%;
+      }
+      @media screen and (max-width: 767px) {
+        flex-basis: 100%;
+      }
+    }
+  }
+  .active-slide,
+  .next {
+    display: flex;
+  }
+  .next {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .to-left {
+    animation-name: left;
+  }
+
+  .from-right {
+    animation-name: right;
+  }
+
+  .to-right {
+    animation-name: right;
+    animation-direction: reverse;
+  }
+
+  .from-left {
+    animation-name: left;
+    animation-direction: reverse;
+  }
+}
+
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.z-1 {
+  z-index: -1;
+}
+
+.z-2 {
+  z-index: -2;
+}

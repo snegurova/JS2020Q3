@@ -1,0 +1,201 @@
+.pets-card {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  .pets-card-inner {
+    border-radius: 9px;
+    background-color: $color-light-s;
+    padding-bottom: 30px;
+    transition: box-shadow 0.5s;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 8px 15px 5px rgba(13, 13, 13, 0.07);
+      background-color: $color-light-xl;
+    }
+    img {
+      margin-bottom: 23px;
+    }
+    h4 {
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 13px 43px;
+      &:hover .btn-secondary {
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
+      }
+    }
+  }
+}
+
+/* ------------
+     POPUP
+--------------*/
+
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(41, 41, 41, 0.6);
+  &.active {
+    visibility: visible;
+    z-index: 10;
+    }
+
+
+  .popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    .popup-inner {
+      position: relative;
+      display: flex;
+      width: 900px;
+      background-color: #fafafa;
+      border-radius: 9px;
+      transition: all .4s ease 0s;
+      opacity: 0;
+      transform: translate(0px, -100%);
+      min-height: 350px;
+      &.active {
+        opacity: 1;
+        transform: translate(0px, 0);
+      }
+      @media screen and (max-width: 1200px) {
+        width: 630px;
+        min-height: 350px;
+      }
+      @media screen and (max-width: 767px) {
+        width: 240px;
+        min-height: 350px;
+      }
+    }
+
+    .popup-btn {
+      position: absolute;
+      top: -52px;
+      right: -42px;
+      width: 52px;
+      height: 52px;
+      background: none;
+      border: 2px solid #f1cdb3;
+      border-radius: 50%;
+      outline: none;
+      transition: 0.4s;
+      font-size: 0px;
+      background-image: url(../../assets/icons/close-icon.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      &:hover {
+        cursor: pointer;
+        background-color: #fddcc4;
+        border: 2px solid #fddcc4;
+      }
+      &.active {
+        cursor: pointer;
+        background-color: #fddcc4;
+        border: 2px solid #fddcc4;
+      }
+      @media screen and (max-width: 767px) {
+        right: -30px;
+      }
+    }
+    .img-wrapper {
+      min-width: 500px;
+      font-size: 0px;
+      @media screen and (max-width: 1200px) {
+        min-width: 350px;
+      }
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+      img {
+        width: 100%;
+        border-radius: 9px;
+      }
+    }
+    .popup-content {
+      display: flex;
+      flex-direction: column;
+      padding: 50px 20px 88px 29px;
+      @media screen and (max-width: 1200px) {
+        padding: 10px 9px 37px 11px;
+      }
+      @media screen and (max-width: 767px) {
+        justify-content: flex-start;
+        padding: 10px 10px 10px 10px;
+      }
+      .name {
+        font-family: Georgia, serif;
+        font-weight: 300;
+        margin-bottom: 10px;
+        font-size: 35px;
+        line-height: 130%;
+        color: #000;
+        letter-spacing: 0.06em;
+        @media screen and (max-width: 767px) {
+          text-align: center;
+        }
+      }
+      .breed {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 40px;
+        font-size: 20px;
+        line-height: 115%;
+        color: #000;
+        letter-spacing: 0.06em;
+        @media screen and (max-width: 1200px) {
+          margin-bottom: 20px;
+        }
+      }
+      .description {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 40px;
+        font-size: 15px;
+        line-height: 110%;
+        color: #000;
+        letter-spacing: 0.06em;
+        @media screen and (max-width: 1200px) {
+          margin-bottom: 20px;
+          font-size: 13px;
+        }
+        @media screen and (max-width: 767px) {
+          margin-bottom: 20px;
+            font-size: 13px;
+        }
+      }
+      .features {
+        padding: 0 0 0 15px;
+        margin: 0;
+        li {
+          font-family: Georgia, "Times New Roman", Times, serif;
+          font-style: normal;
+          font-weight: 400;
+          margin-bottom: 12px;
+          font-size: 15px;
+          line-height: 110%;
+          color: #f1cdb3;
+          letter-spacing: 0.06em;
+          @media screen and (max-width: 1200px) {
+            margin-bottom: 5px;
+          }
+          span {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
