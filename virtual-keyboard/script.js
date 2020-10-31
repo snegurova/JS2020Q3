@@ -44,7 +44,7 @@ const Keyboard = {
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['{', '['], ['}', ']'],
       'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [':', ';'], ['"', '\''], 'enter',
       'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ['<', ','], ['>', '.'], ['?', '/'],
-      'done', 'EN', 'space',
+      'done', 'EN', 'space', 'left', 'right'
     ];
 
     const keyLayoutRu = [
@@ -53,7 +53,7 @@ const Keyboard = {
       'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
       'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter',
       'shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', [',', '.'],
-      'done', 'RU', 'space',
+      'done', 'RU', 'space', 'left', 'right'
     ];
 
     if (lang === 'en') {
@@ -170,6 +170,28 @@ const Keyboard = {
           });
 
           break;
+
+          case 'left':
+            keyElement.classList.add('keyboard__key--wide');
+            keyElement.innerHTML = createIconHTML('west');
+
+            keyElement.addEventListener('click', () => {
+              this.insertValue('', -1, -1);
+
+            });
+
+            break;
+
+            case 'right':
+              keyElement.classList.add('keyboard__key--wide');
+              keyElement.innerHTML = createIconHTML('east');
+
+              keyElement.addEventListener('click', () => {
+                this.insertValue('', 1, 1);
+
+              });
+
+              break;
 
         default:
           if (Array.isArray(key)) {
