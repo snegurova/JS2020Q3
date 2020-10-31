@@ -66,14 +66,8 @@ const Keyboard = {
           keyElement.addEventListener('click', () => {
             if (this.elements.input.selectionStart === this.elements.input.selectionEnd) {
               this.insertValue('', -1);
-              // this.elements.input.setRangeText('',
-              //   this.elements.input.selectionStart - 1, this.elements.input.selectionEnd, "end");
-              // this.elements.input.focus();
             } else {
               this.insertValue('');
-              // this.elements.input.setRangeText('',
-              //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-              // this.elements.input.focus();
             }
 
           });
@@ -98,9 +92,6 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this.insertValue('\n');
-            // this.elements.input.setRangeText('\n',
-            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            // this.elements.input.focus();
           });
 
           break;
@@ -111,9 +102,6 @@ const Keyboard = {
 
           keyElement.addEventListener('click', () => {
             this.insertValue(' ');
-            // this.elements.input.setRangeText(' ',
-            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            // this.elements.input.focus();
           });
 
           break;
@@ -132,12 +120,8 @@ const Keyboard = {
           keyElement.innerHTML = key.toLowerCase();
 
           keyElement.addEventListener('click', () => {
-            this.insertValue(`${this.properties.capsLock ? 
+            this.insertValue(`${this.properties.capsLock ?
               key.toUpperCase() : key.toLowerCase()}`);
-            // this.elements.input.setRangeText(`${this.properties.capsLock ?
-            //   key.toUpperCase() : key.toLowerCase()}`,
-            //   this.elements.input.selectionStart, this.elements.input.selectionEnd, "end");
-            // this.elements.input.focus();
           });
 
           break;
