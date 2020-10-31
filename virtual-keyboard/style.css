@@ -103,3 +103,9 @@
   font-size: 1.05rem;
   opacity: 1;
 }
+
+@media screen and (max-width: 800px) {
+  .keyboard__key--wide {
+    width: 8%;
+  }
+}

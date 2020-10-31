@@ -9,6 +9,7 @@ const Keyboard = {
   properties: {
     capsLock: false,
     shift: false,
+    lang: 'en',
   },
 
   init() {
@@ -20,7 +21,7 @@ const Keyboard = {
     // Setup main elements
     this.elements.main.classList.add('keyboard', 'keyboard--hidden');
     this.elements.keysContainer.classList.add('keyboard__keys');
-    this.elements.keysContainer.appendChild(this._crateKeys());
+    this.elements.keysContainer.appendChild(this._crateKeys(this.properties.lang));
 
     this.elements.keys = this.elements.keysContainer.querySelectorAll('.keyboard__key');
 
@@ -34,16 +35,32 @@ const Keyboard = {
     });
   },
 
-  _crateKeys() {
+  _crateKeys(lang) {
     const fragment = document.createDocumentFragment();
-    const keyLayout = [
+    let keyLayout = [];
+    const keyLayoutEn = [
       ['!', '1'], ['@', '2'], ['#', '3'], ['$', '4'], ['%', '5'],
       ['^', '6'], ['&', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
-      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
-      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'enter',
-      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
-      'done', 'space',
+      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['{', '['], ['}', ']'],
+      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [':', ';'], ['"', '\''], 'enter',
+      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ['<', ','], ['>', '.'], ['?', '/'],
+      'done', 'EN', 'space',
     ];
+
+    const keyLayoutRu = [
+      ['!', '1'], ['"', '2'], ['№', '3'], [';', '4'], ['%', '5'],
+      [':', '6'], ['?', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
+      'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
+      'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter',
+      'shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', [',', '.'],
+      'done', 'RU', 'space',
+    ];
+
+    if (lang === 'en') {
+      keyLayout = keyLayoutEn;
+    } else {
+      keyLayout = keyLayoutRu;
+    }
 
     // Creates HTML for an icon
     const createIconHTML = (iconName) => {
@@ -59,7 +76,13 @@ const Keyboard = {
     keyLayout.forEach(key => {
       const keyElement = document.createElement('button');
       keyElement.title = key;
-      const insertLineBreak = ['backspace', 'p', 'enter', '?'].indexOf(key) !== -1;
+      let insertLineBreak = ['backspace', 'enter', 'ъ'].indexOf(key) !== -1;
+      if ([']', '/'].indexOf(key[1]) !== -1) {
+        insertLineBreak = true;
+      }
+      if (['.'].indexOf(key[1]) !== -1 && this.properties.lang === 'ru') {
+        insertLineBreak = true;
+      }
 
       // Add attributes/classes
       keyElement.setAttribute('type', 'button');
@@ -136,6 +159,18 @@ const Keyboard = {
 
           break;
 
+        case 'EN':
+          keyElement.innerHTML = key;
+          keyElement.classList.add('keyboard__key--wide');
+
+          keyElement.addEventListener('click', () => {
+            keyLayout = this.properties.lang === 'en' ? keyLayoutRu : keyLayoutEn;
+            this.properties.lang = this.properties.lang === 'en' ? 'ru' : 'en';
+            this.changeLang(keyLayout);
+          });
+
+          break;
+
         default:
           if (Array.isArray(key)) {
             keyElement.innerHTML = createCharsHTML(key);
@@ -151,8 +186,8 @@ const Keyboard = {
                 keyElement.querySelectorAll('.active')[0].innerText.toLowerCase()}`);
             } else {
               this.insertValue(`${this.properties.capsLock ?
-                key.toUpperCase() :
-                key.toLowerCase()}`);
+                keyElement.innerText.toUpperCase() :
+                keyElement.innerText.toLowerCase()}`);
             }
 
           });
@@ -174,6 +209,21 @@ const Keyboard = {
     this.elements.input.setRangeText(value,
       this.elements.input.selectionStart + shiftStart,
       this.elements.input.selectionEnd + shiftEnd, "end");
+    this.elements.input.focus();
+  },
+
+  changeLang(keyArr) {
+
+    this.elements.keys.forEach((it, ind) => {
+      if (Array.isArray(keyArr[ind])) {
+        it.querySelectorAll('div')[0].textContent = keyArr[ind][0];
+        it.querySelectorAll('div')[1].textContent = keyArr[ind][1];
+      } else {
+        if (it.childElementCount === 0) {
+          it.textContent = this.properties.capsLock ? keyArr[ind].toUpperCase() : keyArr[ind];
+        }
+      }
+    });
     this.elements.input.focus();
   },
 
