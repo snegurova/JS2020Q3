@@ -12,6 +12,25 @@ const Keyboard = {
     lang: 'en',
   },
 
+  characters: {
+    en: [
+      ['!', '1'], ['@', '2'], ['#', '3'], ['$', '4'], ['%', '5'],
+      ['^', '6'], ['&', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
+      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['{', '['], ['}', ']'],
+      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [':', ';'], ['"', '\''], 'enter',
+      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ['<', ','], ['>', '.'], ['?', '/'],
+      'done', 'EN', 'space', 'left', 'right'
+    ],
+    ru: [
+      ['!', '1'], ['"', '2'], ['№', '3'], [';', '4'], ['%', '5'],
+      [':', '6'], ['?', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
+      'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
+      'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter',
+      'shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', [',', '.'],
+      'done', 'RU', 'space', 'left', 'right'
+    ]
+  },
+
   init() {
     // Create main elements
     this.elements.input = document.querySelector('.use-keyboard-input');
@@ -35,29 +54,21 @@ const Keyboard = {
     });
     document.addEventListener('keypress', (e) => {
       this.highlightButton(e);
-  });
+    });
+    document.addEventListener('keydown', (e) => {
+      this.highlightFnButton(e);
+    });
+    document.addEventListener('keyup', (e) => {
+      this.removeShift(e);
+    });
   },
 
   _crateKeys(lang) {
     const fragment = document.createDocumentFragment();
     let keyLayout = [];
-    const keyLayoutEn = [
-      ['!', '1'], ['@', '2'], ['#', '3'], ['$', '4'], ['%', '5'],
-      ['^', '6'], ['&', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
-      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['{', '['], ['}', ']'],
-      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [':', ';'], ['"', '\''], 'enter',
-      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ['<', ','], ['>', '.'], ['?', '/'],
-      'done', 'EN', 'space', 'left', 'right'
-    ];
+    const keyLayoutEn = this.characters.en;
 
-    const keyLayoutRu = [
-      ['!', '1'], ['"', '2'], ['№', '3'], [';', '4'], ['%', '5'],
-      [':', '6'], ['?', '7'], ['*', '8'], ['(', '9'], [')', '0'], 'backspace',
-      'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
-      'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter',
-      'shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', [',', '.'],
-      'done', 'RU', 'space', 'left', 'right'
-    ];
+    const keyLayoutRu = this.characters.ru;
 
     if (lang === 'en') {
       keyLayout = keyLayoutEn;
@@ -120,17 +131,17 @@ const Keyboard = {
 
           break;
 
-          case 'shift':
-            keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
-            keyElement.innerHTML = createIconHTML('upgrade');
+        case 'shift':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+          keyElement.innerHTML = createIconHTML('upgrade');
 
-            keyElement.addEventListener('click', () => {
-              this._toggleShift();
-              keyElement.classList.toggle('keyboard__key--active');
-              this.elements.input.focus();
-            });
+          keyElement.addEventListener('click', () => {
+            this._toggleShift();
+            keyElement.classList.toggle('keyboard__key--active');
+            this.elements.input.focus();
+          });
 
-            break;
+          break;
 
         case 'enter':
           keyElement.classList.add('keyboard__key--wide');
@@ -174,27 +185,27 @@ const Keyboard = {
 
           break;
 
-          case 'left':
-            keyElement.classList.add('keyboard__key--wide');
-            keyElement.innerHTML = createIconHTML('west');
+        case 'left':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = createIconHTML('west');
 
-            keyElement.addEventListener('click', () => {
-              this.insertValue('', -1, -1);
+          keyElement.addEventListener('click', () => {
+            this.insertValue('', -1, -1);
 
-            });
+          });
 
-            break;
+          break;
 
-            case 'right':
-              keyElement.classList.add('keyboard__key--wide');
-              keyElement.innerHTML = createIconHTML('east');
+        case 'right':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = createIconHTML('east');
 
-              keyElement.addEventListener('click', () => {
-                this.insertValue('', 1, 1);
+          keyElement.addEventListener('click', () => {
+            this.insertValue('', 1, 1);
 
-              });
+          });
 
-              break;
+          break;
 
         default:
           if (Array.isArray(key)) {
@@ -264,15 +275,72 @@ const Keyboard = {
   },
 
   highlightButton(e) {
-    console.log(e.key);
+    // console.log(e.key);
     this.elements.keys.forEach(it => {
-      if (e.key === it.textContent) {
+      if (e.key === it.textContent ||
+        this.characters.ru[this.characters.en.indexOf(e.key)] === it.textContent ||
+        this.characters.en[this.characters.ru.indexOf(e.key)] === it.textContent) {
         it.classList.add('highlighted');
       }
+      if (it.childElementCount === 2) {
+        if (e.key === it.querySelector('.active').textContent) {
+          it.classList.add('highlighted');
+        }
+      }
+      if (it.childElementCount === 1) {
+        if (e.key === 'Enter' && it.querySelector('i').textContent === 'keyboard_return') {
+          it.classList.add('highlighted');
+        }
+      }
+
       setTimeout(() => { it.classList.remove('highlighted') }, 200);
     });
 
 
+  },
+
+  highlightFnButton(e) {
+    // console.log('fn' + e.key);
+    // 'Backspace', 'ArrowLeft', 'ArrowRight'
+    if (e.key === 'Backspace') {
+      this.lightBtn('backspace');
+    }
+    if (e.key === 'ArrowLeft') {
+      this.lightBtn('left');
+    }
+    if (e.key === 'ArrowRight') {
+      this.lightBtn('right');
+    }
+    if (e.key === 'CapsLock') {
+      this.lightBtn('caps');
+      this._toggleCapsLock();
+    }
+    if (e.key === 'Shift') {
+      const btn = this.elements.keys[this.characters[this.properties.lang].indexOf('shift')];
+      btn.classList.add('highlighted');
+      btn.classList.toggle('keyboard__key--active');
+      this._toggleShift()
+    }
+  },
+
+  removeShift(e) {
+    if (e.key === 'Shift') {
+      const btn = this.elements.keys[this.characters[this.properties.lang].indexOf('shift')];
+      btn.classList.remove('highlighted');
+      btn.classList.toggle('keyboard__key--active');
+      this._toggleShift()
+    }
+  },
+
+  lightBtn(btnName) {
+    const btn = this.elements.keys[this.characters[this.properties.lang].indexOf(btnName)];
+    btn.classList.add('highlighted');
+    if (btnName === 'caps' || btnName === 'shift') {
+      btn.classList.toggle('keyboard__key--active');
+    }
+    if (btnName !== 'shift') {
+      setTimeout(() => { btn.classList.remove('highlighted') }, 200);
+    }
   },
 
   _toggleCapsLock() {
