@@ -11,6 +11,7 @@ const Keyboard = {
     shift: false,
     lang: 'en',
     sound: true,
+    voice: false,
   },
 
   characters: {
@@ -20,7 +21,7 @@ const Keyboard = {
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['{', '['], ['}', ']'],
       'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [':', ';'], ['"', '\''], 'enter',
       'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ['<', ','], ['>', '.'], ['?', '/'],
-      'done', 'sound', 'EN', 'space', 'left', 'right'
+      'done', 'sound', 'voice', 'EN', 'space', 'left', 'right'
     ],
     ru: [
       ['!', '1'], ['"', '2'], ['№', '3'], [';', '4'], ['%', '5'],
@@ -28,7 +29,7 @@ const Keyboard = {
       'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ',
       'caps', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'enter',
       'shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', [',', '.'],
-      'done', 'sound', 'RU', 'space', 'left', 'right'
+      'done', 'sound', 'voice', 'RU', 'space', 'left', 'right'
     ]
   },
 
@@ -75,15 +76,16 @@ const Keyboard = {
         .map(result => result[0])
         .map(result => result.transcript)
         .join('');
-      this.insertValue(transcript);
+
 
       if (e.results[0].isFinal) {
+        this.insertValue(transcript);
         this.insertValue('\n');
       }
     });
-    this.recognition.addEventListener('end', this.recognition.start);
+    // this.recognition.addEventListener('end', this.recognition.start);
 
-    this.recognition.start();
+    // this.recognition.start();
   },
 
   _crateKeys(lang) {
@@ -211,6 +213,30 @@ const Keyboard = {
             keyElement.querySelector('i').textContent =
               keyElement.querySelector('i').textContent === 'volume_up' ?
                 'volume_off' : 'volume_up';
+          });
+
+          break;
+
+        case 'voice':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = createIconHTML('mic_off');
+
+          keyElement.addEventListener('click', () => {
+            this.playSound('key');
+            this.properties.voice = !this.properties.voice;
+            keyElement.querySelector('i').textContent =
+              keyElement.querySelector('i').textContent === 'mic' ?
+                'mic_off' : 'mic';
+            if (this.properties.voice) {
+              this.recognition.lang = this.properties.lang === 'en' ?
+                'en-US' : 'ru-RU';
+              this.recognition.start();
+              this.recognition.addEventListener('end', this.recognition.start);
+            } else {
+              this.recognition.removeEventListener('end', this.recognition.start);
+              this.recognition.stop();
+            }
+
           });
 
           break;
