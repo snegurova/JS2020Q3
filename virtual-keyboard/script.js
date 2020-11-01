@@ -12,6 +12,7 @@ const Keyboard = {
     lang: 'en',
     sound: true,
     voice: false,
+    down: 0,
   },
 
   characters: {
@@ -60,11 +61,12 @@ const Keyboard = {
       this.highlightButton(e);
     });
     document.addEventListener('keydown', (e) => {
+      // if (e.repeat) return;
       this.highlightFnButton(e);
-    });
+    },);
     document.addEventListener('keyup', (e) => {
       this.removeShift(e);
-    });
+    }, );
 
     // Speech recognition
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -162,11 +164,13 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('upgrade');
 
           keyElement.addEventListener('click', () => {
+
             this._toggleShift();
             keyElement.classList.toggle('keyboard__key--active');
             this.elements.input.focus();
             this.playSound('shift');
-          });
+          }, false);
+
 
           break;
 
@@ -320,10 +324,18 @@ const Keyboard = {
 
     this.elements.keys.forEach((it, ind) => {
       if (Array.isArray(keyArr[ind])) {
-        it.querySelectorAll('div')[0].textContent = keyArr[ind][0];
-        it.querySelectorAll('div')[1].textContent = keyArr[ind][1];
+        if (it.childElementCount === 2) {
+          it.querySelectorAll('div')[0].textContent = keyArr[ind][0];
+          it.querySelectorAll('div')[1].textContent = keyArr[ind][1];
+        } else {
+          if (it.childElementCount === 0) {
+            it.innerHTML = `<div class="top">${keyArr[ind][0]}</div>
+            <div class="bottom active">${keyArr[ind][1]}</div>`;
+          }
+        }
+
       } else {
-        if (it.childElementCount === 0) {
+        if (it.childElementCount === 0 || it.childElementCount === 2) {
           it.textContent = this.properties.capsLock ? keyArr[ind].toUpperCase() : keyArr[ind];
         }
       }
@@ -372,6 +384,9 @@ const Keyboard = {
       this.lightBtn('caps');
       this._toggleCapsLock();
     }
+    if (e.key === ' ') {
+      this.lightBtn('space');
+    }
     if (e.key === 'Shift') {
       const btn = this.elements.keys[this.characters[this.properties.lang].indexOf('shift')];
       btn.classList.add('highlighted');
@@ -382,6 +397,7 @@ const Keyboard = {
 
   removeShift(e) {
     if (e.key === 'Shift') {
+
       const btn = this.elements.keys[this.characters[this.properties.lang].indexOf('shift')];
       btn.classList.remove('highlighted');
       btn.classList.toggle('keyboard__key--active');
