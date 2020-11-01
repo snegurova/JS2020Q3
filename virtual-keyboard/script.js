@@ -32,6 +32,8 @@ const Keyboard = {
     ]
   },
 
+  recognition: null,
+
   init() {
     // Create main elements
     this.elements.input = document.querySelector('.use-keyboard-input');
@@ -62,6 +64,26 @@ const Keyboard = {
     document.addEventListener('keyup', (e) => {
       this.removeShift(e);
     });
+
+    // Speech recognition
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    this.recognition = new SpeechRecognition();
+    this.recognition.interimResults = true;
+
+    this.recognition.addEventListener('result', e => {
+      const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+      this.insertValue(transcript);
+
+      if (e.results[0].isFinal) {
+        this.insertValue('\n');
+      }
+    });
+    this.recognition.addEventListener('end', this.recognition.start);
+
+    this.recognition.start();
   },
 
   _crateKeys(lang) {
