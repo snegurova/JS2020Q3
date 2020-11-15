@@ -11,6 +11,7 @@ export default class Game {
     this.createCells(this.cellSize, this.cellCount);
     this.clicksCount = 0;
     this.moves = [];
+    this.dragging = false;
   }
 
   createCells(cellSize, cellCount) {
@@ -28,8 +29,13 @@ export default class Game {
     return this.clicks;
   }
 
-  drawCell(x, y) {
-    this.ctx.fillStyle = '#FFB93B';
+  drawCell(x, y, opacity = false) {
+    if (opacity) {
+      this.ctx.fillStyle = 'rgba(255, 185, 59, 0.8)'
+    } else {
+      this.ctx.fillStyle = '#FFB93B';
+    }
+
     this.ctx.fillRect(x + 1, y + 1, this.cellSize - 2, this.cellSize - 2);
   }
 
@@ -47,7 +53,7 @@ export default class Game {
 
   draw() {
     this.cells.forEach(cell => {
-      if (cell.value > 0) {
+      if (cell.value > 0 && !cell.moving) {
         this.drawCell(cell.x * this.cellSize, cell.y * this.cellSize);
         this.drawNum(
           cell.value,

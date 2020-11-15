@@ -5,7 +5,11 @@ export default class Cell {
     this.y = y;
     this.width = size;
     this.height = size;
-    this.draggable = false;
+    this.draggable = true;
     this.moving = false;
+    this.startX = null;
+    this.startY = null;
+    this.xPosition = null;
+    this.yPosition = null;
   }
 }

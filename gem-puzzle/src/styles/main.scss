@@ -1,7 +1,9 @@
-$font-size: 2rem;
-$font-color: lch(53 105 40);
 
-html {
-    font-size: $font-size;
-    color: $font-color;
+
+.canvas-wrapper {
+  display: flex;
+  padding-top: 150px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
