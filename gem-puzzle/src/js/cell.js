@@ -5,7 +5,7 @@ export default class Cell {
     this.y = y;
     this.width = size;
     this.height = size;
-    this.draggable = true;
+    this.draggable = false;
     this.moving = false;
     this.startX = null;
     this.startY = null;

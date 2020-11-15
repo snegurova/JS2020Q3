@@ -52,9 +52,9 @@ export default class Game {
   }
 
   draw() {
-    this.cells.forEach(cell => {
+    this.cells.forEach((cell, ind) => {
       if (cell.value > 0 && !cell.moving) {
-        this.drawCell(cell.x * this.cellSize, cell.y * this.cellSize);
+        this.drawCell(cell.x * this.cellSize, cell.y * this.cellSize, cell.value === ind + 1);
         this.drawNum(
           cell.value,
           cell.x * this.cellSize + this.cellSize / 2,
@@ -72,6 +72,19 @@ export default class Game {
       cell.value = 0;
       this.clicks++;
       this.moves.push(emptyMove);
+      this.cells.forEach(cell => cell.draggable = false);
+      if (cell.x - 1 >= 0) {
+        this.getCell(cell.x - 1, cell.y).draggable = true;
+      }
+      if (cell.x + 1 <= this.cellCount - 1) {
+        this.getCell(cell.x + 1, cell.y).draggable = true;
+      }
+      if (cell.y - 1 >= 0) {
+        this.getCell(cell.x, cell.y - 1).draggable = true;
+      }
+      if (cell.y + 1 <= this.cellCount - 1) {
+        this.getCell(cell.x, cell.y + 1).draggable = true;
+      }
     }
     if (cell.x - 1 === emptyCell.x && cell.y === emptyCell.y) {
       emptyMove = 'left';

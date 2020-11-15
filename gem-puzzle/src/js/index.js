@@ -32,12 +32,7 @@ console.log(game.cells);
 console.log(game.getEmptyCell());
 console.log(game.moves);
 
-canvas.addEventListener('click', (e) => {
-  let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
-  let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
-  // console.log(x, y);
-  gameMove(game.getCell(x, y));
-});
+canvas.addEventListener('click', gameMove);
 
 // canvas.addEventListener('touchend', (e) => {
 //   let x = Math.trunc((e.touches[0].pageX - canvas.offsetLeft) / game.cellSize);
@@ -49,11 +44,12 @@ canvas.addEventListener('click', (e) => {
 canvas.addEventListener('mousedown', (e) => {
   e.preventDefault();
   e.stopPropagation();
+  canvas.addEventListener('click', gameMove);
   let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
   let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
   let movingX = Math.trunc(e.pageX - canvas.offsetLeft);
   let movingY = Math.trunc(e.pageY - canvas.offsetTop);
-  console.log(movingX, movingY);
+
   let cell = game.getCell(x, y);
   if (cell.draggable) {
     game.dragging = true;
@@ -68,19 +64,36 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mouseup', (e) => {
   e.preventDefault();
   e.stopPropagation();
+  let cell = game.cells.find(cell => cell.moving);
   game.dragging = false;
   game.cells.forEach(cell => {
     cell.moving = false;
     cell.xPosition = null;
     cell.yPosition = null;
   });
+  let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
+  let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
+  console.log(x, y);
+  let emptyCell = game.getEmptyCell();
+  if (emptyCell.x === x && emptyCell.y === y) {
+    console.log(cell);
+    game.move(cell);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    game.draw();
+    if (game.isWon()) {
+      console.log(`Solved in ${game.getClicks()} moves`);
+    }
+  } else {
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    game.draw();
+  }
 });
 
 canvas.addEventListener('mousemove', (e) => {
   if (game.dragging) {
     e.preventDefault();
     e.stopPropagation();
-
+    canvas.removeEventListener('click', gameMove);
     // get the current mouse position
     let movingX = Math.trunc(e.pageX - canvas.offsetLeft);
     let movingY = Math.trunc(e.pageY - canvas.offsetTop);
@@ -108,8 +121,10 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
-function gameMove(cell) {
-  game.move(cell);
+function gameMove(e) {
+  let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
+  let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
+  game.move(game.getCell(x, y));
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   game.draw();
   if (game.isWon()) {
