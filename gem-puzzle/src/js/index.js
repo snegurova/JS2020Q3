@@ -8,7 +8,8 @@ document.body.appendChild(canvas);
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const game = new Game(80, 4, ctx);
+game.mix(80);
 game.draw();
 console.log(game.cells);
 console.log(game.getEmptyCell());
-console.log('start');
+console.log(game.moves);

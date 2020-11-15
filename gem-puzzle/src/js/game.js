@@ -5,18 +5,20 @@ export default class Game {
     this.cells = [];
     this.cellSize = cellSize;
     this.cellCount = cellCount;
+    this.totalCellCount = cellCount * cellCount;
     this.ctx = ctx;
     this.clicks = 0;
     this.createCells(this.cellSize, this.cellCount);
     this.clicksCount = 0;
+    this.moves = [];
   }
 
   createCells(cellSize, cellCount) {
-    for (let i = 0; i < cellCount * cellCount; i++) {
+    for (let i = 0; i < this.totalCellCount; i++) {
       const x = i % cellCount;
       const y = Math.trunc(i / cellCount);
       this.cells.push(new Cell(
-        i === cellCount * cellCount - 1 ? 0 : i + 1,
+        i === this.totalCellCount - 1 ? 0 : i + 1,
         x, y, cellSize));
     }
 
@@ -55,5 +57,74 @@ export default class Game {
       }
     });
   }
+
+  move(cell) {
+    let emptyCell = this.getEmptyCell();
+    let emptyMove = '';
+    let moveCell = () => {
+      emptyCell.value = cell.value;
+      cell.value = 0;
+      this.clicks++;
+      this.moves.push(emptyMove);
+    }
+    if (cell.x - 1 === emptyCell.x && cell.y === emptyCell.y) {
+      emptyMove = 'left';
+      moveCell();
+    }
+    if (cell.x + 1 === emptyCell.x && cell.y === emptyCell.y) {
+      emptyMove = 'right';
+      moveCell();
+    }
+    if (cell.y - 1 === emptyCell.y && cell.x === emptyCell.x) {
+      emptyMove = 'up';
+      moveCell();
+    }
+    if (cell.y + 1 === emptyCell.y && cell.x === emptyCell.x) {
+      emptyMove = 'down';
+      moveCell();
+    }
+  }
+
+  isWon() {
+    return this.cells.every((cell, ind, arr) => {
+      return (cell.value + 1 === arr[ind + 1].value)
+        || (cell.value === 0 && ind === this.totalCellCount - 1)
+    });
+  }
+
+  mix(mixCount) {
+    let getRandomBool = () => Math.floor(Math.random() * 2) === 0;
+    let x = null,
+      y = null;
+
+    for (let i = 0; i < mixCount; i++) {
+      let emptyCell = this.getEmptyCell();
+      const downNotLeft = getRandomBool();
+      const upRight = getRandomBool();
+      if (!downNotLeft && !upRight) {
+        x = emptyCell.x - 1;
+        y = emptyCell.y;
+      }
+      if (downNotLeft && !upRight) {
+        x = emptyCell.x;
+        y = emptyCell.y + 1;
+      }
+      if (!downNotLeft && upRight) {
+        x = emptyCell.x + 1;
+        y = emptyCell.y;
+      }
+      if (downNotLeft && upRight) {
+        x = emptyCell.x;
+        y = emptyCell.y - 1;
+      }
+
+      if (0 <= x && x <= this.cellCount - 1 && 0 <= y && y <= this.cellCount - 1) {
+        this.move(this.cells.find(cell => cell.x === x && cell.y === y));
+      }
+    }
+
+    this.clicks = 0;
+  }
+
 }
 
