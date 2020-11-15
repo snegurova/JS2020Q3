@@ -87,9 +87,14 @@ export default class Game {
 
   isWon() {
     return this.cells.every((cell, ind, arr) => {
-      return (cell.value + 1 === arr[ind + 1].value)
-        || (cell.value === 0 && ind === this.totalCellCount - 1)
+      return (cell.value === this.totalCellCount - 1 && ind === this.totalCellCount - 2)
+      || (cell.value === 0 && ind === this.totalCellCount - 1)
+      || (cell.value + 1 === arr[ind + 1].value)
     });
+  }
+
+  getCell(x, y) {
+    return this.cells.find(cell => cell.x === x && cell.y === y);
   }
 
   mix(mixCount) {
@@ -119,7 +124,7 @@ export default class Game {
       }
 
       if (0 <= x && x <= this.cellCount - 1 && 0 <= y && y <= this.cellCount - 1) {
-        this.move(this.cells.find(cell => cell.x === x && cell.y === y));
+        this.move(this.getCell(x, y));
       }
     }
 
