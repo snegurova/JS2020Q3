@@ -1,6 +1,6 @@
 
 import '../styles/main.scss'
-import resetIcon from '../images/icons/restart-icon-black.png'
+// import resetIcon from '../images/icons/restart-icon-black.png'
 
 import Game from './game'
 

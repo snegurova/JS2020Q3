@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
@@ -12,7 +13,8 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
   },
-  mode: 'development',
+  // mode: 'development',
+  mode: 'production',
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, './dist'),
@@ -28,7 +30,10 @@ module.exports = {
       filename: 'index.html', // output file
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'style.min.css',
+    }),
   ],
 
   module: {
@@ -55,7 +60,24 @@ module.exports = {
       // CSS, PostCSS, Sass
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        // use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [
+          {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                  publicPath: ''
+              }
+          },
+          {
+              loader: "css-loader"
+          },
+          {
+              loader: "postcss-loader"
+          },
+          {
+              loader: "sass-loader"
+          }
+      ],
       },
     ],
   }
