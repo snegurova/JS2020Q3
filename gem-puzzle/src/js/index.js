@@ -12,6 +12,16 @@ infoWrapper.innerHTML = `
     <div>Time spent</div>
     <div id ="timer" class="timer">0:00:00</div>
   </div>
+  <div  class="cells-count-wrapper">
+    <select name="cells-count" id="cells-count">
+      <option value="3">3 x 3</option>
+      <option value="4" selected>4 x 4</option>
+      <option value="5">5 x 5</option>
+      <option value="6">6 x 6</option>
+      <option value="7">7 x 7</option>
+      <option value="8">8 x 8</option>
+    </select>
+  </div>
   <div  class="moves-wrapper">
     <div>Moves done</div>
     <div id ="moves" class="moves">0</div>
@@ -31,28 +41,20 @@ controlsWrapper.innerHTML = `
 document.body.appendChild(controlsWrapper);
 
 
-const result = document.createElement('div');
-result.classList.add('result-wrapper');
-document.body.appendChild(result);
-
-
-
 const resetButton = document.querySelector('#reset-button');
 const pauseButton = document.querySelector('#pause-button');
 const resumeButton = document.querySelector('#resume-button');
 const moves = document.querySelector('#moves');
+const cellsSelected = document.querySelector('#cells-count');
 
 
-let cellCount = 4;
+let cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
 let countCellSize = () => {
   return window.innerWidth > 640 ?
-    Math.floor(window.innerWidth * 0.35) / cellCount : Math.floor(320 / cellCount);
+    Math.floor(400 / cellCount) : Math.floor(320 / cellCount);
 }
 let cellSize = countCellSize();
 let canvasSize = cellSize * cellCount;
-
-let canvasTop = (window.innerHeight - canvasSize) / 2;
-let canvasLeft = (window.innerWidth - canvasSize) / 2;
 
 const canvasWrapper = document.createElement('div');
 document.body.appendChild(canvasWrapper);
@@ -67,8 +69,30 @@ canvasWrapper.appendChild(canvas);
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const game = new Game(cellSize, cellCount, ctx);
-game.mix(80);
+game.mix(Math.floor(Math.random() * cellCount * 20 + cellCount * 10));
 game.draw();
+
+const result = document.createElement('div');
+result.classList.add('result-wrapper');
+document.body.appendChild(result);
+
+// cellsSelected.addEventListener('change', () => {
+//   cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
+//   game.cellCount = cellCount;
+//   game.cellSize = countCellSize();
+//   localStorage.removeItem('movesArray');
+//   localStorage.removeItem('movesCount');
+//   localStorage.removeItem('time');
+//   localStorage.removeItem('cells');
+//   game.cells.splice(0);
+//   game.createCells(game.cellSize, game.cellCount);
+//   canvasSize = game.cellSize * cellCount;
+//   canvas.width = canvasSize;
+//   canvas.height = canvasSize;
+//   ctx.fillRect(0, 0, canvasSize, canvasSize);
+//   game.mix(Math.floor(Math.random() * cellCount * 20 + cellCount * 10));
+//   game.draw();
+// });
 
 canvas.addEventListener('click', gameMove);
 
@@ -117,7 +141,7 @@ canvas.addEventListener('mouseup', (e) => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     game.draw();
     if (game.isWon()) {
-      console.log(`Solved in ${game.getClicks()} moves`);
+      result.innerHTML =`Solved in ${game.getClicks()} moves!`;
     }
   } else {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -164,7 +188,7 @@ function gameMove(e) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   game.draw();
   if (game.isWon()) {
-    console.log(`Solved in ${game.getClicks()} moves`);
+    result.innerHTML =`Solved in ${game.getClicks()} moves!`;
   }
   moves.innerText = game.getClicks();
 }
@@ -250,6 +274,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('time')) {
     game.moves = localStorage.getItem('movesArray').split(',');
     timer.innerHTML = localStorage.getItem('time');
+    game.clicks  = localStorage.getItem('movesCount');
     moves.innerHTML = localStorage.getItem('movesCount');
     game.cells = JSON.parse(localStorage.getItem('cells'));
     ctx.fillRect(0, 0, canvas.width, canvas.height);

@@ -13,7 +13,10 @@
   padding-bottom: 30x;
   margin: auto;
   justify-content: space-between;
-  width: 35%;
+  width: 400px;
+  @media screen and (max-width: 640px) {
+    width: 300px;
+  }
   .reset-button,
   .resume-button,
   .pause-button {
@@ -29,9 +32,7 @@
       cursor: pointer;
       transform: scale(1.2);
     }
-    @media screen and (max-width: ) {
-      width:320px;
-    }
+
   }
   .resume-button {
     background-image: url(../images/icons/restore-icon.png);
@@ -44,6 +45,10 @@
 
 .result-wrapper {
   margin: auto;
-  width: 35%;
+  width: 400px;
+  padding-top: 20px;
   font-size: 2rem;
+  @media screen and (max-width: 640px) {
+    width: 300px;
+  }
 }
