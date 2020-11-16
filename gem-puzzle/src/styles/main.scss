@@ -6,21 +6,34 @@
   align-items: center;
 }
 
-.controls-wrapper {
+.controls-wrapper,
+.info-wrapper {
   display: flex;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 30x;
   margin: auto;
   justify-content: space-between;
   width: 51%;
-  background-color: rgb(168, 168, 168);
-  .reset-button {
-    width: 30px;
-    height: 30px;
+  .reset-button,
+  .resume-button,
+  .pause-button {
+    width: 35px;
+    height: 35px;
     background: none;
-    // background-image: url("../images/icons/restart-icon-black.png");
+    background-image: url(../images/icons/restart-icon-black.png);
+    background-size: contain;
+    font-size: 0px;
+    transition: .5s;
     &:hover {
       cursor: pointer;
+      transform: rotate(45deg);
     }
   }
+  .resume-button {
+    background-image: url(../images/icons/play-circle-icon.png);
+  }
+  .pause-button {
+    background-image: url(../images/icons/pause-icon.png);
+  }
+
 }

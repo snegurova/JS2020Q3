@@ -4,15 +4,35 @@ import resetIcon from '../images/icons/restart-icon-black.png'
 
 import Game from './game'
 
-const controlsWrapper = document.createElement('div');
-document.body.appendChild(controlsWrapper);
-controlsWrapper.classList.add('controls-wrapper');
+const infoWrapper = document.createElement('div');
+infoWrapper.classList.add('info-wrapper');
+infoWrapper.innerHTML = `
+  <div  class="timer-wrapper">
+    <div>Time spent</div>
+    <div id ="timer" class="timer">0:00:00</div>
+  </div>
+  <div  class="moves-wrapper">
+    <div>Moves done</div>
+    <div id ="moves" class="moves">0</div>
+  </div>
+  `
+document.body.appendChild(infoWrapper);
 
-const resetButton = document.createElement('div');
-resetButton.innerText = 'Reset'
-controlsWrapper.appendChild(resetButton);
-resetButton.classList.add('reset-button');
-resetButton.style.backgroundImage = `url(${resetIcon})`;
+const controlsWrapper = document.createElement('div');
+controlsWrapper.classList.add('controls-wrapper');
+controlsWrapper.innerHTML = `
+  <div id ="reset-button" class="reset-button" title="Reset game"></div>
+  <div id ="resume-button" class="resume-button" title="Resume game"></div>
+  <div id ="pause-button" class="pause-button" title="Pause game"></div>
+  `
+document.body.appendChild(controlsWrapper);
+
+
+
+
+const resetButton = document.querySelector('#reset-button');
+const moves = document.querySelector('#moves');
+
 
 let cellCount = 3;
 let countCellSize = () => {
@@ -142,6 +162,7 @@ function gameMove(e) {
   if (game.isWon()) {
     console.log(`Solved in ${game.getClicks()} moves`);
   }
+  moves.innerText = game.getClicks();
 }
 
 resetButton.addEventListener('click', (e) => {
@@ -160,3 +181,35 @@ window.addEventListener("resize", () => {
   ctx.fillRect(0, 0, canvasSize, canvasSize);
   game.draw();
 });
+
+// Timer
+
+let timerId = null;
+const timer = document.querySelector('#timer');
+
+// if (timerId) {
+//   clearInterval(timerId);
+// }
+
+function startTimer() {
+  let timeArr = timer.innerHTML.split(':');
+  let h = timeArr[0],
+    m = timeArr[1],
+    s = timeArr[2];
+  if (parseInt(s) === 59) {
+    s = '00';
+    if (parseInt(m) === 59) {
+      m = '00';
+      h++;
+    } else  {
+      m++;
+      m = m < 10 ? `0${m}` : m;
+    }
+  } else {
+    s++;
+    s = s < 10 ? `0${s}` : s;
+  }
+  timer.innerHTML = `${h}:${m}:${s}`
+}
+
+timerId = setInterval(startTimer, 1000);
