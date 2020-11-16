@@ -52,6 +52,11 @@ module.exports = {
           filename: 'img/[name][ext]',
         },
       },
+      {
+        test: /\.mp3$/,
+        include: SRC,
+        loader: 'file-loader'
+      },
       // Fonts, SVG
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
@@ -63,21 +68,21 @@ module.exports = {
         // use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         use: [
           {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                  publicPath: ''
-              }
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
           },
           {
-              loader: "css-loader"
+            loader: "css-loader"
           },
           {
-              loader: "postcss-loader"
+            loader: "postcss-loader"
           },
           {
-              loader: "sass-loader"
+            loader: "sass-loader"
           }
-      ],
+        ],
       },
     ],
   }

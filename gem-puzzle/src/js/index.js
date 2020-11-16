@@ -1,6 +1,7 @@
 
 import '../styles/main.scss'
 // import resetIcon from '../images/icons/restart-icon-black.png'
+// import audioFile from '../images/icons/audio.mp3'
 
 import Game from './game'
 
@@ -18,26 +19,34 @@ infoWrapper.innerHTML = `
   `
 document.body.appendChild(infoWrapper);
 
+
+
 const controlsWrapper = document.createElement('div');
 controlsWrapper.classList.add('controls-wrapper');
 controlsWrapper.innerHTML = `
-  <div id ="reset-button" class="reset-button" title="Reset game"></div>
-  <div id ="resume-button" class="resume-button" title="Resume game"></div>
-  <div id ="pause-button" class="pause-button" title="Pause game"></div>
+  <div id ="reset-button" class="reset-button" title="Reset/Delete game"></div>
+  <div id ="resume-button" class="resume-button" title="Restore game"></div>
+  <div id ="pause-button" class="pause-button" title="Save game"></div>
   `
 document.body.appendChild(controlsWrapper);
 
 
+const result = document.createElement('div');
+result.classList.add('result-wrapper');
+document.body.appendChild(result);
+
 
 
 const resetButton = document.querySelector('#reset-button');
+const pauseButton = document.querySelector('#pause-button');
+const resumeButton = document.querySelector('#resume-button');
 const moves = document.querySelector('#moves');
 
 
-let cellCount = 3;
+let cellCount = 4;
 let countCellSize = () => {
   return window.innerWidth > 640 ?
-    Math.floor(window.innerWidth * 0.5) / cellCount : Math.floor(320 / cellCount);
+    Math.floor(window.innerWidth * 0.35) / cellCount : Math.floor(320 / cellCount);
 }
 let cellSize = countCellSize();
 let canvasSize = cellSize * cellCount;
@@ -60,16 +69,12 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 const game = new Game(cellSize, cellCount, ctx);
 game.mix(80);
 game.draw();
-// console.log(game.cells);
-// console.log(game.getEmptyCell());
-// console.log(game.moves);
 
 canvas.addEventListener('click', gameMove);
 
 // canvas.addEventListener('touchend', (e) => {
 //   let x = Math.trunc((e.touches[0].pageX - canvas.offsetLeft) / game.cellSize);
 //   let y = Math.trunc((e.touches[0].pageY - canvas.offsetTop) / game.cellSize);
-//   console.log(e.touches);
 //   gameMove(game.getCell(x, y));
 // });
 
@@ -105,11 +110,10 @@ canvas.addEventListener('mouseup', (e) => {
   });
   let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
   let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
-  console.log(x, y);
   let emptyCell = game.getEmptyCell();
   if (emptyCell.x === x && emptyCell.y === y) {
-    console.log(cell);
     game.move(cell);
+    moves.innerText = game.getClicks();
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     game.draw();
     if (game.isWon()) {
@@ -167,13 +171,20 @@ function gameMove(e) {
 
 resetButton.addEventListener('click', (e) => {
   e.preventDefault();
+  localStorage.removeItem('movesArray');
+  localStorage.removeItem('movesCount');
+  localStorage.removeItem('time');
+  localStorage.removeItem('cells');
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  game.mix(80);
+  game.mix(Math.floor(Math.random() * cellCount * 20 + cellCount * 10));
   game.draw();
+  timer.innerHTML = '0:00:00';
+  game.moves.splice(0);
+  game.clicks = 0;
+  moves.innerText = game.getClicks();
 });
 
 window.addEventListener("resize", () => {
-  console.log('resize');
   game.cellSize = countCellSize();
   canvasSize = game.cellSize * cellCount;
   canvas.width = canvasSize;
@@ -201,7 +212,7 @@ function startTimer() {
     if (parseInt(m) === 59) {
       m = '00';
       h++;
-    } else  {
+    } else {
       m++;
       m = m < 10 ? `0${m}` : m;
     }
@@ -213,3 +224,35 @@ function startTimer() {
 }
 
 timerId = setInterval(startTimer, 1000);
+
+pauseButton.addEventListener('click', () => {
+  clearInterval(timerId);
+  timerId = null;
+  localStorage.setItem('movesArray', game.moves);
+  localStorage.setItem('movesCount', game.clicks);
+  localStorage.setItem('time', timer.innerHTML);
+  localStorage.setItem('cells', JSON.stringify(game.cells));
+});
+
+resumeButton.addEventListener('click', () => {
+  if (!timerId) {
+    timerId = setInterval(startTimer, 1000);
+  }
+  game.moves = localStorage.getItem('movesArray').split(',');
+  timer.innerHTML = localStorage.getItem('time');
+  moves.innerHTML = localStorage.getItem('movesCount');
+  game.cells = JSON.parse(localStorage.getItem('cells'));
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  game.draw();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('time')) {
+    game.moves = localStorage.getItem('movesArray').split(',');
+    timer.innerHTML = localStorage.getItem('time');
+    moves.innerHTML = localStorage.getItem('movesCount');
+    game.cells = JSON.parse(localStorage.getItem('cells'));
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    game.draw();
+  }
+});

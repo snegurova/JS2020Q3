@@ -13,7 +13,7 @@
   padding-bottom: 30x;
   margin: auto;
   justify-content: space-between;
-  width: 51%;
+  width: 35%;
   .reset-button,
   .resume-button,
   .pause-button {
@@ -22,18 +22,28 @@
     background: none;
     background-image: url(../images/icons/restart-icon-black.png);
     background-size: contain;
+    background-repeat: no-repeat;
     font-size: 0px;
     transition: .5s;
     &:hover {
       cursor: pointer;
-      transform: rotate(45deg);
+      transform: scale(1.2);
+    }
+    @media screen and (max-width: ) {
+      width:320px;
     }
   }
   .resume-button {
-    background-image: url(../images/icons/play-circle-icon.png);
+    background-image: url(../images/icons/restore-icon.png);
   }
   .pause-button {
-    background-image: url(../images/icons/pause-icon.png);
+    background-image: url(../images/icons/save-icon.png);
   }
 
+}
+
+.result-wrapper {
+  margin: auto;
+  width: 35%;
+  font-size: 2rem;
 }
