@@ -1,7 +1,19 @@
 
 import '../styles/main.scss'
+import resetIcon from '../images/icons/restart-icon-black.png'
 
 import Game from './game'
+
+const controlsWrapper = document.createElement('div');
+document.body.appendChild(controlsWrapper);
+controlsWrapper.classList.add('controls-wrapper');
+
+const resetButton = document.createElement('div');
+resetButton.innerText = 'Reset'
+controlsWrapper.appendChild(resetButton);
+resetButton.classList.add('reset-button');
+resetButton.style.backgroundImage = `url(${resetIcon})`;
+
 let cellCount = 3;
 let countCellSize = () => {
   return window.innerWidth > 640 ?
@@ -28,16 +40,16 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 const game = new Game(cellSize, cellCount, ctx);
 game.mix(80);
 game.draw();
-console.log(game.cells);
-console.log(game.getEmptyCell());
-console.log(game.moves);
+// console.log(game.cells);
+// console.log(game.getEmptyCell());
+// console.log(game.moves);
 
 canvas.addEventListener('click', gameMove);
 
 // canvas.addEventListener('touchend', (e) => {
 //   let x = Math.trunc((e.touches[0].pageX - canvas.offsetLeft) / game.cellSize);
 //   let y = Math.trunc((e.touches[0].pageY - canvas.offsetTop) / game.cellSize);
-//   // console.log(e.touchecs);
+//   console.log(e.touches);
 //   gameMove(game.getCell(x, y));
 // });
 
@@ -131,6 +143,13 @@ function gameMove(e) {
     console.log(`Solved in ${game.getClicks()} moves`);
   }
 }
+
+resetButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  game.mix(80);
+  game.draw();
+});
 
 window.addEventListener("resize", () => {
   console.log('resize');
