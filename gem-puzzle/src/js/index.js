@@ -86,6 +86,9 @@ cellsSelected.addEventListener('change', () => {
   localStorage.removeItem('movesCount');
   localStorage.removeItem('time');
   localStorage.removeItem('cells');
+  timer.innerHTML = '0:00:00';
+  game.moves.splice(0);
+  game.clicks = 0;
   game.cells.splice(0);
   console.log(game.cells);
   game.createCells(game.cellSize, game.cellCount);
