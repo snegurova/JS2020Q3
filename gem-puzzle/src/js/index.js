@@ -51,7 +51,7 @@ const cellsSelected = document.querySelector('#cells-count');
 let cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
 let countCellSize = () => {
   return window.innerWidth > 640 ?
-    Math.floor(400 / cellCount) : Math.floor(320 / cellCount);
+    Math.floor(500 / cellCount) : Math.floor(320 / cellCount);
 }
 let cellSize = countCellSize();
 let canvasSize = cellSize * cellCount;
@@ -76,23 +76,27 @@ const result = document.createElement('div');
 result.classList.add('result-wrapper');
 document.body.appendChild(result);
 
-// cellsSelected.addEventListener('change', () => {
-//   cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
-//   game.cellCount = cellCount;
-//   game.cellSize = countCellSize();
-//   localStorage.removeItem('movesArray');
-//   localStorage.removeItem('movesCount');
-//   localStorage.removeItem('time');
-//   localStorage.removeItem('cells');
-//   game.cells.splice(0);
-//   game.createCells(game.cellSize, game.cellCount);
-//   canvasSize = game.cellSize * cellCount;
-//   canvas.width = canvasSize;
-//   canvas.height = canvasSize;
-//   ctx.fillRect(0, 0, canvasSize, canvasSize);
-//   game.mix(Math.floor(Math.random() * cellCount * 20 + cellCount * 10));
-//   game.draw();
-// });
+cellsSelected.addEventListener('change', () => {
+  cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
+  game.cellCount = cellCount;
+  game.totalCellCount = cellCount * cellCount;
+  console.log(game.cellCount);
+  game.cellSize = countCellSize();
+  localStorage.removeItem('movesArray');
+  localStorage.removeItem('movesCount');
+  localStorage.removeItem('time');
+  localStorage.removeItem('cells');
+  game.cells.splice(0);
+  console.log(game.cells);
+  game.createCells(game.cellSize, game.cellCount);
+  console.log(game.cells);
+  canvasSize = game.cellSize * cellCount;
+  canvas.width = canvasSize;
+  canvas.height = canvasSize;
+  ctx.fillRect(0, 0, canvasSize, canvasSize);
+  game.mix(Math.floor(Math.random() * cellCount * 20 + cellCount * 10));
+  game.draw();
+});
 
 canvas.addEventListener('click', gameMove);
 
