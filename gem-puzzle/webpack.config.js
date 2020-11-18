@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const SRC = path.resolve(__dirname, '/src/images/icons');
 
@@ -14,8 +14,8 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
   },
-  mode: 'development',
-  // mode: 'production',
+  // mode: 'development',
+  mode: 'production',
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, './dist'),
@@ -30,8 +30,8 @@ module.exports = {
       template: path.resolve(__dirname, './src/template.html'), // template
       filename: 'index.html', // output file
     }),
-    // new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'style.min.css',
     }),
@@ -65,11 +65,11 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.mp3$/,
-        include: SRC,
-        loader: 'file-loader'
-      },
+      // {
+      //   test: /\.mp3$/,
+      //   include: SRC,
+      //   loader: 'file-loader'
+      // },
       {
         test: /\.wav$/,
         use: [

@@ -1,6 +1,7 @@
 
 import '../styles/main.scss';
 import audioFile from '../images/icons/audio.mp3';
+
 // import favicon from '../images/icons/favicon.ico';
 
 import Game from './game';
@@ -81,6 +82,7 @@ result.classList.add('result-wrapper');
 document.body.appendChild(result);
 
 const audio = new Audio(audioFile);
+// audio.src = audioFile;
 
 muteButton.addEventListener('click', () => {
   muteButton.classList.toggle('active');
@@ -196,6 +198,29 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
+// solveButton.addEventListener('click', () => {
+//   let empty = game.getEmptyCell();
+//   for (let i = game.moves.length - 1; i >= 0; i--) {
+
+//     let cell = null;
+//     if (game.moves[i] === 'left') {
+//       cell = game.getCell(empty.x - 1, empty.y)
+//     }
+//     if (game.moves[i] === 'right') {
+//       cell = game.getCell(empty.x + 1, empty.y)
+//     }
+//     if (game.moves[i] === 'up') {
+//       cell = game.getCell(empty.x, empty.y - 1)
+//     }
+//     if (game.moves[i] === 'down') {
+//       cell = game.getCell(empty.x, empty.y + 1)
+//     }
+//     empty = cell;
+//     // let solve = gameMove.bind(null, cell);
+//     setTimeout(gameMove, 1000, null, cell);
+//   }
+// });
+
 function gameMove(e, cellSolve) {
 
   let x = e ? Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize) : cellSolve.x;
@@ -217,7 +242,7 @@ function gameMove(e, cellSolve) {
   if (!cell.yPositionAnimated) {
     cell.yPositionAnimated = cell.y * game.cellSize + 1;
   }
-  let animateCellForInterval = animateCell.bind(null, cell, emptyCell)
+  let animateCellForInterval = animateCell.bind(null, cell, emptyCell);
   let animateId = setInterval(animateCellForInterval, 1);
   function animateCell(cell, emptyCell) {
     // canvas.removeEventListener('click', gameMove);
