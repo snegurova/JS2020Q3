@@ -1,9 +1,8 @@
 
-import '../styles/main.scss'
-// import resetIcon from '../images/icons/restart-icon-black.png'
-// import audioFile from '../images/icons/audio.mp3'
+import '../styles/main.scss';
+import audioFile from '../images/icons/audio.mp3';
 
-import Game from './game'
+import Game from './game';
 
 const infoWrapper = document.createElement('div');
 infoWrapper.classList.add('info-wrapper');
@@ -148,7 +147,7 @@ canvas.addEventListener('mouseup', (e) => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     game.draw();
     if (game.isWon()) {
-      result.innerHTML =`Solved in ${game.getClicks()} moves!`;
+      result.innerHTML = `Solved in ${game.getClicks()} moves!`;
     }
   } else {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -191,13 +190,68 @@ canvas.addEventListener('mousemove', (e) => {
 function gameMove(e) {
   let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
   let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
-  game.move(game.getCell(x, y));
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  game.draw();
-  if (game.isWon()) {
-    result.innerHTML =`Solved in ${game.getClicks()} moves!`;
+
+  let cell = game.getCell(x, y);
+  if (!cell.draggable) {
+    return;
   }
-  moves.innerText = game.getClicks();
+  cell.moving = true;
+  let emptyCell = game.getEmptyCell();
+  if (!cell.xPosition) {
+    cell.xPosition = cell.x * game.cellSize + 1;
+  }
+  if (!cell.yPosition) {
+    cell.yPosition = cell.y * game.cellSize + 1;
+  }
+  let animateCellForInterval = animateCell.bind(null, cell, emptyCell)
+  let animateId = setInterval(animateCellForInterval, 1);
+  function animateCell(cell, emptyCell) {
+    console.log(cell, emptyCell);
+    let targetX = emptyCell.x * game.cellSize;
+    let targetY = emptyCell.y * game.cellSize;
+
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    game.draw();
+    game.drawCell(cell.xPosition, cell.yPosition, true);
+    game.drawNum(
+      cell.value,
+      cell.xPosition + game.cellSize / 2,
+      cell.yPosition + game.cellSize / 2
+    );
+
+    if (!(cell.xPosition === targetX)) {
+      // Start Repeated code - incr/decr func
+      if (cell.xPosition > targetX) {
+        cell.xPosition--;
+      } else {
+        cell.xPosition++;
+      }
+    }
+
+    if (!(cell.yPosition === targetY)) {
+      if (cell.yPosition > targetY) {
+        cell.yPosition--;
+      } else {
+        cell.yPosition++;
+      }
+      // End Repeated code - incr/decr func
+    }
+
+    if ((cell.xPosition === targetX) && (cell.yPosition === targetY)) {
+      clearInterval(animateId);
+      cell.moving = false;
+      game.move(cell);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      game.draw();
+      if (game.isWon()) {
+        result.innerHTML = `Solved in ${game.getClicks()} moves!`;
+      }
+      moves.innerText = game.getClicks();
+    }
+  }
+
+  // prev function
+
 }
 
 resetButton.addEventListener('click', (e) => {
@@ -281,7 +335,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('time')) {
     game.moves = localStorage.getItem('movesArray').split(',');
     timer.innerHTML = localStorage.getItem('time');
-    game.clicks  = localStorage.getItem('movesCount');
+    game.clicks = localStorage.getItem('movesCount');
     moves.innerHTML = localStorage.getItem('movesCount');
     game.cells = JSON.parse(localStorage.getItem('cells'));
     ctx.fillRect(0, 0, canvas.width, canvas.height);
