@@ -1,6 +1,7 @@
 
 import '../styles/main.scss';
 import audioFile from '../images/icons/audio.mp3';
+// import favicon from '../images/icons/favicon.ico';
 
 import Game from './game';
 
@@ -33,9 +34,11 @@ document.body.appendChild(infoWrapper);
 const controlsWrapper = document.createElement('div');
 controlsWrapper.classList.add('controls-wrapper');
 controlsWrapper.innerHTML = `
-  <div id ="reset-button" class="reset-button" title="Reset/Delete game"></div>
-  <div id ="resume-button" class="resume-button" title="Restore game"></div>
-  <div id ="pause-button" class="pause-button" title="Save game"></div>
+  <div id ="reset-button" class="btn reset-button" title="Reset/Delete game"></div>
+  <div id ="mute-button" class="btn mute-button" title="Mute"></div>
+  <div id ="solve-button" class="btn solve-button" title="Solve game"></div>
+  <div id ="resume-button" class="btn resume-button" title="Restore game"></div>
+  <div id ="pause-button" class="btn pause-button" title="Save game"></div>
   `
 document.body.appendChild(controlsWrapper);
 
@@ -43,6 +46,8 @@ document.body.appendChild(controlsWrapper);
 const resetButton = document.querySelector('#reset-button');
 const pauseButton = document.querySelector('#pause-button');
 const resumeButton = document.querySelector('#resume-button');
+const solveButton = document.querySelector('#solve-button');
+const muteButton = document.querySelector('#mute-button');
 const moves = document.querySelector('#moves');
 const cellsSelected = document.querySelector('#cells-count');
 
@@ -74,6 +79,13 @@ game.draw();
 const result = document.createElement('div');
 result.classList.add('result-wrapper');
 document.body.appendChild(result);
+
+const audio = new Audio(audioFile);
+
+muteButton.addEventListener('click', () => {
+  muteButton.classList.toggle('active');
+  game.mute = !game.mute;
+});
 
 cellsSelected.addEventListener('change', () => {
   cellCount = cellsSelected.options[cellsSelected.selectedIndex].value;
@@ -184,19 +196,19 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
-function gameMove(e) {
-  console.log(game.cellIsMoving);
-  // if (game.cellIsMoving) {
-  //   return;
-  // }
-  // game.cellIsMoving = true;
-  let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
-  let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
+function gameMove(e, cellSolve) {
 
-  let cell = game.getCell(x, y);
+  let x = e ? Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize) : cellSolve.x;
+  let y = e ? Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize) : cellSolve.y;
+
+  let cell = e ? game.getCell(x, y) : cellSolve;
   if (!cell.draggable) {
     return;
   }
+  if (!game.mute) {
+    audio.play();
+  }
+
   cell.moving = true;
   let emptyCell = game.getEmptyCell();
   if (!cell.xPositionAnimated) {
@@ -256,9 +268,6 @@ function gameMove(e) {
       moves.innerText = game.getClicks();
     }
   }
-
-  // prev function
-
 }
 
 resetButton.addEventListener('click', (e) => {

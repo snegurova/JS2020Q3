@@ -13,13 +13,12 @@
   padding-bottom: 30x;
   margin: auto;
   justify-content: space-between;
-  width: 400px;
+  align-items: center;
+  width: 500px;
   @media screen and (max-width: 640px) {
     width: 300px;
   }
-  .reset-button,
-  .resume-button,
-  .pause-button {
+  .btn {
     width: 35px;
     height: 35px;
     background: none;
@@ -40,12 +39,23 @@
   .pause-button {
     background-image: url(../images/icons/save-icon.png);
   }
+  .mute-button {
+    background-image: url(../images/icons/mute_icon.png);
+  }
+  .mute-button.active {
+    background-image: url(../images/icons/unmute_icon.png);
+  }
+  .solve-button {
+    background-image: url(../images/icons/idea-icon-orange.png);
+    width: 45px;
+    height: 45px;
+  }
 
 }
 
 .result-wrapper {
   margin: auto;
-  width: 400px;
+  width: 500px;
   padding-top: 20px;
   font-size: 2rem;
   @media screen and (max-width: 640px) {

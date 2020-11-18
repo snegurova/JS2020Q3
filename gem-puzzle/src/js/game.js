@@ -13,6 +13,7 @@ export default class Game {
     this.moves = [];
     this.dragging = false;
     this.cellIsMoving = false;
+    this.mute = false;
   }
 
   createCells(cellSize, cellCount) {
