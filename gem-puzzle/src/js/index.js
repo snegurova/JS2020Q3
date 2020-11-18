@@ -206,7 +206,6 @@ function gameMove(e) {
   let animateCellForInterval = animateCell.bind(null, cell, emptyCell)
   let animateId = setInterval(animateCellForInterval, 1);
   function animateCell(cell, emptyCell) {
-    console.log(cell, emptyCell);
     let targetX = emptyCell.x * game.cellSize;
     let targetY = emptyCell.y * game.cellSize;
 
