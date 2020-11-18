@@ -12,6 +12,7 @@ export default class Game {
     this.clicksCount = 0;
     this.moves = [];
     this.dragging = false;
+    this.cellIsMoving = false;
   }
 
   createCells(cellSize, cellCount) {

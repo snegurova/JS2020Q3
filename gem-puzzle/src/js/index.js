@@ -185,6 +185,11 @@ canvas.addEventListener('mousemove', (e) => {
 });
 
 function gameMove(e) {
+  console.log(game.cellIsMoving);
+  // if (game.cellIsMoving) {
+  //   return;
+  // }
+  // game.cellIsMoving = true;
   let x = Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize);
   let y = Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize);
 
@@ -194,47 +199,53 @@ function gameMove(e) {
   }
   cell.moving = true;
   let emptyCell = game.getEmptyCell();
-  if (!cell.xPosition) {
-    cell.xPosition = cell.x * game.cellSize + 1;
+  if (!cell.xPositionAnimated) {
+    cell.xPositionAnimated = cell.x * game.cellSize + 1;
   }
-  if (!cell.yPosition) {
-    cell.yPosition = cell.y * game.cellSize + 1;
+  if (!cell.yPositionAnimated) {
+    cell.yPositionAnimated = cell.y * game.cellSize + 1;
   }
   let animateCellForInterval = animateCell.bind(null, cell, emptyCell)
   let animateId = setInterval(animateCellForInterval, 1);
   function animateCell(cell, emptyCell) {
+    // canvas.removeEventListener('click', gameMove);
     let targetX = emptyCell.x * game.cellSize;
     let targetY = emptyCell.y * game.cellSize;
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     game.draw();
-    game.drawCell(cell.xPosition, cell.yPosition, true);
+    game.drawCell(cell.xPositionAnimated, cell.yPositionAnimated, true);
     game.drawNum(
       cell.value,
-      cell.xPosition + game.cellSize / 2,
-      cell.yPosition + game.cellSize / 2
+      cell.xPositionAnimated + game.cellSize / 2,
+      cell.yPositionAnimated + game.cellSize / 2
     );
 
-    if (!(cell.xPosition === targetX)) {
+    if (!(Math.trunc(cell.xPositionAnimated / 2) === Math.trunc(targetX / 2))) {
       // Start Repeated code - incr/decr func
-      if (cell.xPosition > targetX) {
-        cell.xPosition--;
+      if (Math.trunc(cell.xPositionAnimated / 2) > Math.trunc(targetX / 2)) {
+        cell.xPositionAnimated -= 2;
       } else {
-        cell.xPosition++;
+        cell.xPositionAnimated += 2;
       }
     }
 
-    if (!(cell.yPosition === targetY)) {
-      if (cell.yPosition > targetY) {
-        cell.yPosition--;
+    if (!(Math.trunc(cell.yPositionAnimated / 2) === Math.trunc(targetY / 2))) {
+      if (Math.trunc(cell.yPositionAnimated / 2) > Math.trunc(targetY / 2)) {
+        cell.yPositionAnimated -= 2;
       } else {
-        cell.yPosition++;
+        cell.yPositionAnimated += 2;
       }
       // End Repeated code - incr/decr func
     }
 
-    if ((cell.xPosition === targetX) && (cell.yPosition === targetY)) {
+    if ((Math.trunc(cell.xPositionAnimated / 2) === Math.trunc(targetX / 2))
+    && (Math.trunc(cell.yPositionAnimated / 2) === Math.trunc(targetY / 2))) {
       clearInterval(animateId);
+      // canvas.addEventListener('click', gameMove);
+      cell.xPositionAnimated = null;
+      cell.yPositionAnimated = null;
+      // game.cellIsMoving = false;
       cell.moving = false;
       game.move(cell);
       ctx.fillRect(0, 0, canvas.width, canvas.height);

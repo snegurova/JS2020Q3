@@ -11,5 +11,7 @@ export default class Cell {
     this.startY = null;
     this.xPosition = null;
     this.yPosition = null;
+    this.xPositionAnimated = null;
+    this.yPositionAnimated = null;
   }
 }
