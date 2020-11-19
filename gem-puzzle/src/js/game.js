@@ -66,14 +66,16 @@ export default class Game {
     });
   }
 
-  move(cell) {
+  move(cell, isSoling) {
     let emptyCell = this.getEmptyCell();
     let emptyMove = '';
     let moveCell = () => {
       emptyCell.value = cell.value;
       cell.value = 0;
       this.clicks++;
-      this.moves.push(emptyMove);
+      if (!isSoling) {
+        this.moves.push(emptyMove);
+      }
       this.cells.forEach(cell => cell.draggable = false);
       if (cell.x - 1 >= 0) {
         this.getCell(cell.x - 1, cell.y).draggable = true;
@@ -109,8 +111,8 @@ export default class Game {
   isWon() {
     return this.cells.every((cell, ind, arr) => {
       return (cell.value === this.totalCellCount - 1 && ind === this.totalCellCount - 2)
-      || (cell.value === 0 && ind === this.totalCellCount - 1)
-      || (cell.value + 1 === arr[ind + 1].value)
+        || (cell.value === 0 && ind === this.totalCellCount - 1)
+        || (cell.value + 1 === arr[ind + 1].value)
     });
   }
 
@@ -150,6 +152,23 @@ export default class Game {
     }
 
     this.clicks = 0;
+
+    for (let i = 0; i < 20; i++) {
+      this.removeRepeatedMoves();
+    }
+
+  }
+
+  removeRepeatedMoves() {
+    for (let i = 0; i < this.moves.length - 1; i++) {
+      if (this.moves[i] === 'left' && this.moves[i + 1] === 'right' ||
+      this.moves[i] === 'right' && this.moves[i + 1] === 'left' ||
+      this.moves[i] === 'up' && this.moves[i + 1] === 'down' ||
+      this.moves[i] === 'down' && this.moves[i + 1] === 'up') {
+        this.moves.splice(i, 2);
+        i--;
+      }
+    }
   }
 
 }

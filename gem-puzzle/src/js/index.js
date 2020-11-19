@@ -1,6 +1,7 @@
 
 import '../styles/main.scss';
 import audioFile from '../images/icons/audio.mp3';
+// import images as
 
 // import favicon from '../images/icons/favicon.ico';
 
@@ -82,6 +83,7 @@ result.classList.add('result-wrapper');
 document.body.appendChild(result);
 
 const audio = new Audio(audioFile);
+document.body.appendChild(audio);
 // audio.src = audioFile;
 
 muteButton.addEventListener('click', () => {
@@ -198,30 +200,39 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
-// solveButton.addEventListener('click', () => {
-//   let empty = game.getEmptyCell();
-//   for (let i = game.moves.length - 1; i >= 0; i--) {
+solveButton.addEventListener('click', solveGame);
 
-//     let cell = null;
-//     if (game.moves[i] === 'left') {
-//       cell = game.getCell(empty.x - 1, empty.y)
-//     }
-//     if (game.moves[i] === 'right') {
-//       cell = game.getCell(empty.x + 1, empty.y)
-//     }
-//     if (game.moves[i] === 'up') {
-//       cell = game.getCell(empty.x, empty.y - 1)
-//     }
-//     if (game.moves[i] === 'down') {
-//       cell = game.getCell(empty.x, empty.y + 1)
-//     }
-//     empty = cell;
-//     // let solve = gameMove.bind(null, cell);
-//     setTimeout(gameMove, 1000, null, cell);
-//   }
-// });
+function solveGame() {
+  solveButton.removeEventListener('click', solveGame);
+  let empty = game.getEmptyCell();
+  //for (let i = game.moves.length - 1; i >= 0; i--) {
+  let i = game.moves.length - 1;
+  let cell = null;
+  if (game.moves[i] === 'left') {
+    cell = game.getCell(empty.x - 1, empty.y)
+  }
+  if (game.moves[i] === 'right') {
+    cell = game.getCell(empty.x + 1, empty.y)
+  }
+  if (game.moves[i] === 'up') {
+    cell = game.getCell(empty.x, empty.y - 1)
+  }
+  if (game.moves[i] === 'down') {
+    cell = game.getCell(empty.x, empty.y + 1)
+  }
+  game.moves.pop();
+  empty = cell;
+  gameMove(null, cell, true);
+  // let solve = gameMove.bind(null, cell);
+  if (game.moves.length) {
+    setTimeout(solveGame, 350);
+  } else {
+    solveButton.addEventListener('click', solveGame);
+  }
+  //}
+}
 
-function gameMove(e, cellSolve) {
+function gameMove(e, cellSolve, isSolving) {
 
   let x = e ? Math.trunc((e.pageX - canvas.offsetLeft) / game.cellSize) : cellSolve.x;
   let y = e ? Math.trunc((e.pageY - canvas.offsetTop) / game.cellSize) : cellSolve.y;
@@ -277,14 +288,14 @@ function gameMove(e, cellSolve) {
     }
 
     if ((Math.trunc(cell.xPositionAnimated / 2) === Math.trunc(targetX / 2))
-    && (Math.trunc(cell.yPositionAnimated / 2) === Math.trunc(targetY / 2))) {
+      && (Math.trunc(cell.yPositionAnimated / 2) === Math.trunc(targetY / 2))) {
       clearInterval(animateId);
       // canvas.addEventListener('click', gameMove);
       cell.xPositionAnimated = null;
       cell.yPositionAnimated = null;
       // game.cellIsMoving = false;
       cell.moving = false;
-      game.move(cell);
+      game.move(cell, isSolving);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       game.draw();
       if (game.isWon()) {
