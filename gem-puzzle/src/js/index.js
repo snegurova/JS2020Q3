@@ -386,7 +386,9 @@ resumeButton.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('time')) {
-    game.moves = localStorage.getItem('movesArray').split(',');
+    if (localStorage.getItem('movesArray')) {
+      game.moves = localStorage.getItem('movesArray').split(',');
+    }
     timer.innerHTML = localStorage.getItem('time');
     game.clicks = localStorage.getItem('movesCount');
     moves.innerHTML = localStorage.getItem('movesCount');
