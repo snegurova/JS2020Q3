@@ -313,10 +313,10 @@ resetButton.addEventListener('click', (e) => {
   localStorage.removeItem('time');
   localStorage.removeItem('cells');
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  game.moves.splice(0);
   game.mix(Math.floor(Math.random() * cellCount * 30 + Math.pow(cellCount, 3)));
   game.draw();
   timer.innerHTML = '0:00:00';
-  game.moves.splice(0);
   game.clicks = 0;
   moves.innerText = game.getClicks();
   result.innerHTML = '';
