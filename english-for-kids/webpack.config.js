@@ -86,7 +86,7 @@ module.exports = {
   devServer: {
     contentBase: 'src',
     watchContentBase: true,
-    port: 8080,
+    port: 8080 ,
     hot: isDev,
   },
   devtool: isDev ? 'source-map' : false,
