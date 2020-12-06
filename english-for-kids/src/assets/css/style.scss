@@ -19,10 +19,26 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
-  height: 1000px;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: auto;
 }
+
+.banner {
+  height: 300px;
+  background-color: $banner-color;
+  padding-top: 70px;
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    color: #fff;
+    font-weight: normal;
+    line-height: 4.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+
