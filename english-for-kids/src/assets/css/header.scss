@@ -13,28 +13,47 @@
 }
 
 nav {
-  overflow: hidden;
+  //overflow: hidden;
   position: relative;
-  transform: translateX(-240px);
+  //transform: translateX(-100px);
   height: 100%;
-  width: 320px;
+  width: 500px;
   transition: all 800ms cubic-bezier(0.8, 0, 0.33, 1);
   border-radius: 0% 0% 100% 50%;
+  z-index: 2;
+
+  @media screen and (max-width: 1200px) {
+    width: 320px;
+  }
 
   &.nav-open {
     transform: translateX(0px);
     border-radius: 0% 0% 0% 0%;
-    background: $menu-color;
+    .menu-btn {
+      transform:  translateX(80px);
+
+      @media screen and (max-width: 1200px) {
+        transform:  translateX(160px);
+      }
+      @media screen and (max-width: 992px) {
+        transform:  translateX(250px);
+      }
+    }
   }
 
   .menu-btn {
     position: absolute;
     top: 50px;
-    right: 5%;
+    left: 0;
     padding: 0;
     width: 30px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
+    transition: all 800ms cubic-bezier(0.8, 0, 0.33, 1);
+
+    @media screen and (max-width: 1020px) {
+      left: 20px;
+    }
 
     .line {
       padding: 0;
@@ -81,7 +100,7 @@ nav {
 
   .nav-links {
     position: absolute;
-    left: 0;
+    left: calc(500px - 50vw);
     top: 0;
     width: 100%;
     height: 100%;
@@ -89,9 +108,14 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    transform: translateX(-100px);
+    transform: translateX(-100%);
+    background: $menu-color;
     opacity: 0;
     transition: all 900ms cubic-bezier(0.9, 0, 0.33, 1);
+
+    @media screen and (max-width: 992px) {
+      left: 0;
+    }
 
     &.fade-in {
       opacity: 1;
@@ -159,12 +183,17 @@ nav {
 // 2. SWITCHER
 
 .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 140px;
   height: 38px;
-  margin-right: 50px;
-  margin-top: 50px;
+  top: 50px;
+  right: 0;
+  z-index: 1;
+
+  @media screen and (max-width: 1020px) {
+    right: 20px;
+  }
 
   input {
     display: none;
