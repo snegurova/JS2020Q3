@@ -1,0 +1,35 @@
+main {
+    padding: 40px 30px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: $gap;
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+            
+    }
+}
+
+.right {
+    max-width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+    gap: $gap;
+
+    .tableChart {
+        max-width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+        gap: $gap;
+
+        @media (min-width: 1020px) {
+            flex-direction: row;
+            max-height: 55%;
+            overflow: auto;
+        }
+    }
+}

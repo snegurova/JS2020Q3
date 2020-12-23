@@ -1,0 +1,97 @@
+// color: $color-dark-s;
+$color-primary: #F1CDB3;
+$color-background: #FFFFFF;
+$color-background-components: #FFFFFF;
+$color-background-components-fullscreen:  #E0E0E0;
+$color-background-fullscreen-btn: rgba(232, 236, 241, 0.6);
+$color-text-background: lightcoral;
+$color-text-highlight: lightcoral;
+$color-link: burlywood;
+$color-link-active: rgb(148, 175, 105);
+$color-yellow: #F2C94C;
+$color-red: #EB5757;
+$color-green: #56C568;
+$color-green2: #27AE60;
+$color-blue2: #2D9CDB;
+$color-gray: #9FA2B4;
+$color-gray2: #4F4F4F;
+$color-gray3: #828282;
+$color-gray5: #E0E0E0;
+$pointer: url('/src/assets/svg/cursor.svg'), auto;
+$gap: 25px;
+
+// @include flex($direction: column, $justify-content: space-between);
+@mixin flex($direction: row, $justify-content: center, $align-items: center, $wrap: wrap) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-wrap: $wrap;
+}
+
+@mixin text($size) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: $size;
+    line-height: 14px;
+    letter-spacing: 0.1px;
+    color: #4F4F4F;
+}
+
+@mixin headText1 {
+    font-family: Mulish sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: #4F4F4F;
+}
+
+@mixin h-mixin($size) {
+    font: {
+        family: Georgia;
+        style: normal;
+        weight: normal;
+        size: $size;
+    }
+
+    line-height: 130%;
+    letter-spacing: 0.06em;
+}
+
+@mixin h1 {
+    margin-left: 27px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    color: $color-red;
+}
+
+@mixin h3 {
+    @include h-mixin(34px);
+    letter-spacing: 0.05;
+}
+
+@mixin paragraph-l {
+    @include h-mixin(15px);
+    font-family: Arial;
+    line-height: 160%;
+    letter-spacing: 0;
+}
+
+@mixin button {
+    transition-duration: 0.5s;
+    outline: none;
+    cursor: $pointer;
+    background: none;
+
+    @include button;
+    @include h-mixin(17px);
+    padding: 15px 45px 15px 45px;
+    border-radius: 100px;
+    text-align: center;
+}

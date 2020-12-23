@@ -1,0 +1,120 @@
+.table {
+  position: relative;
+  transition: all 1s linear;
+  box-shadow: 3px 5px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  max-height: 100%;
+  flex: 1;
+  max-width: 100%;
+
+
+  @media (min-width: 1020px) {
+    flex-basis: 35%;
+    max-width: 50%;
+  }
+
+  &__wrap {
+    margin: 29px 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 58px);
+    justify-content: space-between;
+  }
+}
+
+.table-radio-block {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+
+  /*@media (min-width: 620px) {
+    flex-direction: row;
+    align-items: center;
+  }*/
+
+  .table__checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.block1 {
+  width: 500px;
+  padding: 25px;
+}
+
+.block1_country_info {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.block1_country_info img {
+  margin-right: 20px;
+  width: 40px;
+}
+
+.block1 h4 {
+  font-size: 18px;
+}
+
+.block1_covid_data {
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.covid_data_item {
+  flex-basis: 33.33%;
+  text-align: center;
+  border-right: 1px solid grey;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &_count {
+    font-size: 30px;
+  }
+
+  p {
+    @include headText1;
+  }
+
+  .confirmed {
+    color: $color-green2;
+  }
+
+  .deaths {
+    color: $color-yellow;
+  }
+
+  .recovered {
+    color: $color-red;
+  }
+}
+
+.change_data {
+  display: flex;
+  justify-content: space-between;
+}
+
+h4 {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.1px;
+  color: #4F4F4F;
+}
+
+h3 {
+  font-family: Mulish;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #252733;
+}

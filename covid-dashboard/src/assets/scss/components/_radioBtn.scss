@@ -1,0 +1,117 @@
+.map {
+  [type="radio"]:checked,
+  [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+  }
+  [type="radio"]:checked + label,
+  [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #828282;
+  }
+  [type="radio"]:not(:checked) + label {
+    color: #9fa2b4;
+  }
+  [type="radio"]:checked + label:before,
+  [type="radio"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+    height: 3px;
+    /*     border: 2px solid #DFE0EB; */
+    background: #dfe0eb;
+  }
+  [type="radio"]:checked + label:after,
+  [type="radio"]:not(:checked) + label:after {
+    content: "";
+    width: 20px;
+    height: 3px;
+    background: #219653;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    border-radius: 100%;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  .rnd-switch:nth-child(2) [type="radio"]:checked + label:after,
+  .rnd-switch:nth-child(2) [type="radio"]:not(:checked) + label:after {
+    background: #f2c94c;
+  }
+  .rnd-switch:nth-child(3) [type="radio"]:checked + label:after,
+  .rnd-switch:nth-child(3) [type="radio"]:not(:checked) + label:after {
+    background: #eb5757;
+  }
+  [type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  [type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.chart {
+  [type="radio"]:checked,
+  [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+  }
+
+  [type="radio"]:checked + label,
+  [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: $pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #9fa2b4;
+  }
+
+  [type="radio"]:checked + label:before,
+  [type="radio"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+    height: 3px;
+    /*     border: 2px solid #DFE0EB; */
+    background: #f2c94c;
+  }
+
+  [type="radio"]:checked + label:after,
+  [type="radio"]:not(:checked) + label:after {
+    content: "";
+    width: 20px;
+    height: 3px;
+    background: #219653;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+
+  [type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  [type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
