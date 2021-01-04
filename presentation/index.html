@@ -1,0 +1,418 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>SVG: Modes, Coordinates, Basic Shapes, Accessibility, Animations</title>
+
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="reveal.css">
+  <link rel="stylesheet" href="theme/custom.css" id="theme">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title" data-background-color="#F4F2EF" data-background="img/SVG.svg"
+        data-background-position="top 50px left 350px" data-background-size="80%">
+        <!-- <img src="img/SVG.svg" alt="" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;"> -->
+        <h3>Modes</h3>
+        <h3>Coordinates</h3>
+        <h3>Basic Shapes</h3>
+        <h3>Accessibility</h3>
+        <h3>Animations</h3>
+        <aside class="notes">
+          SVG is an image format for vector graphics.<br>
+          It literally means Scalable Vector Graphics.<br>
+          Basically, what you work with in Adobe Illustrator.<br>
+          We are going to talk about: MODES, COORDINATES, BASIC SHAPES, ACCESSIBILITY
+          ANIMATIONS<br>
+          You can use SVG on the web pretty easily.<br>
+          But why to do it?📝
+        </aside>
+      </section>
+
+      <section>
+        <section id="fragments">
+          <h2>Why use SVG at all?</h2>
+          <ul>
+            <li>Small file sizes that compress well</li>
+            <li class="fragment">Scales to any size without losing clarity (except very tiny)</li>
+            <li class="fragment">Looks great on retina displays</li>
+            <li class="fragment">Design control like interactivity and filters</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Vector VS raster</h3>
+          <img src="img/raster-vs-vector.png" alt="svg and raster format comparison">
+        </section>
+      </section>
+
+      <section>
+        <section id="modes">
+          <h2>Modes:</h2>
+          <ul>
+            <li>normal</li>
+            <li>multiply</li>
+            <li>screen</li>
+            <li>overlay</li>
+            <li>darken</li>
+            <li>lighten</li>
+            <li>color-dodge</li>
+            <li>color-burn</li>
+            <li>hard-light</li>
+            <li>soft-light</li>
+            <li>difference</li>
+            <li>exclusion</li>
+            <li>hue</li>
+            <li>saturation</li>
+            <li>color</li>
+            <li>luminosity</li>
+          </ul>
+          <aside class="notes">
+            The <strong>blend-mode</strong> CSS data type describes how colors should appear when
+            elements overlap. It is used in the background-blend-mode and mix-blend-mode
+            properties.
+          </aside>
+        </section>
+        <section>
+          <p class="codepen fragment" data-height="400" data-theme-id="dark" data-default-tab="result"
+            data-user="snegurova" data-slug-hash="BaLrbgp"
+            style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+            data-pen-title="Blend-mode">
+            <span>See the Pen <a href="https://codepen.io/snegurova/pen/BaLrbgp">
+                Blend-mode</a> by Inna (<a href="https://codepen.io/snegurova">@snegurova</a>)
+              on <a href="https://codepen.io">CodePen</a>.</span>
+          </p>
+          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+          <aside class="notes">
+            On this slide we can choose blending mode from the list options. <br>
+            For example <b>multiply</b> blend mode will show final colors as the
+            result of multiplying the top and bottom colors. <br>
+            And <b>difference</b> blend mode will show final colors as the result
+            of subtracting the darker of the two colors from the lighter one.
+          </aside>
+        </section>
+      </section>
+
+      <section>
+        <h2>SVG Coordinate System</h2>
+        <svg width="320" height="220" class="coordinates">
+          &lt;%-- y-axis --%&gt;
+          <text x="25" y="35" font-size="30" text-anchor="middle" fill="white">0</text>
+          <line x1="40" y1="40" x2="40" y2="210" style="stroke:#fff;" stroke-width="2px"></line>
+          &lt;%-- arrow --%&gt;
+          <line x1="35" y1="205" x2="40" y2="210" style="stroke:#fff;" stroke-width="2px"></line>
+          <line x1="45" y1="205" x2="40" y2="210" style="stroke:#fff;" stroke-width="2px"></line>
+
+
+          &lt;%-- x-axis --%&gt;
+          <line x1="40" y1="40" x2="210" y2="40" style="stroke:#fff;" stroke-width="2px"></line>
+          &lt;%-- arrow --%&gt;
+          <line x1="205" y1="35" x2="210" y2="40" style="stroke:#fff;" stroke-width="2px"></line>
+          <line x1="205" y1="45" x2="210" y2="40" style="stroke:#fff;" stroke-width="2px"></line>
+        </svg>
+
+        <div class="fragment">
+          <h4>The viewport</h4>
+          <pre><code>
+          <!-- the viewport will be 800px by 600px -->
+          <svg width="800" height="600">
+          <!-- SVG content drawn onto the SVG canvas -->
+          </svg>
+        </code></pre>
+        </div>
+        <aside class="notes">
+          In the SVG coordinate system the point x=0, y=0 is the <b>upper left corner</b>.
+          The y-axis is thus reversed compared to a normal graph coordinate system. As y increases in SVG, the points,
+          shapes etc. move down, not up.<br><br>
+          The <b>viewport</b> is the viewing area where the SVG will be visible.
+          You can think of the viewport as a window through which you can see a particular
+          scene.
+      </section>
+      <section>
+        <section>
+          <h2>Basic Shapes</h2>
+          <ul class="fragment">
+            <li>Rectangle</li>
+            <li>Circle</li>
+            <li>Ellipse</li>
+            <li>Line</li>
+            <li>Polyline</li>
+            <li>Polygon</li>
+            <li>Path</li>
+          </ul>
+          <aside class="notes">
+            There are several basic shapes used for most SVG drawing.
+            The purpose of these shapes is fairly obvious from their names.
+            These shapes are:
+          </aside>
+        </section>
+
+        <section>
+          <h3>Rectangle</h3>
+          <pre class="fragment mt-50"><code data-trim><script type="text/template">
+            <svg width="200" height="250">
+
+              <rect x="10" y="10" width="100" height="100" stroke="white"
+                fill="transparent" stroke-width="5"/>
+              <rect x="130" y="10" rx="10" ry="10" width="100" height="100"
+                stroke="white" fill="transparent" stroke-width="5"/>
+
+            </svg>
+          </script></code></pre>
+          <svg class="fragment mt-50" width="300" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+            <rect x="10" y="10" width="100" height="100" stroke="white" fill="transparent" stroke-width="5" />
+            <rect x="130" y="10" rx="10" ry="10" width="100" height="100" stroke="white" fill="transparent"
+              stroke-width="5" />
+
+          </svg>
+        </section>
+        <section>
+          <h3>Circle and Ellipse</h3>
+          <pre class="fragment mt-50"><code data-trim><script type="text/template">
+            <svg width="200" height="250">
+
+              <circle cx="60" cy="75" r="50" stroke="#d33682" fill="transparent"
+                  stroke-width="5"/>
+              <ellipse cx="175" cy="75" rx="50" ry="20" stroke="#d33682"
+              fill="transparent" stroke-width="5"/>
+
+            </svg>
+          </script></code></pre>
+          <svg class="fragment mt-50" width="300" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+            <circle cx="60" cy="75" r="50" stroke="#d33682" fill="transparent" stroke-width="5" />
+            <ellipse cx="175" cy="75" rx="50" ry="20" stroke="#d33682" fill="transparent" stroke-width="5" />
+
+          </svg>
+        </section>
+        <section>
+          <h3>Line and Polyline</h3>
+          <pre class="fragment mt-50"><code data-trim><script type="text/template">
+            <svg width="200" height="250">
+              <line x1="10" x2="50" y1="110" y2="150" stroke="lime" stroke-width="5"/>
+              <polyline points="10 10, 55 70, 45 20, 75 90, 65 25, 85 105,
+                  95 35, 95 115, 105 45"
+                  stroke="orange" fill="transparent" stroke-width="5"/>
+
+            </svg>
+          </script></code></pre>
+          <svg class="fragment mt-50" width="350" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" x2="50" y1="110" y2="150" stroke="lime" stroke-width="5" />
+            <polyline points="10 10, 55 70, 45 20, 75 90, 65 25, 85 105, 95 35, 95 115, 105 45" stroke="orange"
+              fill="transparent" stroke-width="5" />
+
+          </svg>
+        </section>
+        <section>
+          <h3>Path and Polygon</h3>
+          <pre class="fragment mt-50"><code data-trim><script type="text/template">
+            <svg width="200" height="250">
+              <path d="M20,30 Q40,5 50,130 T90,90" fill="none" stroke="blue"
+                  stroke-width="5"/>
+              <polygon points="250 10, 190 198, 340 78, 160 78, 310 198"
+                  stroke="lime" fill="transparent" stroke-width="5"/>
+
+            </svg>
+          </script></code></pre>
+          <svg class="fragment hover" width="350" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,30 Q40,5 50,130 T90,90" fill="none" stroke="blue" stroke-width="5" />
+            <polygon points="250 10, 190 198, 340 78, 160 78, 310 198" stroke="lime" fill="transparent"
+              stroke-width="5" />
+
+          </svg>
+          <pre class="fragment"><code data-trim><script type="text/template">
+            svg:hover path{
+              stroke:#fff;
+            }
+          </script></code></pre>
+        </section>
+        <section class="svg-wrap">
+          <svg viewBox="0 0 10 10" class="svg-1">
+            <path d="M2,2 L8,8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-2">
+            <path d="M2,8 L5,2 L8,8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-3">
+            <path d="M2,2 Q8,2 8,8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-4">
+            <path d="M2,5 C2,8 8,8 8,5" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-5">
+            <path d="M2,2 L8,2 L2,5 L8,5 L2,8 L8,8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-6">
+            <path d="M2,5 A 5 25 0 0 1 8 8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-7">
+            <path d="M2,5 S2,-2 4,5 S7,8 8,4" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-8">
+            <path d="M5,2 Q 2,5 5,8" />
+          </svg>
+
+          <svg viewBox="0 0 10 10" class="svg-9">
+            <path d="M2,2 Q5,2 5,5 T8,8" />
+          </svg>
+        </section>
+
+      </section>
+      <section>
+        <section>
+          <h2>Accessibility</h2>
+          <p>SVG as img src</p>
+          <pre><code data-line-numbers="3"><script type="text/template">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/
+              44216/pixels-2.svg" alt="Pixels, my super cute cat">
+          </script></code></pre>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/44216/pixels-2.svg" alt="Pixels, my super cute cat">
+
+        </section>
+        <section>
+          <p>Inline SVG</p>
+          <pre><code data-line-numbers="3"><script type="text/template">
+            <svg>
+              <title>A short title of the SVG</title>
+              ...
+            </svg>
+          </script></code></pre>
+        </section>
+        <section>
+          <p>Embed SVG via object or iframe</p>
+          <pre><code data-line-numbers="5,6"><script type="text/template">
+            <object type="image/svg+xml"
+                data="/path-to-the-svg/filename.svg"
+                width="50%"
+                tabindex="0">
+              <img src="Fallback_image.jpg" alt="alt content here">
+            </object>
+          </script></code></pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Animations</h2>
+          <aside class="notes">
+            SVG properties can be animated using CSS through CSS animations and transitions.
+          </aside>
+        </section>
+        <section>
+          <p>Let's draw elements and create a wave animation</p>
+          <pre><code><script type="text/template">
+            <svg width="350" height="250">
+              <circle class="shape" />
+              <circle class="shape" />
+              <circle class="shape" />
+              <circle class="shape" />
+              <circle class="shape" />
+            </svg>
+          </script></code></pre>
+        </section>
+        <section>
+          <p>Adding style via CSS</p>
+          <pre><code><script type="text/template">
+            .shape {
+              cy: 50;
+              r: 20;
+            }
+            .shape:nth-child(1) {
+              cx: 60;
+              fill: var(--color-1);
+            }
+
+            .shape:nth-child(2) {
+              cx: 120;
+              fill: var(--color-2);
+            }
+            ...
+          </script></code></pre>
+        </section>
+        <section>
+          <p>Here is a static result</p>
+          <svg width="350" height="250">
+            <circle class="static" />
+            <circle class="static" />
+            <circle class="static" />
+            <circle class="static" />
+            <circle class="static" />
+          </svg>
+        </section>
+        <section>
+          <p>Let's animate it by using @keyframes rule</p>
+          <pre><code data-line-numbers="2-6|8-10|13-15"><script type="text/template">
+            @keyframes moveCircle {
+              50% {
+                cy: 150;
+                r: 13;
+              }
+            }
+            .shape {
+              ...
+              animation: moveCircle 1250ms ease-in-out both infinite;
+            }
+
+            .shape:nth-child(2) {
+              ...
+              animation-delay: 100ms;
+            }
+
+            .shape:nth-child(3) {
+              ...
+              animation-delay: 200ms;
+            }
+            ...
+          </script></code></pre>
+        </section>
+        <section>
+          <p>Enjoying the result</p>
+          <svg width="350" height="250">
+            <circle class="shape" />
+            <circle class="shape" />
+            <circle class="shape" />
+            <circle class="shape" />
+            <circle class="shape" />
+          </svg>
+        </section>
+      </section>
+      <section>
+        <h2>That's it! Thanks for watching!</h2>
+      </section>
+    </div>
+  </div>
+
+  <script src="reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      showNotes: false,
+      backgroundTransition: 'zoom',
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
